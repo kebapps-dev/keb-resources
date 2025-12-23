@@ -19,10 +19,10 @@ Lift,gearboxEfficiencyPercent,Gearbox Efficiency,number,any,%,,,Gearbox efficien
 Lift,safetyFactor,Safety Factor,number,.1,,,,Safety factor for sizing
 
 Rotarytable,rotationalMoveDistance,Rotational Move Distance,number,any,"rad,deg",angle,,Distance to rotate
-Rotarytable,totalMoveTime,Total Move Time,number,any,s,,,Total time for move
-Rotarytable,dwellTime,Dwell Time,number,any,s,,,Time at rest after move
-Rotarytable,accelTime,Acceleration Time,number,any,s,,,Time to accelerate
-Rotarytable,decelTime,Deceleration Time,number,any,s,,,Time to decelerate
+Rotarytable,totalMoveTime,Total Move Time,number,.1,s,,,Total time for move
+Rotarytable,dwellTime,Dwell Time,number,.1,s,,,Time at rest after move
+Rotarytable,accelTime,Acceleration Time,number,.1,s,,,Time to accelerate
+Rotarytable,decelTime,Deceleration Time,number,.1,s,,,Time to decelerate
 Rotarytable,massIndexTable,Mass,number,any,"kg,g,lb,oz",mass,,Mass of the index table
 Rotarytable,radiusIndexTable,Radius,number,any,"m,mm,cm,in,ft",length,,Radius of the index table
 Rotarytable,gearboxRatioRotary,Gearbox Ratio,number,any,,,,Gearbox ratio for rotary table
@@ -31,6 +31,9 @@ Rotarytable,motorInertia,Motor Inertia (iterative),number,any,"kg·m²,lb·ft²,
 Rotarytable,gearboxInertia,Gearbox Inertia,number,any,"kg·m²,lb·ft²,g·cm²",inertia,,Gearbox inertia
 Rotarytable,brakeInertia,Brake Inertia,number,any,"kg·m²,lb·ft²,g·cm²",inertia,,Brake inertia
 Rotarytable,frictionTorque,Friction Torque,number,any,"Nm,lb·ft,oz·in",torque,,Friction torque
+Rotarytable,gearNumerator,Gearbox Numerator,number,any,,,,Gearbox ratio numerator
+Rotarytable,gearDenominator,Gearbox Denominator,number,any,,,,Gearbox ratio denominator
+Rotarytable,co03,co03 Value,number,any,,,,co03 parameter value
 
 Conveyor,conveyorLength,Conveyor Length,number,any,"m,mm,cm,in,ft",length,,Length of the conveyor
 Conveyor,conveyorInclineAngle,Incline Angle,number,any,"deg,rad",angle,,Incline angle of conveyor
@@ -53,8 +56,14 @@ Blower,blowerFanEff,Blower Fan Efficiency,number,any,%,,,Blower fan efficiency a
 Blower,blowerMotorEff,Blower Motor Efficiency,number,any,%,,,Blower motor efficiency as a percent
 Blower,blowerRequiredSpeed,Required Speed,number,any,"RPM,rad/s,Hz",speed,,Required blower speed (optional)
 
-Leadscrew,leadscrewForce,Load Force,number,any,"N,lbf",force,,Axial load force on the leadscrew
+Leadscrew,leadscrewLinSpeed,Linear Speed,number,any,,velocity,m/s,Linear speed of the leadscrew
+Leadscrew,leadscrewAccelTime,Acceleration Time,number,any,s,,,Time taken to accelerate to required speed
+Leadscrew,leadscrewMass,Load Mass,number,any,,mass,,Mass being moved
 Leadscrew,leadscrewLead,Lead,number,any,"mm,cm,in",length,,Lead of the leadscrew
-Leadscrew,leadscrewRotSpeed,Required Speed,number,any,"RPM,rad/s,Hz",speed,,Required speed of the leadscrew
+Leadscrew,leadscrewInertia,Screw Inertia,number,any,,inertia,,Rotational inertia of the leadscrew
+Leadscrew,leadscrewMechEff,Leadscrew Efficiency,number,5,%,,,Efficiency of the leadscrew mechanism    
+Leadscrew,leadscrewForce,Load Force (include gravity if vertical),number,any,,force,, Axial load force on the leadscrew
 Leadscrew,leadscrewRatio,Gearbox Ratio,number,any,,,,Gearbox ratio for the leadscrew
-Leadscrew,leadscrewEff,Efficiency,number,5,%,,,Efficiency of the leadscrew mechanism    
+Leadscrew,leadscrewGearboxEff,Gearbox Efficiency,number,5,%,,,Efficiency of the gearbox mechanism
+Leadscrew,leadscrewMotorInertia,Motor Inertia (iterative),number,any,,inertia,,Rotational inertia of the motor
+Leadscrew,leadscrewOverload,Overload Factor,number,50,%,,,Overload factor for sizing

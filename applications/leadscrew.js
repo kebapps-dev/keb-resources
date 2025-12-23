@@ -1,29 +1,58 @@
 // Leadscrew formulas (SI base units: N, m, rad/s → Nm, W)
 const leadscrewformulas = {
-  screwTorque: (force, lead) => (force * lead) / (2 * Math.PI),
-  motorTorque: (screwTorque, gearboxRatio, efficiency) => screwTorque / (gearboxRatio * efficiency),
-  motorPower: (motorTorque, angularSpeed) => motorTorque * angularSpeed
+  screwRadius: (lead) => lead / (2 * Math.PI), // lead: m → radius: m
+  rotSpeed: (linSpeed, screwRadius) => (linSpeed / screwRadius), // linSpeed: m/s, screwRadius: m → rad/s
+  rotAcceleration: (linSpeed, accelTime, screwRadius) => (linSpeed / accelTime) / screwRadius, // linSpeed: m/s, screwRadius: m → rad/s²
+  rotInertia : (mass, screwRadius) => mass * (screwRadius ** 2), // mass: kg, screwRadius: m → kg·m²
+  totalInertia : (rotInertia, screwInertia, motorInertia, gearboxRatio) => rotInertia + screwInertia + (motorInertia/(gearboxRatio**2)), // kg·m²
+
+
+  accelTorque: (totalInertia, rotAcceleration) => totalInertia * rotAcceleration, // totalInertia: kg·m², rotAcceleration: rad/s² → Nm
+  loadTorque: (force, screwRadius, mechEff) => (force * screwRadius) / mechEff, // force: N, screwRadius: m → Nm
+  peakTorque: (accelTorque, loadTorque) => (accelTorque + loadTorque), // Nm
+  motorTorque: (peakTorque, gearboxRatio, gearboxEfficiency) => peakTorque / (gearboxRatio * gearboxEfficiency), // peakTorque: Nm → Nm
+  motorPowerIncOverload: (peakTorque, rotSpeed, gearboxEfficiency, motorOverload) => (peakTorque * rotSpeed / gearboxEfficiency) * (1 / motorOverload) // motorTorque: Nm, rotSpeed: rad/s → W
 };
 
 if (typeof window !== 'undefined') window.leadscrewformulas = leadscrewformulas;
 
 function findClosestLeadscrewMotor() {
+  const linSpeed = getValueWithUnit('leadscrewLinSpeed'); // m/s
+  const accelTime = getValueWithUnit('leadscrewAccelTime'); // s
+  const mass = getValueWithUnit('leadscrewMass'); // kg
   const lead = getValueWithUnit('leadscrewLead'); // m
+  const leadscrewInertia = getValueWithUnit('leadscrewInertia'); // kg·m²
+  const leadscrewMechEff = Math.max(0.01, (getValueWithUnit('leadscrewMechEff') || 100) / 100); // dimensionless
   const force = getValueWithUnit('leadscrewForce'); // N
-  const speed = getValueWithUnit('leadscrewRotSpeed'); // rad/s
   const ratio = getValueWithUnit('leadscrewRatio'); // dimensionless
-  const eff = Math.max(0.01, (getValueWithUnit('leadscrewEff') || 100) / 100); // dimensionless
+  const gearboxEfficiency = Math.max(0.01, (getValueWithUnit('leadscrewGearboxEff') || 100) / 100); // dimensionless
+  const leadscrewMotorInertia = getValueWithUnit('leadscrewMotorInertia'); // kg·m²
+  const motorOverload = getValueWithUnit('leadscrewOverload') / 100; // dimensionless
 
-  const torque = leadscrewformulas.motorTorque(leadscrewformulas.screwTorque(force, lead), ratio, eff);
-  const power = leadscrewformulas.motorPower(torque, speed);
+  const screwRadius = leadscrewformulas.screwRadius(lead);
+  const motorSpeed = leadscrewformulas.rotSpeed(linSpeed, screwRadius);
+  const totalInertia = leadscrewformulas.totalInertia(
+    leadscrewformulas.rotInertia(mass, screwRadius), // estimate mass from force assuming vertical orientation
+    leadscrewInertia,
+    leadscrewMotorInertia,
+    ratio
+  );
+  const accelTorque = leadscrewformulas.accelTorque(
+    totalInertia, 
+    leadscrewformulas.rotAcceleration(linSpeed, accelTime, screwRadius)
+  );
+  const loadTorque = leadscrewformulas.loadTorque(force, screwRadius, leadscrewMechEff);
+  const peakTorque = leadscrewformulas.peakTorque(accelTorque, loadTorque);
+  const motorTorque = leadscrewformulas.motorTorque(peakTorque, ratio, gearboxEfficiency);
+  const motorPowerIncOverload = leadscrewformulas.motorPowerIncOverload(peakTorque, motorSpeed, gearboxEfficiency, motorOverload);
 
   displayStandardResults({
-    [`Required Motor Speed (${window.selectedResultUnits?.speed || 'RPM'})`]: 
-      convertResultValue(speed, 'speed', window.selectedResultUnits?.speed || 'RPM').toFixed(3),
+    [`(1) Required Motor Speed (${window.selectedResultUnits?.speed || 'RPM'})`]: 
+      convertResultValue(motorSpeed, 'speed', window.selectedResultUnits?.speed || 'RPM').toFixed(3),
     [`Required Motor Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
-      convertResultValue(torque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
+      convertResultValue(motorTorque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
     [`Required Motor Power (${window.selectedResultUnits?.power || 'kW'})`]: 
-      convertResultValue(power, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3)
+      convertResultValue(motorPowerIncOverload, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3)
   });
 }
 
@@ -40,10 +69,13 @@ function getLeadscrewSizingSuggestions() {
 // Leadscrew formulas display
 function getLeadscrewFormulas() {
   return `
-    <span class="formula"><b>(1)</b> \\( v = \\text{lead} \\cdot \\frac{RPM}{60} \\)</span>
-    <span class="formula"><b>(2)</b> \\( T = \\frac{F \\cdot \\text{lead}}{2\\pi} \\)</span>
-    <span class="formula"><b>(3)</b> \\( T_{motor} = \\frac{T}{i \\cdot \\eta} \\)</span>
-    <span class="formula"><b>(4)</b> \\( P = T_{motor} \\cdot \\omega \\)</span>
+    <span class="formula"><b></b> \\( r_{screw} =   \\frac{L_{lead}}{2 \\pi} \\)</span>
+    <span class="formula"><b>(1)</b> \\( RPM_{motor} = \\frac{v}{r_{screw}} \\)</span>
+    <span class="formula"><b></b> \\( T_{accel} = J_{total} \\cdot \\alpha \\)</span>
+    <span class="formula"><b></b> \\( T_{load} = \\frac{F \\cdot r_{screw}}{\\eta_{mech}} \\)</span>
+    <span class="formula"><b></b> \\( T_{peak} = T_{accel} + T_{load} \\)</span>
+    <span class="formula"><b>(2)</b> \\( T_{motor} = \\frac{T_{peak}}{i \\cdot \\eta_{gearbox}} \\)</span>
+    <span class="formula"><b>(3)</b> \\( P = \\frac{T_{peak} \\cdot \\omega}{\\eta_{gearbox} \\cdot OL} \\)</span>
   `;
 }
 

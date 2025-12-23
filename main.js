@@ -275,7 +275,6 @@ function handleAppChange() {
     renderInputsForApp(app);
     attachDynamicInputListeners(app);
     loadSelectedScript(); // This now handles calling showFormulasForApplication after script loads
-    //if (app === "Genericrotary") findClosestGenericRotaryMotor();
 }
 
 // Universal function to call the appropriate calculation function based on selected application
@@ -626,49 +625,25 @@ function showFormulasForApplication(application) {
     
     switch (application) {
         case "Pump":
-            html = `
-            * add option for clamp cylinder dimensions vs flow rate input
-                <span class="formula"><b></b> \\( A_{clamp} = \\frac{\\pi}{4} \\cdot (D_{bore}^2 - D_{rod}^2) \\)</span>
-                <span class="formula"><b></b> \\( V_{clamp} = A_{clamp} \\cdot L_{stroke} \\)</span>
-                <span class="formula"><b>(1)</b> \\( Q = \\frac{V_{clamp}}{t_{stroke}} \\)</span>
-                <span class="formula"><b>(2)</b> \\( D_{pump} = \\frac{Q}{RPM} \\)</span>
-                <span class="formula"><b>(3)</b> \\( F_{clamp} = P_{clamp} \\cdot A_{clamp} \\)</span>
-                <span class="formula"><b>(4)</b> \\( T_{motor} = \\frac{D_{pump} \\cdot P_{clamp}}{2\pi \\cdot \eta_{vol}} \\)</span>
-                <span class="formula"><b>(5)</b> \\( P_{motor} = T_{motor} \\cdot \\omega_{motor} \\)</span>
-                `;
+          html = typeof getPumpFormulas === 'function' 
+                ? getPumpFormulas() 
+                : "";
             break;
         case "Lift":
-            html = `
-                <span class="formula"><b>(1)</b> \\( RPM_{motor} = \\frac{60 \\cdot v \\cdot i}{\\pi \\cdot D_{drum}} \\)</span>
-                <span class="formula"><b></b> \\( F_{grav} = m \\cdot g \\)</span>
-                <span class="formula"><b>(2)</b> \\( T_{hold} = \\frac{F_{grav} \\cdot D_{drum}}{2 \\cdot GR \\cdot \\eta} \\)</span>
- 
-                
-                <span class="formula"><b>(3)</b> \\( T_{accel} = J \\cdot \\alpha \\)</span>                
-                <span class="formula"><b>(4):</b> \\( P = T \\cdot \\omega \\)</span>
-
-            `;
+          html = typeof getLiftFormulas === 'function' 
+                ? getLiftFormulas() 
+                : "";
             break;
         case "Rotarytable":
-            html = `
-                <span class="formula"><b>(1)</b> \\( \\omega = \\frac{\\theta}{t_{move}} \\)</span>
-                <span class="formula"><b>(2)</b> \\( \\theta = \\omega \\cdot t_{move} \\)</span>
-                <span class="formula"><b></b> \\( \\alpha = \\frac{\\omega}{t_{accel}} \\)</span>
-                <span class="formula"><b>(3)</b> \\( J_{table} = \\frac{1}{2} \\cdot m \\cdot r^2 \\)</span>
-                <span class="formula"><b>(4)</b> \\( J_{reflected} = \\frac{J_{table} + J_{load}}{i^2} \\)</span>
-                <span class="formula"><b>(5)</b> \\( T_{const} = \\frac{T_{friction}}{i} \\)</span>
-                <span class="formula"><b>(6)</b> \\( T_{accel} = (J_{motor} + J_{gearbox} + J_{brake} + J_{reflected}) \\cdot \\alpha + T_{const} \\)</span>
-                <span class="formula"><b>(7)</b> \\( T_{rms motor} = \\sqrt{\\frac{ (T_{accel})^2 \\cdot t_{accel} + (T_{decel})^2 \\cdot t_{decel}  + (\\frac{T_{const}}{i})^2 \\cdot t_{const} } {t_{move} + t_{dwell} } } \\)</span>
-            `;
+            html = typeof getRotaryTableFormulas === 'function' 
+                ? getRotaryTableFormulas() 
+                : "";
             break;
         case "Conveyor":
-            html = `
-                <span class="formula"><b>(1)</b> \\( F_{friction} = m_{load} \\cdot g \\cdot\\mu_{friction} \\)</span>
-                <span class="formula"><b>(2)</b> \\( F_{incline} = m_{load} \\cdot g \\cdot \\sin(\\theta) \\)</span>
-                <span class="formula"><b>(3)</b> \\( RPM = \\frac{v_{belt} \\cdot 60}{\\pi \\cdot D_{roller}} \\)</span>
-                <span class="formula"><b>(4)</b> \\( T_{motor} = \\frac{F_{total} \\cdot D_{roller}}{2} \\)</span>
-                <span class="formula"><b>(5)</b> \\( P = F_{belt} \\cdot v_{belt} \\)</span>
-            `;
+          html = typeof getConveyorFormulas === 'function' 
+                ? getConveyorFormulas() 
+                : "";
+            break;
             break;
         case "Genericrotary":
             html = typeof getGenericRotaryFormulas === 'function' 
@@ -879,52 +854,6 @@ function addResultUnitControls(container) {
     torqueWrapper.appendChild(torqueSelect);
     container.appendChild(torqueWrapper);
 }
-document.addEventListener('DOMContentLoaded', () => {
-    // List all relevant input IDs for Generic Rotary
-    const rotaryInputs = [
-        "genericRequiredSpeed",
-        "genericSpeedUnit",
-        "genericAccelTime",
-        "genericRunTime",
-        "genericDecelTime",
-        "genericRestTime",
-        "genericMomentOfInertia",
-        "genericInertiaUnit",
-        "genericFrictionTorque",
-        "genericTorqueUnit",
-        "genericThermalMarginPercent"
-    ];
-
-    rotaryInputs.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            // Only update on 'change' (for selects) or 'blur' (for inputs), or Enter key
-            if (el.tagName === "SELECT") {
-                el.addEventListener('change', () => {
-                    const app = document.getElementById("application");
-                    if (app && app.value === "Genericrotary") {
-                        findClosestGenericRotaryMotor();
-                    }
-                });
-            } else {
-                el.addEventListener('blur', () => {
-                    const app = document.getElementById("application");
-                    if (app && app.value === "Genericrotary") {
-                        findClosestGenericRotaryMotor();
-                    }
-                });
-                el.addEventListener('keydown', (e) => {
-                    if (e.key === "Enter") {
-                        const app = document.getElementById("application");
-                        if (app && app.value === "Genericrotary") {
-                            findClosestGenericRotaryMotor();
-                        }
-                    }
-                });
-            }
-        }
-    });
-});
 
 // module-scoped copy of input definitions. If DataManager already loaded them it will
 // populate window.inputDefinitions and DataManager.onDataReady will sync this variable.
@@ -1134,64 +1063,32 @@ function displayStandardResults(currentOutputs) {
             waitingForStartingValuePresent = true;
         }
 
-        // Hardcoded result unit mappings for each application
+        // Get result unit mappings from application-specific JS files
         const currentApp = document.getElementById("application")?.value;
         let valueDisplayHtml = String(value);
         
-        // Define which results get unit conversion dropdowns
-        const resultUnitMappings = {
-            'Blower': {
-                'Fan Power': { type: 'power', component: 'fan', defaultUnit: 'kW' },
-                'Motor Power': { type: 'power', component: 'motor', defaultUnit: 'kW' },
-                'Torque Required': { type: 'torque', component: 'motor', defaultUnit: 'Nm' }
-            },
-            'Conveyor': {
-                'Required Motor Power': { type: 'power', component: 'motor', defaultUnit: 'kW' },
-                'Required Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-                'Total Force': { type: 'force', component: 'system', defaultUnit: 'N' },
-                'Frictional Force': { type: 'force', component: 'system', defaultUnit: 'N' },
-                'Incline Force': { type: 'force', component: 'system', defaultUnit: 'N' }
-            },
-            'Pump': {
-                '(1) Flow Rate Required': { type: 'flow', component: 'pump', defaultUnit: 'L/min' },
-                '(3) Clamping Force': { type: 'force', component: 'pump', defaultUnit: 'N' },
-                '(4) Motor Required Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-                '(5) Required Motor Power': { type: 'power', component: 'motor', defaultUnit: 'kW' }
-            },
-            'Spindle': {
-                'Motor Power': { type: 'power', component: 'motor', defaultUnit: 'kW' },
-                'Torque Required': { type: 'torque', component: 'motor', defaultUnit: 'Nm' }
-            },
-            'Lift': {
-                '(1) Motor Speed': { type: 'speed', component: 'motor', defaultUnit: 'RPM' },
-                '(2) Motor Required Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-                '(3) Motor Required Peak Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-                '(4) Motor Required Power': { type: 'power', component: 'motor', defaultUnit: 'kW' },
-                'Gearbox Required Torque': { type: 'torque', component: 'gearbox', defaultUnit: 'Nm' },
-                'Gearbox Required Peak Torque': { type: 'torque', component: 'gearbox', defaultUnit: 'Nm' }
-            },
-            'Rotarytable': {
-                '(3) Rotary Table Inertia': { type: 'inertia', component: 'motor', defaultUnit: 'kg·m²' },
-                '(4) Calculated RMS Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-                '(3) Acceleration Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-                'Deceleration Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-                'Constant Speed Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-                '(4) Inertia Reflected to Motor': { type: 'inertia', component: 'motor', defaultUnit: 'kg·m²' }
-            },
-            'Genericrotary': {
-                '(1) Required Motor Power': { type: 'power', component: 'motor', defaultUnit: 'kW' },
-                '(2) Accel Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-                '(3) RMS Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' }
+        // Get mappings from each application's JS file
+        let resultUnitMappings = {};
+        if (currentApp) {
+            const mappingFunctions = {
+                'Blower': 'getBlowerResultUnitMappings',
+                'Conveyor': 'getConveyorResultUnitMappings',
+                'Pump': 'getPumpResultUnitMappings',
+                'Spindle': 'getSpindleResultUnitMappings',
+                'Lift': 'getLiftResultUnitMappings',
+                'Rotarytable': 'getRotaryTableResultUnitMappings',
+                'Genericrotary': 'getGenericRotaryResultUnitMappings',
+                'Leadscrew': 'getLeadscrewResultUnitMappings'
+            };
+            
+            const funcName = mappingFunctions[currentApp];
+            if (funcName && typeof window[funcName] === 'function') {
+                resultUnitMappings = window[funcName]();
             }
-        };
-        
-        // Get Leadscrew mappings from leadscrew.js if available
-        if (currentApp === 'Leadscrew' && typeof getLeadscrewResultUnitMappings === 'function') {
-            resultUnitMappings['Leadscrew'] = getLeadscrewResultUnitMappings();
         }
         
     // Check if this result key has a unit mapping
-    const appMappings = resultUnitMappings[currentApp];
+    const appMappings = resultUnitMappings;
     // Normalize the result key for lookup:
     // - remove leading numbered labels like "(2) "
     // - remove trailing unit suffixes like " (Nm)"
