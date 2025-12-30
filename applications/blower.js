@@ -2,7 +2,6 @@
 const blowerformulas = {
   fanPower: (airflow, pressure, fanEfficiency) => (airflow * pressure) / (fanEfficiency / 100),
   motorPower: (fanPower, motorEfficiency) => fanPower / (motorEfficiency / 100),
-  motorPowerHP: (motorPowerWatts) => motorPowerWatts / 745.7,
   blowerTorque: (motorPowerWatts, rpmRads) => rpmRads && rpmRads > 0 ? motorPowerWatts / rpmRads : 0
 };
 
@@ -12,18 +11,19 @@ function findClosestBlowerMotor() {
   const fanEff = getValueWithUnit('blowerFanEff');
   const motorEff = getValueWithUnit('blowerMotorEff');
   const speed = getValueWithUnit('blowerRequiredSpeed');
+  const safetyFactor = getValueWithUnit('safetyFactor');
 
   const fanPower = blowerformulas.fanPower(airflow, pressure, fanEff);
   const motorPower = blowerformulas.motorPower(fanPower, motorEff);
   const torque = blowerformulas.blowerTorque(motorPower, speed);
 
   displayStandardResults({
-    [`Fan Power (${window.selectedResultUnits?.power || 'kW'})`]: 
+    [`(1) Fan Power (${window.selectedResultUnits?.power || 'kW'})`]: 
       convertResultValue(fanPower, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3),
-    [`Motor Power (${window.selectedResultUnits?.power || 'kW'})`]: 
+    [`(2) Motor Power Required (${window.selectedResultUnits?.power || 'kW'})`]: 
       convertResultValue(motorPower, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3),
-    [`Torque Required (${window.selectedResultUnits?.torque || 'Nm'})`]: 
-      torque ? convertResultValue(torque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3) : 'N/A (Speed required)'
+    [`(3) Motor Torque Required (${window.selectedResultUnits?.torque || 'Nm'})`]: 
+      torque ? convertResultValue(torque * safetyFactor, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3) : 'N/A (Speed required)'
   });
 }
 
@@ -49,8 +49,8 @@ function getBlowerFormulas() {
 function getBlowerResultUnitMappings() {
   return {
     'Fan Power': { type: 'power', component: 'fan', defaultUnit: 'kW' },
-    'Motor Power': { type: 'power', component: 'motor', defaultUnit: 'kW' },
-    'Torque Required': { type: 'torque', component: 'motor', defaultUnit: 'Nm' }
+    'Motor Power Required': { type: 'power', component: 'motor', defaultUnit: 'kW' },
+    'Motor Torque Required': { type: 'torque', component: 'motor', defaultUnit: 'Nm' }
   };
 }
 

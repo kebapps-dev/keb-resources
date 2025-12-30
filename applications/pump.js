@@ -37,8 +37,7 @@ function findClosestPumpMotor() {
   const motorTorque = pumpformulas.motortorque(pumpDisplacement, clampPressure, motorEfficiency);
   const motorSpeed = pumpformulas.motorspeed(flowRate, pumpDisplacement, motorEfficiency);
   const motorTorqueWithSafety = motorTorque * safetyFactor;
-  const motorSpeedWithSafety = motorSpeed * safetyFactor;
-  const motorPower = motorTorqueWithSafety * motorSpeed;
+  const motorPowerWithSafety = motorTorque * motorSpeed * safetyFactor;
 
   displayStandardResults({
     [`Flow Rate Required (${window.selectedResultUnits?.flow || 'L/min'})`]: 
@@ -46,22 +45,22 @@ function findClosestPumpMotor() {
     'Pump Displacement Required': `${(pumpDisplacement * 1e6).toFixed(2)} cc/rev`,
     [`Clamping Force (${window.selectedResultUnits?.force || 'kN'})`]: 
       convertResultValue(clampingForce, 'force', window.selectedResultUnits?.force || 'kN').toFixed(3),
-    [`Motor Required Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
+    [`Motor Required Clamp (Peak) Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
       convertResultValue(motorTorqueWithSafety, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
-    'Motor Required Speed': `${(motorSpeedWithSafety * 60 / (2 * Math.PI)).toFixed(0)} RPM`,
+    'Motor Required Speed': `${(motorSpeed * 60 / (2 * Math.PI)).toFixed(0)} RPM`,
     [`Required Motor Power (${window.selectedResultUnits?.power || 'kW'})`]: 
-      convertResultValue(motorPower, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3)
+      convertResultValue(motorPowerWithSafety, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3)
   });
 }
 
 // Pump sizing suggestions
 function getPumpSizingSuggestions() {
   return `<b>Pump Sizing Tips:</b><ul>
-    <li>Calculate clamp area considering bore and rod diameters.</li>
-    <li>Flow rate determines pump displacement needed at given RPM.</li>
-    <li>Motor torque accounts for pressure, displacement, and efficiency.</li>
-    <li>Apply safety factor for system variations and peak loads.</li>
-  </ul>`;
+        <li>Enter accurate bore, rod, and stroke dimensions of the clamp cylinder.</li>
+        <li>Verify clamp pressure and time requirements for proper flow calculations.</li>
+        <li>Set appropriate safety factor for motor sizing margin.</li>
+        <li>Iteratively change the motor speed setpoint to determine the calculated pump displacement and torque required.</li>
+    </ul>`;
 }
 
 // Pump formulas display
@@ -80,7 +79,7 @@ function getPumpFormulas() {
 function getPumpResultUnitMappings() {
   return {
     'Required Motor Power': { type: 'power', component: 'motor', defaultUnit: 'kW' },
-    'Motor Required Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
+    'Motor Required Clamp (Peak) Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
     'Flow Rate Required': { type: 'flow', component: 'system', defaultUnit: 'L/min' },
     'Clamping Force': { type: 'force', component: 'system', defaultUnit: 'kN' }
   };

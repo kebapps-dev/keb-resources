@@ -4,8 +4,7 @@ const conveyorformulas = {
   inclineForce: (loadMass, inclineAngle) => loadMass * 9.81 * Math.abs(Math.sin(inclineAngle)),
   totalForce: (frictionalForce, inclineForce) => frictionalForce + inclineForce,
   linearToRotationalSpeed: (beltSpeed, rollerDiameter) => (beltSpeed * 2) / rollerDiameter,
-  requiredMotorPowerKw: (totalForce, beltSpeed) => totalForce * beltSpeed,
-  requiredMotorPowerHp: (totalForce, beltSpeed) => (totalForce * beltSpeed) / 745.7,
+  requiredMotorPower: (totalForce, beltSpeed) => totalForce * beltSpeed,
   requiredTorque: (totalForce, rollerDiameter) => (totalForce * rollerDiameter) / 2
 };
 
@@ -13,27 +12,35 @@ function findClosestConveyorMotor() {
   const mass = getValueWithUnit('loadMass');
   const friction = parseFloat(document.getElementById('frictionCoefficient').value);
   const angle = getValueWithUnit('conveyorInclineAngle');
-  const speed = getValueWithUnit('beltSpeed');
+  const beltspeed = getValueWithUnit('beltSpeed');
   const diameter = getValueWithUnit('rollerDiameter');
+  const gearboxRatio = getValueWithUnit('gearboxRatio');
+  const safetyFactor = getValueWithUnit('safetyFactor');
 
   const fricForce = conveyorformulas.frictionalForce(mass, friction);
   const inclForce = conveyorformulas.inclineForce(mass, angle);
   const totalForce = conveyorformulas.totalForce(fricForce, inclForce);
-  const rotSpeed = conveyorformulas.linearToRotationalSpeed(speed, diameter);
-  const power = conveyorformulas.requiredMotorPowerKw(totalForce, speed);
+  const rotSpeed = conveyorformulas.linearToRotationalSpeed(beltspeed, diameter);
+  const power = conveyorformulas.requiredMotorPower(totalForce, beltspeed);
   const torque = conveyorformulas.requiredTorque(totalForce, diameter);
 
   displayStandardResults({
-    [`Frictional Force (${window.selectedResultUnits?.force || 'N'})`]: 
+    [`(1) Frictional Force (${window.selectedResultUnits?.force || 'N'})`]: 
       convertResultValue(fricForce, 'force', window.selectedResultUnits?.force || 'N').toFixed(2),
-    [`Incline Force (${window.selectedResultUnits?.force || 'N'})`]: 
+    [`(2) Incline Force (${window.selectedResultUnits?.force || 'N'})`]: 
       convertResultValue(inclForce, 'force', window.selectedResultUnits?.force || 'N').toFixed(2),
-    [`Total Force (${window.selectedResultUnits?.force || 'N'})`]: 
+    [`(3) Total Force (${window.selectedResultUnits?.force || 'N'})`]: 
       convertResultValue(totalForce, 'force', window.selectedResultUnits?.force || 'N').toFixed(2),
-    [`Required Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
-      convertResultValue(torque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
-    [`Required Motor Power (${window.selectedResultUnits?.power || 'kW'})`]: 
-      convertResultValue(power, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3)
+    [`(4) Required Motor Speed (${window.selectedResultUnits?.speed || 'RPM'})`]: 
+      convertResultValue(rotSpeed * gearboxRatio, 'speed', window.selectedResultUnits?.speed || 'RPM').toFixed(2),
+    [`(5) Required Motor Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
+      convertResultValue(torque * safetyFactor / gearboxRatio, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(2),
+    [`(6) Required Motor Power (${window.selectedResultUnits?.power || 'kW'})`]: 
+      convertResultValue(power * safetyFactor, 'power', window.selectedResultUnits?.power || 'kW').toFixed(2),
+    [`Gearbox Speed (${window.selectedResultUnits?.speed || 'RPM'})`]: 
+      convertResultValue(rotSpeed, 'speed', window.selectedResultUnits?.speed || 'RPM').toFixed(2),
+    [`Gearbox Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
+      convertResultValue(torque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(2)
   });
 }
 
@@ -51,9 +58,10 @@ function getConveyorFormulas() {
   return `
     <span class="formula"><b>(1)</b> \\( F_{friction} = m_{load} \\cdot g \\cdot\\mu_{friction} \\)</span>
     <span class="formula"><b>(2)</b> \\( F_{incline} = m_{load} \\cdot g \\cdot \\sin(\\theta) \\)</span>
-    <span class="formula"><b>(3)</b> \\( RPM = \\frac{v_{belt} \\cdot 60}{\\pi \\cdot D_{roller}} \\)</span>
-    <span class="formula"><b>(4)</b> \\( T_{motor} = \\frac{F_{total} \\cdot D_{roller}}{2} \\)</span>
-    <span class="formula"><b>(5)</b> \\( P = F_{belt} \\cdot v_{belt} \\)</span>
+    <span class="formula"><b>(3)</b> \\( F_{total} = F_{friction} + F_{incline} \\)</span>
+    <span class="formula"><b>(4)</b> \\( \\omega_{motor} = \\frac{60 \\cdot v_{belt} \\cdot i}{\\pi \\cdot D_{roller}} \\)</span>
+    <span class="formula"><b>(5)</b> \\( T_{motor} = \\frac{F_{total} \\cdot D_{roller}}{2 \\cdot i} \\)</span>
+    <span class="formula"><b>(6)</b> \\( P_{motor} = F_{total} \\cdot v_{belt} \\)</span>
   `;
 }
 
@@ -61,7 +69,10 @@ function getConveyorFormulas() {
 function getConveyorResultUnitMappings() {
   return {
     'Required Motor Power': { type: 'power', component: 'motor', defaultUnit: 'kW' },
-    'Required Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
+    'Required Motor Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
+    'Gearbox Torque': { type: 'torque', component: 'gearbox', defaultUnit: 'Nm' },
+    'Required Motor Speed': { type: 'speed', component: 'motor', defaultUnit: 'RPM' },
+    'Gearbox Speed': { type: 'speed', component: 'gearbox', defaultUnit: 'RPM' },
     'Total Force': { type: 'force', component: 'system', defaultUnit: 'N' },
     'Frictional Force': { type: 'force', component: 'system', defaultUnit: 'N' },
     'Incline Force': { type: 'force', component: 'system', defaultUnit: 'N' }

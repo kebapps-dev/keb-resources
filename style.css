@@ -111,7 +111,10 @@ button {
     flex: 2;
     min-width: 300px;
 }
-
+.product-fields-col-3 {
+    flex: 3;
+    min-width: 300px;
+}
 
 #container-left-column{
     height:auto;

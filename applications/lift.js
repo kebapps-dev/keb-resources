@@ -24,19 +24,19 @@ function findClosestLiftMotor() {
   const loadTorque = liftformulas.drumtorque(gravityForce, drumDiameter);
   const peakAccel = liftformulas.peakacceleration(maxSpeed, accelDecelTime);
   const loadPeakTorque = liftformulas.peakdrumtorque(drumDiameter, loadWeight, peakAccel);
-  const motorTorque = loadTorque / gearRatio;
-  const motorPeakTorque = loadPeakTorque / gearRatio;
+  const motorTorque = (loadTorque / gearRatio) * safetyFactor;
+  const motorPeakTorque = (loadPeakTorque / gearRatio) * safetyFactor;
   const loadPower = loadTorque * gearOutputSpeed;
   const requiredMotorPower = (loadPower * safetyFactor) / (gearEfficiency * motorEfficiency);
 
   displayStandardResults({
-    [`Motor Speed (${window.selectedResultUnits?.speed || 'RPM'})`]: 
+    [`(1) Motor Speed (${window.selectedResultUnits?.speed || 'RPM'})`]: 
       convertResultValue(motorSpeed, 'speed', window.selectedResultUnits?.speed || 'RPM').toFixed(2),
-    [`Motor Required Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
+    [`(2) Motor Required Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
       convertResultValue(motorTorque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
-    [`Motor Peak Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
+    [`(3) Motor Peak Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
       convertResultValue(motorPeakTorque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
-    [`Required Motor Power (${window.selectedResultUnits?.power || 'kW'})`]: 
+    [`(4) Required Motor Power (${window.selectedResultUnits?.power || 'kW'})`]: 
       convertResultValue(requiredMotorPower, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3),
     [`Gearbox Output Speed (${window.selectedResultUnits?.speed || 'RPM'})`]: 
       convertResultValue(gearOutputSpeed, 'speed', window.selectedResultUnits?.speed || 'RPM').toFixed(2),
@@ -50,21 +50,22 @@ function findClosestLiftMotor() {
 // Lift sizing suggestions
 function getLiftSizingSuggestions() {
   return `<b>Lift Sizing Tips:</b><ul>
-    <li>Include load mass, counterweight (if any), and cable/chain mass.</li>
-    <li>Account for gearbox and motor efficiency losses in power calculation.</li>
-    <li>Peak torque must handle acceleration and deceleration loads.</li>
-    <li>Apply appropriate safety factor for the application.</li>
-  </ul>`;
+        <li>Calculate load weight and lift height for required torque.</li>
+        <li>Include gearbox ratio and drum diameter for mechanical advantage.</li>
+        <li>Consider acceleration/deceleration time for motor selection.</li>
+    </ul>`;
 }
 
 // Lift formulas display
 function getLiftFormulas() {
   return `
-    <span class="formula"><b>(1)</b> \\( F_{gravity} = m \\cdot g \\)</span>
-    <span class="formula"><b>(2)</b> \\( \\omega_{drum} = \\frac{2 \\cdot v_{max}}{D_{drum}} \\)</span>
-    <span class="formula"><b>(3)</b> \\( T_{drum} = F_{gravity} \\cdot \\frac{D_{drum}}{2} \\)</span>
-    <span class="formula"><b>(4)</b> \\( T_{peak} = \\frac{D_{drum}}{2} \\cdot m \\cdot (a_{peak} + g) \\)</span>
-    <span class="formula"><b>(5)</b> \\( P_{motor} = \\frac{P_{load} \\cdot SF}{\\eta_{gearbox} \\cdot \\eta_{motor}} \\)</span>
+    <span class="formula"><b>   </b> \\( F_{gravity} = m \\cdot g \\)</span>
+    <span class="formula"><b>(1)</b> \\( \\omega_{motor} = \\frac{2 \\cdot v_{max} \\cdot i}{D_{drum}} \\)</span>
+    <span class="formula"><b>(2)</b> \\( T_{drum} = F_{gravity} \\cdot \\frac{D_{drum}}{2} \\)</span>
+    <span class="formula"><b>   </b> \\( T_{accel} = m \\cdot a_{peak} \\)</span>
+    <span class="formula"><b>(3)</b> \\( T_{peak} = T_{drum}  + T_{accel} \\)</span>
+    <span class="formula"><b>   </b> \\( P_{load} = T_{drum} \\cdot \\omega_{drum} \\)</span>    
+    <span class="formula"><b>(4)</b> \\( P_{motor} = \\frac{P_{load}}{\\eta_{gearbox} \\cdot \\eta_{motor}} \\)</span>
   `;
 }
 

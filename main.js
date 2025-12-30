@@ -223,23 +223,23 @@ function handleAppChange() {
     const loadGenericDataBtn = document.querySelector('button[onclick*="loadGenericData"]');
     const calculateBtn = document.getElementById("calculateButton");
     
-    loadGenericDataBtn.style.width = "50%";
-    loadGenericDataBtn.style.padding = "12px 12px";
-    loadGenericDataBtn.style.border = "2px solid #222";
-    loadGenericDataBtn.style.borderRadius = "12px";
-    loadGenericDataBtn.style.color = "#222";
-    loadGenericDataBtn.style.fontFamily = "Arial, Helvetica, sans-serif";
-    loadGenericDataBtn.style.fontSize = "0.95rem";
-    loadGenericDataBtn.style.background = "#f0f0f0";
+    // loadGenericDataBtn.style.width = "50%";
+    // loadGenericDataBtn.style.padding = "12px 12px";
+    // loadGenericDataBtn.style.border = "2px solid #222";
+    // loadGenericDataBtn.style.borderRadius = "12px";
+    // loadGenericDataBtn.style.color = "#222";
+    // loadGenericDataBtn.style.fontFamily = "Arial, Helvetica, sans-serif";
+    // loadGenericDataBtn.style.fontSize = "0.95rem";
+    // loadGenericDataBtn.style.background = "#f0f0f0";
 
-    calculateBtn.style.width = "50%";
-    calculateBtn.style.padding = "12px 12px";
-    calculateBtn.style.border = "2px solid #222";
-    calculateBtn.style.borderRadius = "12px";
-    calculateBtn.style.color = "#222";
-    calculateBtn.style.fontFamily = "Arial, Helvetica, sans-serif";
-    calculateBtn.style.fontSize = "0.95rem";
-    calculateBtn.style.background = "#f0f0f0";
+    // calculateBtn.style.width = "50%";
+    // calculateBtn.style.padding = "12px 12px";
+    // calculateBtn.style.border = "2px solid #222";
+    // calculateBtn.style.borderRadius = "12px";
+    // calculateBtn.style.color = "#222";
+    // calculateBtn.style.fontFamily = "Arial, Helvetica, sans-serif";
+    // calculateBtn.style.fontSize = "0.95rem";
+    // calculateBtn.style.background = "#f0f0f0";
 
    
 
@@ -259,7 +259,8 @@ function handleAppChange() {
                 "Conveyor": "Calculate Conveyor Motor",
                 "Genericrotary": "Calculate Generic Rotary Motor",
                 "Blower": "Calculate Blower Motor",
-                "Spindle": "Calculate Spindle Motor"
+                "Spindle": "Calculate Spindle Motor",
+                "Leadscrew": "Calculate Leadscrew Motor"
             };
             calculateBtn.textContent = buttonTexts[app] || "Calculate";
         } else {
@@ -356,7 +357,7 @@ function addMathTooltip(equationLatex) {
 const unitConversions = {
   angle: {
     'rad': 1,
-    'deg': Math.PI / 180   // 1 degree = π/180 radians
+    'deg': 3.14159 / 180   // 1 degree = π/180 radians
   },
   inertia: {
     'kg·m²': 1,
@@ -374,7 +375,8 @@ const unitConversions = {
     'm/s': 1,
     'mm/s': 0.001,         // 1 mm/s = 0.001 m/s
     'in/s': 0.0254,        // 1 in/s = 0.0254 m/s
-    'ft/s': 0.3048         // 1 ft/s = 0.3048 m/s
+    'ft/s': 0.3048,         // 1 ft/s = 0.3048 m/s
+    'ft/min': 0.00508      // 1 ft/min = 0.00508 m/s
   },
   length: {
     'm': 1,
@@ -561,41 +563,29 @@ function showSizingSuggestions(application) {
     let html = "";
     switch (application) {
         case "Pump":
-            html = `<b>Pump Sizing Tips:</b><ul>
-                <li>Enter accurate bore, rod, and stroke dimensions of the clamp cylinder.</li>
-                <li>Verify clamp pressure and time requirements for proper flow calculations.</li>
-                <li>Set appropriate safety factor for motor sizing margin.</li>
-                <li>Iteratively change the motor speed setpoint to determine the calculated pump displacement and torque required.</li>
-            </ul>`;
+            html = typeof getPumpSizingSuggestions === 'function' 
+                ? getPumpSizingSuggestions() 
+                : "";
             break;
         case "Lift":
-            html = `<b>Lift Sizing Tips:</b><ul>
-                <li>Calculate load weight and lift height for required torque.</li>
-                <li>Include gearbox ratio and drum diameter for mechanical advantage.</li>
-                <li>Consider acceleration/deceleration time for motor selection.</li>
-            </ul>`;
+            html = typeof getLiftSizingSuggestions === 'function' 
+                ? getLiftSizingSuggestions() 
+                : "";
             break;
         case "Rotarytable":
-            html = `<b>Rotary Table Sizing Tips:</b><ul>
-                <li>Determine move distance and time for speed and acceleration.</li>
-                <li>Include mass and radius for inertia calculations.</li>
-                <li>Account for friction torque and dwell time in duty cycle.</li>
-            </ul>`;
+            html = typeof getRotaryTableSizingSuggestions === 'function' 
+                ? getRotaryTableSizingSuggestions() 
+                : "";
             break;
         case "Conveyor":
-            html = `<b>Conveyor Sizing Tips:</b><ul>
-                <li>Calculate belt speed and load mass for power requirements.</li>
-                <li>Consider incline angle and friction coefficient.</li>
-                <li>Check roller diameter for correct speed conversion.</li>
-            </ul>`;
+            html = typeof getConveyorSizingSuggestions === 'function' 
+                ? getConveyorSizingSuggestions() 
+                : "";
             break;
         case "Genericrotary":
-            html = `<b>Generic Rotary Sizing Tips:</b><ul>
-                <li>Ensure the rated motor torque is less than the RMS torque.</li>
-                <li>Ensure the rated motor max torque less than accel torque.</li>
-                <li>Ensure the rated motor speed meets the required speed</li>
-                <li>Use thermal margin for continuous operation safety.</li>
-            </ul>`;
+            html = typeof getGenericRotarySizingSuggestions === 'function' 
+                ? getGenericRotarySizingSuggestions() 
+                : "";
             break;
         case "Blower":
             html = typeof getBlowerSizingSuggestions === 'function' 
@@ -728,57 +718,73 @@ function renderInputsForApp(appName) {
         if (def.Title) label.title = def.Title;
         label.style.display = "inline-block";
         label.style.width = "150px"; // or whatever width fits your longest label
+        
+        // Make label non-bold for separator type
+        if (def.Type === "separator") {
+            label.style.fontWeight = "normal";
+            label.style.border = "2px solid #ccc";
+            label.style.padding = "4px 8px";
+            label.style.borderRadius = "4px";
+            label.style.textAlign = "center";
+        }
+        
         wrapper.style.gap = "12px"; // for spacing between label, input, and unit
         wrapper.appendChild(label);
 
-        // Input
-        const input = document.createElement("input");
-        input.type = def.Type || "text";
-        input.id = def.InputID;
-        input.name = def.InputID;
-        input.style.width = "100px";
-        if (def.Step) input.step = def.Step;
-        if (def.Title) input.title = def.Title;
-        wrapper.appendChild(input);
+        // Skip input creation for separator type
+        if (def.Type !== "separator") {
+            // Input
+            const input = document.createElement("input");
+            input.type = def.Type || "text";
+            input.id = def.InputID;
+            input.name = def.InputID;
+            input.style.width = "100px";
+            if (def.Step) input.step = def.Step;
+            if (def.Title) input.title = def.Title;
+            wrapper.appendChild(input);
+        }
 
         // Unit(s) - use UnitType if available, otherwise fall back to Unit column
-        let units = [];
-        let defaultUnit = def.DefaultUnit ? def.DefaultUnit.trim() : null;
-        
-        if (def.UnitType && unitConversions[def.UnitType]) {
-            // Use UnitType to get all available units from unitConversions
-            units = Object.keys(unitConversions[def.UnitType]);
-        } else if (def.Unit) {
-            // Fall back to explicit Unit column
-            units = def.Unit.replace(/"/g, "").split(',').map(u => u.trim());
-        }
-        
-        // If no DefaultUnit specified, use first unit in the list
-        if (!defaultUnit && units.length > 0) {
-            defaultUnit = units[0];
-        }
-        
-        if (units.length > 1) {
-            const select = document.createElement("select");
-            select.id = def.InputID + "Unit";
-            select.title = "Select the unit for " + (def.Label || def.InputID);
-            units.forEach(unit => {
-                const opt = document.createElement("option");
-                opt.value = unit;
-                opt.textContent = unit;
-                // Set as selected if it matches the default unit
-                if (unit === defaultUnit) {
-                    opt.selected = true;
-                }
-                select.appendChild(opt);
-            });
-            select.style.marginLeft = "4px";
-            wrapper.appendChild(select);
-        } else if (units.length === 1) {
-            const unitSpan = document.createElement("span");
-            unitSpan.textContent = " " + units[0];
-            unitSpan.style.marginLeft = "4px";
-            wrapper.appendChild(unitSpan);
+        // Skip units for separator type
+        if (def.Type !== "separator") {
+            let units = [];
+            let defaultUnit = def.DefaultUnit ? def.DefaultUnit.trim() : null;
+            
+            if (def.UnitType && unitConversions[def.UnitType]) {
+                // Use UnitType to get all available units from unitConversions
+                units = Object.keys(unitConversions[def.UnitType]);
+            } else if (def.Unit) {
+                // Fall back to explicit Unit column
+                units = def.Unit.replace(/"/g, "").split(',').map(u => u.trim());
+            }
+            
+            // If no DefaultUnit specified, use first unit in the list
+            if (!defaultUnit && units.length > 0) {
+                defaultUnit = units[0];
+            }
+            
+            if (units.length > 1) {
+                const select = document.createElement("select");
+                select.id = def.InputID + "Unit";
+                select.title = "Select the unit for " + (def.Label || def.InputID);
+                units.forEach(unit => {
+                    const opt = document.createElement("option");
+                    opt.value = unit;
+                    opt.textContent = unit;
+                    // Set as selected if it matches the default unit
+                    if (unit === defaultUnit) {
+                        opt.selected = true;
+                    }
+                    select.appendChild(opt);
+                });
+                select.style.marginLeft = "4px";
+                wrapper.appendChild(select);
+            } else if (units.length === 1) {
+                const unitSpan = document.createElement("span");
+                unitSpan.textContent = " " + units[0];
+                unitSpan.style.marginLeft = "4px";
+                wrapper.appendChild(unitSpan);
+            }
         }
 
         container.appendChild(wrapper);
@@ -951,17 +957,8 @@ function displayStandardResults(currentOutputs) {
     if (hasValidOutputs && !lockButton && !genericLockButton) {
         const buttonHtml = `<button id="lockStartingValuesBtn" onclick="lockStartingValues()" 
         style=
-        "margin-bottom: 10px;
-        margin-top: 10px; 
-        width: calc(25% - 5px);
-        padding: 12px 12px;
-        border: 2px solid #222;
-        border-radius: 12px;
-        color: #222;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.95rem;
-        background: #f0f0f0;
-        display: inline-block;">Lock Starting Values</button>`;
+        "margin-bottom: 18.8px;
+        margin-top: 18.8px; ">Lock Starting Values</button>`;
        
         resultsDiv.insertAdjacentHTML('beforebegin', buttonHtml);
     }
@@ -1126,7 +1123,7 @@ function displayStandardResults(currentOutputs) {
             
             valueDisplayHtml = `
                 <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="min-width: 60px;">${numericValue.toFixed(3)}</span>
+                    <span style="min-width: 60px;">${numericValue}</span>
                     <select onchange="updateInlineResultUnit('${normalizedKey}', '${unitMapping.component}', '${unitMapping.type}', this.value)" 
                             style="font-size: 12px; padding: 2px; border: 1px solid #ccc; border-radius: 3px;">
                         ${dropdownOptions}

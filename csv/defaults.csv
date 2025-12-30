@@ -29,6 +29,7 @@ Rotarytable,motorInertia,0
 Rotarytable,gearboxInertia,0
 Rotarytable,brakeInertia,0
 Rotarytable,frictionTorque,0
+Rotarytable,safetyFactor,1.5
 Rotarytable,gearNumerator,91760
 Rotarytable,gearDenominator,1701
 Rotarytable,co03,16
@@ -37,7 +38,9 @@ Conveyor,conveyorInclineAngle,30
 Conveyor,beltSpeed,0.5
 Conveyor,loadMass,200
 Conveyor,rollerDiameter,0.2
+Conveyor,gearboxRatio,40
 Conveyor,frictionCoefficient,0.03
+Conveyor,safetyFactor,1.2
 Genericrotary,genericRequiredSpeed,1000
 Genericrotary,genericAccelTime,2
 Genericrotary,genericRunTime,4
@@ -51,6 +54,7 @@ Blower,blowerPressure,4
 Blower,blowerFanEff,65
 Blower,blowerMotorEff,90
 Blower,blowerRequiredSpeed,1800
+Blower,safetyFactor,1.2
 Leadscrew,leadscrewForce,100
 Leadscrew,leadscrewLead,.005
 Leadscrew,leadscrewMechEff,90
@@ -62,4 +66,4 @@ Leadscrew,leadscrewRatio,30
 Leadscrew,leadscrewGearboxEff,85
 Leadscrew,leadscrewInertia,0.01
 Leadscrew,leadscrewMotorInertia,0.005
-Leadscrew,leadscrewOverload,150
+Leadscrew,leadscrewSafetyFactor,1.2

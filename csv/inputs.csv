@@ -13,24 +13,26 @@ Lift,loadWeight,Load Weight,number,any,"kg,g,lb,oz",mass,,Weight to be lifted
 Lift,maxSpeed,Max Speed,number,any,"m/s,mm/s,in/s,ft/s",velocity,,Maximum lifting speed
 Lift,gearboxRatioLift,Gearbox Ratio,number,any,,,,Gearbox ratio for lift
 Lift,accelDecelTime,Accel/Decel Time,number,any,s,,,Acceleration/Deceleration time
-Lift,drumDiameter,Drum Diameter,number,any,"mm,m,cm,in,ft",length,,Drum diameter for lift
+Lift,drumDiameter,Drum Diameter,number,any,"mm,m,cm,in,ft",length,mm,Drum diameter for lift
 Lift,motorEfficiencyPercent,Motor Efficiency,number,any,%,,,Motor efficiency as a percent
 Lift,gearboxEfficiencyPercent,Gearbox Efficiency,number,any,%,,,Gearbox efficiency as a percent
 Lift,safetyFactor,Safety Factor,number,.1,,,,Safety factor for sizing
 
-Rotarytable,rotationalMoveDistance,Rotational Move Distance,number,any,"rad,deg",angle,,Distance to rotate
+Rotarytable,rotationalMoveDistance,Rotational Move Distance,number,any,,angle,deg,Distance to rotate
 Rotarytable,totalMoveTime,Total Move Time,number,.1,s,,,Total time for move
 Rotarytable,dwellTime,Dwell Time,number,.1,s,,,Time at rest after move
 Rotarytable,accelTime,Acceleration Time,number,.1,s,,,Time to accelerate
 Rotarytable,decelTime,Deceleration Time,number,.1,s,,,Time to decelerate
 Rotarytable,massIndexTable,Mass,number,any,"kg,g,lb,oz",mass,,Mass of the index table
-Rotarytable,radiusIndexTable,Radius,number,any,"m,mm,cm,in,ft",length,,Radius of the index table
+Rotarytable,radiusIndexTable,Radius,number,any,"m,mm,cm,in,ft",length,in,Radius of the index table
 Rotarytable,gearboxRatioRotary,Gearbox Ratio,number,any,,,,Gearbox ratio for rotary table
-Rotarytable,loadInertia,Load Inertia,number,any,"kg·m²,lb·ft²,g·cm²",inertia,,Load inertia
-Rotarytable,motorInertia,Motor Inertia (iterative),number,any,"kg·m²,lb·ft²,g·cm²",inertia,,Motor inertia
-Rotarytable,gearboxInertia,Gearbox Inertia,number,any,"kg·m²,lb·ft²,g·cm²",inertia,,Gearbox inertia
-Rotarytable,brakeInertia,Brake Inertia,number,any,"kg·m²,lb·ft²,g·cm²",inertia,,Brake inertia
+Rotarytable,loadInertia,Load Inertia,number,any,"kg·m²,lb·ft²,g·cm²",inertia,kg·cm²,Load inertia
+Rotarytable,motorInertia,Motor Inertia (iterative),number,any,"kg·m²,lb·ft²,g·cm²,kg·cm²",inertia,kg·cm²,Motor inertia
+Rotarytable,gearboxInertia,Gearbox Inertia (iterative),number,any,"kg·m²,lb·ft²,g·cm²",inertia,kg·cm²,Gearbox inertia
+Rotarytable,brakeInertia,Brake Inertia,number,any,"kg·m²,lb·ft²,g·cm²",inertia,kg·cm²,Brake inertia
 Rotarytable,frictionTorque,Friction Torque,number,any,"Nm,lb·ft,oz·in",torque,,Friction torque
+Rotarytable,safetyFactor,Safety Factor,number,.1,,,,Safety factor for sizing
+Rotarytable,,Round Table Parameters,separator,,,,,,
 Rotarytable,gearNumerator,Gearbox Numerator,number,any,,,,Gearbox ratio numerator
 Rotarytable,gearDenominator,Gearbox Denominator,number,any,,,,Gearbox ratio denominator
 Rotarytable,co03,co03 Value,number,any,,,,co03 parameter value
@@ -40,11 +42,13 @@ Conveyor,conveyorInclineAngle,Incline Angle,number,any,"deg,rad",angle,,Incline 
 Conveyor,beltSpeed,Belt Speed,number,any,"m/s,mm/s,in/s,ft/s",velocity,,Speed of the conveyor belt
 Conveyor,loadMass,Load Mass,number,any,"kg,g,lb,oz",mass,,Mass of the load
 Conveyor,rollerDiameter,Roller Diameter,number,any,"m,mm,cm,in,ft",length,,Diameter of the roller
+Conveyor,gearboxRatio,Gearbox Ratio,number,any,,,,Gearbox ratio for conveyor
 Conveyor,frictionCoefficient,Friction Coefficient,number,any,,,,Coefficient of friction
+Conveyor,safetyFactor,Safety Factor,number,.1,,,,Safety factor for sizing
 
 Genericrotary,genericRequiredSpeed,Required Speed,number,any,"RPM,rad/s,deg/s,Hz",speed,,The target speed for the rotary axis
 Genericrotary,genericAccelTime,Acceleration Time,number,any,s,,,Time taken to accelerate from rest to required speed
-Genericrotary,genericRunTime,Run Time,number,any,s,,,Time the rotary axis runs at required speed
+Genericrotary,genericRunTime,Constant Speed Run Time,number,any,s,,,Time the rotary axis runs at required speed
 Genericrotary,genericDecelTime,Deceleration Time,number,any,s,,,Time taken to decelerate from required speed to rest
 Genericrotary,genericRestTime,Rest Time,number,any,s,,,Time the rotary axis is at rest between cycles
 Genericrotary,genericMomentOfInertia,Moment of Inertia,number,any,"kg·m²,lb·ft²,g·cm²,kg·cm²",inertia,,Rotational inertia of the load and mechanism
@@ -55,6 +59,7 @@ Blower,blowerPressure,Blower Pressure,number,any,"inH2O,Pa,kPa,bar,psi",blowerpr
 Blower,blowerFanEff,Blower Fan Efficiency,number,any,%,,,Blower fan efficiency as a percent
 Blower,blowerMotorEff,Blower Motor Efficiency,number,any,%,,,Blower motor efficiency as a percent
 Blower,blowerRequiredSpeed,Required Speed,number,any,"RPM,rad/s,Hz",speed,,Required blower speed (optional)
+Blower,safetyFactor,Safety Factor,number,.1,,,,Safety factor for sizing
 
 Leadscrew,leadscrewLinSpeed,Linear Speed,number,any,,velocity,m/s,Linear speed of the leadscrew
 Leadscrew,leadscrewAccelTime,Acceleration Time,number,any,s,,,Time taken to accelerate to required speed
@@ -66,4 +71,4 @@ Leadscrew,leadscrewForce,Load Force (include gravity if vertical),number,any,,fo
 Leadscrew,leadscrewRatio,Gearbox Ratio,number,any,,,,Gearbox ratio for the leadscrew
 Leadscrew,leadscrewGearboxEff,Gearbox Efficiency,number,5,%,,,Efficiency of the gearbox mechanism
 Leadscrew,leadscrewMotorInertia,Motor Inertia (iterative),number,any,,inertia,,Rotational inertia of the motor
-Leadscrew,leadscrewOverload,Overload Factor,number,50,%,,,Overload factor for sizing
+Leadscrew,leadscrewSafetyFactor,Safety Factor,number,.1,,,,Safety factor for sizing
