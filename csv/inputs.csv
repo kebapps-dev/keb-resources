@@ -54,8 +54,8 @@ Genericrotary,genericRestTime,Rest Time,number,any,s,,,Time the rotary axis is a
 Genericrotary,genericMomentOfInertia,Moment of Inertia,number,any,"kg·m²,lb·ft²,g·cm²,kg·cm²",inertia,,Rotational inertia of the load and mechanism
 Genericrotary,genericFrictionTorque,Friction Torque,number,any,"Nm,lb·ft,lb·in,oz·in,kg·cm",torque,,Constant torque due to friction in the system
 
-Blower,blowerAirflow,Blower Airflow,number,any,"CFM,m³/s,L/s,m³/h",airflow,,Blower airflow in CFM
-Blower,blowerPressure,Blower Pressure,number,any,"inH2O,Pa,kPa,bar,psi",blowerpressure,,Blower pressure in inches of water
+Blower,blowerAirflow,Blower Airflow,number,any,"CFM,m³/s,L/s,m³/h",flow,,Blower airflow in CFM
+Blower,blowerPressure,Blower Pressure,number,any,"inH2O,Pa,kPa,bar,psi",pressure,,Blower pressure in inches of water
 Blower,blowerFanEff,Blower Fan Efficiency,number,any,%,,,Blower fan efficiency as a percent
 Blower,blowerMotorEff,Blower Motor Efficiency,number,any,%,,,Blower motor efficiency as a percent
 Blower,blowerRequiredSpeed,Required Speed,number,any,"RPM,rad/s,Hz",speed,,Required blower speed (optional)

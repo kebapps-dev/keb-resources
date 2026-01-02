@@ -222,27 +222,6 @@ function handleAppChange() {
     // Show/hide Load Generic Data button and Calculate button - hide if ChooseApplication is selected
     const loadGenericDataBtn = document.querySelector('button[onclick*="loadGenericData"]');
     const calculateBtn = document.getElementById("calculateButton");
-    
-    // loadGenericDataBtn.style.width = "50%";
-    // loadGenericDataBtn.style.padding = "12px 12px";
-    // loadGenericDataBtn.style.border = "2px solid #222";
-    // loadGenericDataBtn.style.borderRadius = "12px";
-    // loadGenericDataBtn.style.color = "#222";
-    // loadGenericDataBtn.style.fontFamily = "Arial, Helvetica, sans-serif";
-    // loadGenericDataBtn.style.fontSize = "0.95rem";
-    // loadGenericDataBtn.style.background = "#f0f0f0";
-
-    // calculateBtn.style.width = "50%";
-    // calculateBtn.style.padding = "12px 12px";
-    // calculateBtn.style.border = "2px solid #222";
-    // calculateBtn.style.borderRadius = "12px";
-    // calculateBtn.style.color = "#222";
-    // calculateBtn.style.fontFamily = "Arial, Helvetica, sans-serif";
-    // calculateBtn.style.fontSize = "0.95rem";
-    // calculateBtn.style.background = "#f0f0f0";
-
-   
-
 
     if (loadGenericDataBtn) {
         loadGenericDataBtn.style.display = (app && app !== "ChooseApplication") ? "inline-block" : "none";
@@ -410,20 +389,8 @@ const unitConversions = {
     'L/min': 0.001 / 60,            // 1 L = 0.001 m³ ; per minute -> /60
     'GPM': 3.78541 / 60000,         // 1 GPM = 3.78541 L/min -> m³/s
     'L/s': 0.001,                   // 1 L/s = 0.001 m³/s
-    'CFM': 0.0283168 / 60           // 1 CFM = 28.3168 L/min -> m³/s
-  },
-  airflow: {
-    'm³/s': 1,             // Base unit: cubic meters per second (metric)
-    'CFM': 0.000471947,    // 1 CFM = 0.000471947 m³/s
-    'L/s': 0.001,          // 1 L/s = 0.001 m³/s
-    'm³/h': (1/3600)       // 1 m³/h = 1/3600 m³/s
-  },
-  blowerpressure: {
-    'Pa': 1,               // Base unit: Pascals (metric)
-    'kPa': 1000,           // 1 kPa = 1000 Pa
-    'bar': 100000,         // 1 bar = 100000 Pa
-    'psi': 6894.76,        // 1 psi = 6894.76 Pa
-    'inH2O': 249.089       // 1 inH2O = 249.089 Pa
+    'CFM': 0.000471947,             // 1 CFM = 0.000471947 m³/s (1 ft³ = 0.028316846592 m³, divided by 60)
+    'm³/h': (1/3600)                // 1 m³/h = 1/3600 m³/s
   },
   power: {
     'W': 1,                // Base unit: Watts
