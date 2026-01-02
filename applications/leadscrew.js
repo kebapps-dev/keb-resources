@@ -42,18 +42,18 @@ function findClosestLeadscrewMotor() {
   const motorAcceleration = leadscrewformulas.rotAcceleration(motorSpeed, accelTime);
   const accelTorqueMotorSide = leadscrewformulas.accelTorque(totalInertia, motorAcceleration);
   const loadTorqueGearboxSide = leadscrewformulas.loadTorque(force, screwRadius, leadscrewMechEff);
-  const peakTorqueGearboxSide = accelTorqueMotorSide * ratio + loadTorqueGearboxSide;
-  const motorTorque = leadscrewformulas.motorTorque(peakTorqueGearboxSide, ratio, gearboxEfficiency) * safetyFactor;
+  const loadTorqueMotorSide = loadTorqueGearboxSide / (ratio * gearboxEfficiency);
+  const motorTorque = accelTorqueMotorSide + loadTorqueMotorSide;
   const motorPower = leadscrewformulas.motorPower(motorTorque, motorSpeed);
 
   displayStandardResults({
     [`(1) Required Motor Speed (${window.selectedResultUnits?.speed || 'RPM'})`]: 
       convertResultValue(motorSpeed, 'speed', window.selectedResultUnits?.speed || 'RPM').toFixed(3),
     [`(2) Required Motor Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
-      convertResultValue(motorTorque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
+      convertResultValue(motorTorque * safetyFactor, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
     [`(3) Required Motor Power (${window.selectedResultUnits?.power || 'kW'})`]: 
-      convertResultValue(motorPower, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3)
-  });
+      convertResultValue(motorPower * safetyFactor, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3),
+ });
 }
 
 // Leadscrew sizing suggestions
@@ -71,13 +71,13 @@ function getLeadscrewFormulas() {
   return `
     <span class="formula"><b></b> \\( r_{screw} =   \\frac{L_{lead}}{2 \\pi} \\)</span>
     <span class="formula"><b>(1)</b> \\( \\omega_{motor} = \\frac{v \\cdot i}{r_{screw}} \\)</span>
-    <span class="formula"><b></b> \\( \\alpha = \\frac{\\omega_{motor}}{t_{accel}} \\)</span>
+    <span class="formula"><b></b> \\( \\alpha_{motor} = \\frac{\\omega_{motor}}{t_{accel}} \\)</span>
     <span class="formula"><b></b> \\( J_{load} = m \\cdot r_{screw}^2 \\)</span>
-    <span class="formula"><b></b> \\( J_{total} = \\frac{J_{load} + J_{screw}}{i^2} + J_{motor} \\)</span>
-    <span class="formula"><b></b> \\( T_{accel} = J_{total} \\cdot \\alpha \\)</span>
-    <span class="formula"><b></b> \\( T_{load} = \\frac{F \\cdot r_{screw}}{\\eta_{mech}} \\)</span>
-    <span class="formula"><b></b> \\( T_{peak@gearbox} = T_{accel} + T_{load} \\)</span>
-    <span class="formula"><b>(2)</b> \\( T_{peak@motor} = \\frac{T_{peak@gearbox}}{i \\cdot \\eta_{gearbox}} \\)</span>
+    <span class="formula"><b></b> \\( J_{total@motor} = \\frac{J_{load} + J_{screw}}{i^2} + J_{motor} \\)</span>
+    <span class="formula"><b></b> \\( T_{accel@motor} = J_{total@motor} \\cdot \\alpha_{motor} \\)</span>
+    <span class="formula"><b></b> \\( T_{load@gearbox} = \\frac{F \\cdot r_{screw}}{\\eta_{mech}} \\)</span>
+    <span class="formula"><b></b> \\( T_{load@motor} = \\frac{T_{load@gearbox}}{i \\cdot \\eta_{gearbox}} \\)</span>
+    <span class="formula"><b>(2)</b> \\( T_{peak@motor} = T_{accel@motor} + T_{load@motor} \\)</span>
     <span class="formula"><b>(3)</b> \\( P_{motor} = T_{peak@motor} \\cdot \\omega_{motor} \\)</span>
   `;
 }
@@ -87,7 +87,7 @@ function getLeadscrewResultUnitMappings() {
   return {
     'Required Motor Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
     'Required Motor Power': { type: 'power', component: 'motor', defaultUnit: 'kW' },
-    'Required Motor Speed': { type: 'speed', component: 'motor', defaultUnit: 'RPM' }
+    'Required Motor Speed': { type: 'speed', component: 'motor', defaultUnit: 'RPM' },
   };
 }
 
