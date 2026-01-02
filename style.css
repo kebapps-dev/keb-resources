@@ -125,13 +125,12 @@ button {
 .container-row {
     display: flex;
     align-items: flex-start;
-    gap: 100px;
     padding-left: 15px;
     padding-right: 30px;
 }
 
 .container-right {
-    flex: 4 1 0;
+    flex: 3 1 0;
     padding: 15px 40px;
     margin: 40px ;
     background: #fff;
@@ -224,7 +223,7 @@ h4 {
 }
 
 .keb-header-right {
-    flex: 0.4 1 0;
+    flex: 1 1 0;
     height: 100%;
     background: #d3d3d3;
     border-radius: 0;

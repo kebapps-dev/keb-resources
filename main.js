@@ -248,6 +248,12 @@ function handleAppChange() {
         loadGenericDataBtn.style.display = (app && app !== "ChooseApplication") ? "inline-block" : "none";
     }
     
+    // Show/hide leadscrew test text
+    const applicationNeedsTestingText = document.getElementById("application-needs-testing-text");
+    if (applicationNeedsTestingText) {
+        applicationNeedsTestingText.style.display = (app === "Spindle" || app === "Conveyor" || app === "Blower" || app === "Leadscrew" || app === "Lift") ? "block" : "none";
+    }
+    
     if (calculateBtn) {
         if (app && app !== "ChooseApplication") {
             calculateBtn.style.display = "inline-block";
@@ -718,6 +724,7 @@ function renderInputsForApp(appName) {
         if (def.Title) label.title = def.Title;
         label.style.display = "inline-block";
         label.style.width = "150px"; // or whatever width fits your longest label
+        label.style.minWidth = "150px";
         
         // Make label non-bold for separator type
         if (def.Type === "separator") {
