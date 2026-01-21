@@ -50,6 +50,10 @@ document.addEventListener('DOMContentLoaded', function() {
           select.style.width = '100%';
         });
         document.getElementById('productLine').style.marginBottom = '0px';
+        var productLine2 = document.getElementById('productLine2');
+        if (productLine2) {
+          productLine2.style.marginBottom = '0px';
+        }
 
       } else if (el.id === 'container-left-bottom') {
         if (drivePnAnalyzer) drivePnAnalyzer.style.display = 'none';
