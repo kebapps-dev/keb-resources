@@ -230,7 +230,7 @@ function handleAppChange() {
     // Show/hide leadscrew test text
     const applicationNeedsTestingText = document.getElementById("application-needs-testing-text");
     if (applicationNeedsTestingText) {
-        applicationNeedsTestingText.style.display = (app === "Spindle" || app === "Conveyor" || app === "Blower" || app === "Leadscrew" || app === "Lift") ? "block" : "none";
+        applicationNeedsTestingText.style.display = (app === "Spindle" || app === "Conveyor" || app === "Blower" || app === "Leadscrew") ? "block" : "none";
     }
     
     if (calculateBtn) {
@@ -345,10 +345,10 @@ const unitConversions = {
     'deg': 3.14159 / 180   // 1 degree = π/180 radians
   },
   inertia: {
-    'kg·m²': 1,
-    'lb·ft²': 0.0421401,   // 1 lb·ft² = 0.0421401 kg·m²
-    'g·cm²': 1e-7,         // 1 g·cm² = 1e-7 kg·m²
-    'kg·cm²': 0.0001       // 1 kg·cm² = 0.0001 kg·m²
+    'kg-m²': 1,
+    'lb-ft²': 0.0421401,   // 1 lb-ft² = 0.0421401 kg-m²
+    'g-cm²': 1e-7,         // 1 g-cm² = 1e-7 kg-m²
+    'kg-cm²': 0.0001       // 1 kg-cm² = 0.0001 kg-m²
   },
   speed: {
     'RPM': (2 * Math.PI) / 60,        // Convert RPM to rad/s
@@ -400,10 +400,10 @@ const unitConversions = {
   },
   torque: {
     'Nm': 1,               // Base unit: Newton-meters
-    'lb·ft': 1.35582,      // 1 lb·ft = 1.35582 Nm (input conversion)
-    'lb·in': 0.112985,     // 1 lb·in = 0.112985 Nm (input conversion)
-    'oz·in': 0.00706155,   // 1 oz·in = 0.00706155 Nm (input conversion)
-    'kg·cm': 0.0980665     // 1 kg·cm = 0.0980665 Nm (input conversion)
+    'lb-ft': 1.35582,      // 1 lb-ft = 1.35582 Nm (input conversion)
+    'lb-in': 0.112985,     // 1 lb-in = 0.112985 Nm (input conversion)
+    'oz-in': 0.00706155,   // 1 oz-in = 0.00706155 Nm (input conversion)
+    'kg-cm': 0.0980665     // 1 kg-cm = 0.0980665 Nm (input conversion)
   },
   force: {
     'N': 1,                // Base unit: Newtons
@@ -828,7 +828,7 @@ function addResultUnitControls(container) {
         const opt = document.createElement("option");
         opt.value = unit;
         opt.textContent = unit;
-        if (unit === 'Nm') opt.selected = true; // Default to Newton-meters
+        //if (unit === 'Nm') opt.selected = true; // Default to Newton-meters
         torqueSelect.appendChild(opt);
     });
     torqueWrapper.appendChild(torqueSelect);

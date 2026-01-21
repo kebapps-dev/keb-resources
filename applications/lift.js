@@ -8,42 +8,38 @@ const liftformulas = {
   motorpower: (torque, angularSpeed) => torque * angularSpeed
 };
 
+// Display Units
+const liftDisplayUnits = {
+  power: 'HP',
+  torque: 'lb-in',
+  speed: 'RPM'
+};
+
 function findClosestLiftMotor() {
   const loadWeight = getValueWithUnit('loadWeight');
   const maxSpeed = getValueWithUnit('maxSpeed');
   const drumDiameter = getValueWithUnit('drumDiameter');
-  const gearRatio = parseFloat(document.getElementById('gearboxRatioLift').value);
   const gearEfficiency = parseFloat(document.getElementById('gearboxEfficiencyPercent').value) / 100 || 1.0;
   const accelDecelTime = parseFloat(document.getElementById('accelDecelTime').value);
-  const motorEfficiency = parseFloat(document.getElementById('motorEfficiencyPercent').value) / 100;
   const safetyFactor = parseFloat(document.getElementById('safetyFactor').value);
 
   const gravityForce = liftformulas.forcegravity(loadWeight);
   const gearOutputSpeed = liftformulas.rotationalspeed(maxSpeed, drumDiameter);
-  const motorSpeed = gearOutputSpeed * gearRatio;
-  const loadTorque = liftformulas.drumtorque(gravityForce, drumDiameter);
+  const loadTorque = liftformulas.drumtorque(gravityForce, drumDiameter) / gearEfficiency;
   const peakAccel = liftformulas.peakacceleration(maxSpeed, accelDecelTime);
-  const loadPeakTorque = liftformulas.peakdrumtorque(drumDiameter, loadWeight, peakAccel);
-  const motorTorque = (loadTorque / gearRatio) * safetyFactor;
-  const motorPeakTorque = (loadPeakTorque / gearRatio) * safetyFactor;
+  const loadPeakTorque = liftformulas.peakdrumtorque(drumDiameter, loadWeight, peakAccel) / gearEfficiency;
   const loadPower = loadTorque * gearOutputSpeed;
-  const requiredMotorPower = (loadPower * safetyFactor) / (gearEfficiency * motorEfficiency);
+  const requiredMotorPower = (loadPower * safetyFactor) / gearEfficiency;
 
   displayStandardResults({
-    [`(1) Motor Speed (${window.selectedResultUnits?.speed || 'RPM'})`]: 
-      convertResultValue(motorSpeed, 'speed', window.selectedResultUnits?.speed || 'RPM').toFixed(2),
-    [`(2) Motor Required Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
-      convertResultValue(motorTorque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
-    [`(3) Motor Peak Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
-      convertResultValue(motorPeakTorque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
-    [`(4) Required Motor Power (${window.selectedResultUnits?.power || 'kW'})`]: 
-      convertResultValue(requiredMotorPower, 'power', window.selectedResultUnits?.power || 'kW').toFixed(3),
-    [`Gearbox Output Speed (${window.selectedResultUnits?.speed || 'RPM'})`]: 
-      convertResultValue(gearOutputSpeed, 'speed', window.selectedResultUnits?.speed || 'RPM').toFixed(2),
-    [`Gearbox Required Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
-      convertResultValue(loadTorque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3),
-    [`Gearbox Peak Torque (${window.selectedResultUnits?.torque || 'Nm'})`]: 
-      convertResultValue(loadPeakTorque, 'torque', window.selectedResultUnits?.torque || 'Nm').toFixed(3)
+    [`(4) Required Motor Power (${window.selectedResultUnits?.power || liftDisplayUnits.power})`]: 
+      convertResultValue(requiredMotorPower, 'power', window.selectedResultUnits?.power || liftDisplayUnits.power).toFixed(3),
+    [`(1) Gearbox Output Speed (${window.selectedResultUnits?.speed || liftDisplayUnits.speed})`]: 
+      convertResultValue(gearOutputSpeed, 'speed', window.selectedResultUnits?.speed || liftDisplayUnits.speed).toFixed(2),
+    [`(2) Gearbox Required Torque (${window.selectedResultUnits?.torque || liftDisplayUnits.torque})`]: 
+      convertResultValue(loadTorque, 'torque', window.selectedResultUnits?.torque || liftDisplayUnits.torque).toFixed(3),
+    [`(3) Gearbox Peak Torque (${window.selectedResultUnits?.torque || liftDisplayUnits.torque})`]: 
+      convertResultValue(loadPeakTorque, 'torque', window.selectedResultUnits?.torque || liftDisplayUnits.torque).toFixed(3)
   });
 }
 
@@ -60,25 +56,25 @@ function getLiftSizingSuggestions() {
 function getLiftFormulas() {
   return `
     <span class="formula"><b>   </b> \\( F_{gravity} = m \\cdot g \\)</span>
-    <span class="formula"><b>(1)</b> \\( \\omega_{motor} = \\frac{2 \\cdot v_{max} \\cdot i}{D_{drum}} \\)</span>
+    <span class="formula"><b>(1)</b> \\( \\omega_{drum} = \\frac{2 \\cdot v_{max}}{D_{drum}} \\)</span>
     <span class="formula"><b>(2)</b> \\( T_{drum} = F_{gravity} \\cdot \\frac{D_{drum}}{2} \\)</span>
     <span class="formula"><b>   </b> \\( T_{accel} = m \\cdot a_{peak} \\)</span>
     <span class="formula"><b>(3)</b> \\( T_{peak} = T_{drum}  + T_{accel} \\)</span>
     <span class="formula"><b>   </b> \\( P_{load} = T_{drum} \\cdot \\omega_{drum} \\)</span>    
-    <span class="formula"><b>(4)</b> \\( P_{motor} = \\frac{P_{load}}{\\eta_{gearbox} \\cdot \\eta_{motor}} \\)</span>
+    <span class="formula"><b>(4)</b> \\( P_{motor} = \\frac{P_{load}}{\\eta_{gearbox}} \\)</span>
   `;
 }
 
 // Lift result unit mappings
 function getLiftResultUnitMappings() {
   return {
-    'Required Motor Power': { type: 'power', component: 'motor', defaultUnit: 'kW' },
-    'Motor Required Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-    'Motor Peak Torque': { type: 'torque', component: 'motor', defaultUnit: 'Nm' },
-    'Motor Speed': { type: 'speed', component: 'motor', defaultUnit: 'RPM' },
-    'Gearbox Required Torque': { type: 'torque', component: 'system', defaultUnit: 'Nm' },
-    'Gearbox Peak Torque': { type: 'torque', component: 'system', defaultUnit: 'Nm' },
-    'Gearbox Output Speed': { type: 'speed', component: 'system', defaultUnit: 'RPM' }
+    'Required Motor Power': { type: 'power', defaultUnit: liftDisplayUnits.power },
+    'Motor Required Torque': { type: 'torque',  defaultUnit: liftDisplayUnits.torque },
+    'Motor Peak Torque': { type: 'torque',  defaultUnit: liftDisplayUnits.torque },
+    'Motor Speed': { type: 'speed', defaultUnit: liftDisplayUnits.speed },
+    'Gearbox Required Torque': { type: 'torque', defaultUnit: liftDisplayUnits.torque },
+    'Gearbox Peak Torque': { type: 'torque', defaultUnit: liftDisplayUnits.torque },
+    'Gearbox Output Speed': { type: 'speed', defaultUnit: liftDisplayUnits.speed }
   };
 }
 
