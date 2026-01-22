@@ -5,195 +5,607 @@ const terminalAssignments = {
     S6: {
         A: {
             name: "S6 APPLICATION",
-            terminals: [
-                { pin: "1", function: "", name: ["DI1 / AN3"], description: "Digital input 1 (standard) / analog input 3 (special software)" },
-                { pin: "2", function: "", name: ["DI2"], description: "Digital input 2" },
-                { pin: "3", function: "", name: ["DI3"], description: "Digital input 3" },
-                { pin: "4", function: "", name: ["DI4"], description: "Digital input 4" },
-                { pin: "5", function: "", name: ["DI5"], description: "Digital input 5" },
-                { pin: "6", function: "", name: ["DI6"], description: "Digital input 6" },
-                { pin: "7", function: "", name: ["DI7"], description: "Digital input 7" },
-                { pin: "8", function: "", name: ["DI8"], description: "Digital input 8" },
-                { pin: "9", function: "", name: ["0V"], description: "Reference potential for digital inputs" },
-                { pin: "10", function: "", name: ["DO1"], description: "Digital output 1" },
-                { pin: "11", function: "", name: ["0V"], description: "Reference potential for digital outputs" },
-                { pin: "12", function: "", name: ["DO2"], description: "Digital output 2" },
-                { pin: "13", function: "", name: ["RLB"], description: "Relay output / NC contact" },
-                { pin: "14", function: "", name: ["RLA"], description: "Relay output / NO contact" },
-                { pin: "15", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
-                { pin: "16", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 26) for controlling the inputs (SELV)." },
-                { pin: "17", function: "", name: ["AN1-"], description: "Non-isolated differential input 1" },
-                { pin: "18", function: "", name: ["AN1+"], description: "Non-isolated differential input 1" },
-                { pin: "19", function: "", name: ["AN2-"], description: "Non-isolated differential input 2" },
-                { pin: "20", function: "", name: ["AN2+"], description: "Non-isolated differential input 2" },
-                { pin: "21", function: "", name: ["0V"], description: "Reference potential for analog inputs and outputs" },
-                { pin: "22", function: "", name: ["ANOUT"], description: "Analog output DC 0...10 V" },
-                { pin: "23", function: "", name: ["CAN low"], description: "CAN bus ISO High Speed according to ISO/DIN 11898 => fieldbus interfaces" },
-                { pin: "24", function: "", name: ["CAN high"], description: "CAN bus ISO High Speed according to ISO/DIN 11898 => fieldbus interfaces" },
-                { pin: "25", function: "", name: ["CAN GND"], description: "CAN Ground\n(=> Fieldbus interfaces [▸ 26])" },
-                { pin: "26", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 16) for controlling the inputs (SELV)." },
-                { pin: "27", function: "", name: ["0V"], description: "Reference potential for P24Vin at external supply" },
-                { pin: "28", function: "", name: ["P24Vin"], description: "DC voltage input DC 24V to supply the control board" }
-            ]
+            terminalStrips: [
+                {
+                    name: "X2A",
+                    terminals: [
+                        { pin: "1", function: "", name: ["DI1 / AN3"], description: "Digital input 1 (standard) / analog input 3 (special software)" },
+                        { pin: "2", function: "", name: ["DI2"], description: "Digital input 2" },
+                        { pin: "3", function: "", name: ["DI3"], description: "Digital input 3" },
+                        { pin: "4", function: "", name: ["DI4"], description: "Digital input 4" },
+                        { pin: "5", function: "", name: ["DI5"], description: "Digital input 5" },
+                        { pin: "6", function: "", name: ["DI6"], description: "Digital input 6" },
+                        { pin: "7", function: "", name: ["DI7"], description: "Digital input 7" },
+                        { pin: "8", function: "", name: ["DI8"], description: "Digital input 8" },
+                        { pin: "9", function: "", name: ["0V"], description: "Reference potential for digital inputs" },
+                        { pin: "10", function: "", name: ["DO1"], description: "Digital output 1" },
+                        { pin: "11", function: "", name: ["0V"], description: "Reference potential for digital outputs" },
+                        { pin: "12", function: "", name: ["DO2"], description: "Digital output 2" },
+                        { pin: "13", function: "", name: ["RLB"], description: "Relay output / NC contact" },
+                        { pin: "14", function: "", name: ["RLA"], description: "Relay output / NO contact" },
+                        { pin: "15", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
+                        { pin: "16", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 26) for controlling the inputs (SELV)." },
+                        { pin: "17", function: "", name: ["AN1-"], description: "Non-isolated differential input 1" },
+                        { pin: "18", function: "", name: ["AN1+"], description: "Non-isolated differential input 1" },
+                        { pin: "19", function: "", name: ["AN2-"], description: "Non-isolated differential input 2" },
+                        { pin: "20", function: "", name: ["AN2+"], description: "Non-isolated differential input 2" },
+                        { pin: "21", function: "", name: ["0V"], description: "Reference potential for analog inputs and outputs" },
+                        { pin: "22", function: "", name: ["ANOUT"], description: "Analog output DC 0...10 V" },
+                        { pin: "23", function: "", name: ["CAN low"], description: "CAN bus ISO High Speed according to ISO/DIN 11898 => fieldbus interfaces" },
+                        { pin: "24", function: "", name: ["CAN high"], description: "CAN bus ISO High Speed according to ISO/DIN 11898 => fieldbus interfaces" },
+                        { pin: "25", function: "", name: ["CAN GND"], description: "CAN Ground\n(=> Fieldbus interfaces [▸ 26])" },
+                        { pin: "26", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 16) for controlling the inputs (SELV)." },
+                        { pin: "27", function: "", name: ["0V"], description: "Reference potential for P24Vin at external supply" },
+                        { pin: "28", function: "", name: ["P24Vin"], description: "DC voltage input DC 24V to supply the control board" }
+                    ]
+                },
+                {
+                    name: "X1C",
+                    terminals : [
+                        { pin: "1", function: "", name: ["BR+"], description: "Brake Control / Output +" },
+                        { pin: "2", function: "", name: ["BR-"], description: "Brake Control / Output -" },
+                        { pin: "3", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "4", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "5", function: "", name: ["TA1"], description: "Temperature Detection / Input +" },
+                        { pin: "6", function: "", name: ["TA2"], description: "Temperature Detection / Input -" }    
+                    ]
+                }
+
+            ],
+            equipmentStrips: {
+                "1": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1 / 2", function: "Input", name: ["STO1+"], description: "STO channel 1" },
+                        { pin: "3 / 4", function: "Input", name: ["STO1-"], description: "STO channel 1" },
+                        { pin: "5 / 6", function: "Input", name: ["STO2+"], description: "STO channel 2" },
+                        { pin: "7 / 8", function: "Input", name: ["STO2-"], description: "STO channel 2" },
+                        { pin: "9 / 10", function: "Input", name: ["SBC1+"], description: "SBC channel 1" },
+                        { pin: "11 / 12", function: "Input", name: ["SBC1-"], description: "SBC channel 1" },
+                        { pin: "13 / 14", function: "Input", name: ["SBC2+"], description: "SBC channel 2" },
+                        { pin: "15 / 16", function: "Input", name: ["SBC2-"], description: "SBC channel 2" },
+                        { pin: "17 / 18", function: "Output", name: ["Status STO"], description: "Output STO" },
+                        { pin: "19 / 20", function: "Output", name: ["Status SBC"], description: "Output SBC" }
+                    ]
+                },
+                "3": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1/2", function: "STO inputs", name: ["STO.1"], description: "" },
+                        { pin: "3/4", function: "STO inputs", name: ["STO.2"], description: "" },
+                        { pin: "5/6", function: "SBC inputs", name: ["SBC.1"], description: "" },
+                        { pin: "7/8", function: "SBC inputs", name: ["SBC.2"], description: "" },
+                        { pin: "9/10", function: "Function1 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "11/12", function: "Function1 inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "13/14", function: "Function2 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "15/16", function: "Function2 inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "17/18", function: "Ripple- inputs", name: ["Ripple.1"], description: "" },
+                        { pin: "19/20", function: "Ripple- inputs", name: ["Ripple.2"], description: "" },
+                        { pin: "21/22", function: "Clock-outputs", name: ["Clock.1"], description: "" },
+                        { pin: "23/24", function: "Clock-outputs", name: ["Clock.2"], description: "" },
+                        { pin: "25/26", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "27/28", function: "Output 2", name: ["Out2"], description: "" },
+                        { pin: "29/30", function: "Ripple outputs", name: ["Ripple Out.1"], description: "" },
+                        { pin: "31/32", function: "Ripple outputs", name: ["Ripple Out.2"], description: "" }
+                    ]
+                },
+                "5": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1", function: "Function1- inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "2", function: "Function1- inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "3", function: "Function2- inputs", name: ["FUNC2.1"], description: "" },
+                        { pin: "4", function: "Function2- inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "5", function: "Function3- inputs", name: ["FUNC3.1"], description: "" },
+                        { pin: "6", function: "Function3- inputs", name: ["FUNC3.2"], description: "" },
+                        { pin: "7", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "8", function: "Output 2", name: ["Out2"], description: "" }
+                    ]
+                }
+            }
         },
         K: {
             name: "S6 COMPACT",
-            terminals: [
-                { pin: "1", function: "", name: ["DI 1"], description: "Digital input 1" },
-                { pin: "2", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "3", function: "", name: ["DI 2"], description: "Digital input 2" },
-                { pin: "4", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "5", function: "", name: ["DI 3"], description: "Digital input 3" },
-                { pin: "6", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "7", function: "", name: ["DI 4"], description: "Digital input 4" },
-                { pin: "8", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "9", function: "", name: ["DI 5"], description: "Digital input 5" },
-                { pin: "10", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "11", function: "", name: ["DI 6"], description: "Digital input 6" },
-                { pin: "12", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "13", function: "", name: ["DI 7"], description: "Digital input 7" },
-                { pin: "14", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "15", function: "", name: ["DI 8"], description: "Digital input 8" },
-                { pin: "16", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "17", function: "", name: ["DO 1"], description: "Digital output 1" },
-                { pin: "18", function: "", name: ["0V"], description: "Reference potential for digital output" },
-                { pin: "19", function: "", name: ["DO 2"], description: "Digital output 2" },
-                { pin: "20", function: "", name: ["0V"], description: "Reference potential for digital output" },
-                { pin: "21", function: "", name: ["RLB"], description: "Relay output / NC contact" },
-                { pin: "22", function: "", name: ["RLA"], description: "Relay output / NO contact" },
-                { pin: "23", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
-                { pin: "24", function: "", name: ["24Vout"], description: "DC voltage output (SELV) to control the digital inputs." }
-            ]
+            terminalStrips: [
+                {
+                    name: "X2A",
+                    terminals: [
+                        { pin: "1", function: "", name: ["DI 1"], description: "Digital input 1" },
+                        { pin: "2", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "3", function: "", name: ["DI 2"], description: "Digital input 2" },
+                        { pin: "4", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "5", function: "", name: ["DI 3"], description: "Digital input 3" },
+                        { pin: "6", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "7", function: "", name: ["DI 4"], description: "Digital input 4" },
+                        { pin: "8", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "9", function: "", name: ["DI 5"], description: "Digital input 5" },
+                        { pin: "10", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "11", function: "", name: ["DI 6"], description: "Digital input 6" },
+                        { pin: "12", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "13", function: "", name: ["DI 7"], description: "Digital input 7" },
+                        { pin: "14", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "15", function: "", name: ["DI 8"], description: "Digital input 8" },
+                        { pin: "16", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "17", function: "", name: ["DO 1"], description: "Digital output 1" },
+                        { pin: "18", function: "", name: ["0V"], description: "Reference potential for digital output" },
+                        { pin: "19", function: "", name: ["DO 2"], description: "Digital output 2" },
+                        { pin: "20", function: "", name: ["0V"], description: "Reference potential for digital output" },
+                        { pin: "21", function: "", name: ["RLB"], description: "Relay output / NC contact" },
+                        { pin: "22", function: "", name: ["RLA"], description: "Relay output / NO contact" },
+                        { pin: "23", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
+                        { pin: "24", function: "", name: ["24Vout"], description: "DC voltage output (SELV) to control the digital inputs." }
+                    ]
+                },
+                {
+                    name: "X1C",
+                    terminals : [
+                        { pin: "1", function: "", name: ["BR+"], description: "Brake Control / Output +" },
+                        { pin: "2", function: "", name: ["BR-"], description: "Brake Control / Output -" },
+                        { pin: "3", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "4", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "5", function: "", name: ["TA1"], description: "Temperature Detection / Input +" },
+                        { pin: "6", function: "", name: ["TA2"], description: "Temperature Detection / Input -" }
+                    ]
+                }
+            ],
+            equipmentStrips: {
+                "1": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1 / 2", function: "Input", name: ["STO1+"], description: "STO channel 1" },
+                        { pin: "3 / 4", function: "Input", name: ["STO1-"], description: "STO channel 1" },
+                        { pin: "5 / 6", function: "Input", name: ["STO2+"], description: "STO channel 2" },
+                        { pin: "7 / 8", function: "Input", name: ["STO2-"], description: "STO channel 2" },
+                        { pin: "9 / 10", function: "Input", name: ["SBC1+"], description: "SBC channel 1" },
+                        { pin: "11 / 12", function: "Input", name: ["SBC1-"], description: "SBC channel 1" },
+                        { pin: "13 / 14", function: "Input", name: ["SBC2+"], description: "SBC channel 2" },
+                        { pin: "15 / 16", function: "Input", name: ["SBC2-"], description: "SBC channel 2" },
+                        { pin: "17 / 18", function: "Output", name: ["Status STO"], description: "Output STO" },
+                        { pin: "19 / 20", function: "Output", name: ["Status SBC"], description: "Output SBC" }
+                    ]
+                },
+                "3": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1/2", function: "STO inputs", name: ["STO.1"], description: "" },
+                        { pin: "3/4", function: "STO inputs", name: ["STO.2"], description: "" },
+                        { pin: "5/6", function: "SBC inputs", name: ["SBC.1"], description: "" },
+                        { pin: "7/8", function: "SBC inputs", name: ["SBC.2"], description: "" },
+                        { pin: "9/10", function: "Function1 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "11/12", function: "Function1 inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "13/14", function: "Function2 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "15/16", function: "Function2 inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "17/18", function: "Ripple- inputs", name: ["Ripple.1"], description: "" },
+                        { pin: "19/20", function: "Ripple- inputs", name: ["Ripple.2"], description: "" },
+                        { pin: "21/22", function: "Clock-outputs", name: ["Clock.1"], description: "" },
+                        { pin: "23/24", function: "Clock-outputs", name: ["Clock.2"], description: "" },
+                        { pin: "25/26", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "27/28", function: "Output 2", name: ["Out2"], description: "" },
+                        { pin: "29/30", function: "Ripple outputs", name: ["Ripple Out.1"], description: "" },
+                        { pin: "31/32", function: "Ripple outputs", name: ["Ripple Out.2"], description: "" }
+                    ]
+                },
+                "5": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1", function: "Function1- inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "2", function: "Function1- inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "3", function: "Function2- inputs", name: ["FUNC2.1"], description: "" },
+                        { pin: "4", function: "Function2- inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "5", function: "Function3- inputs", name: ["FUNC3.1"], description: "" },
+                        { pin: "6", function: "Function3- inputs", name: ["FUNC3.2"], description: "" },
+                        { pin: "7", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "8", function: "Output 2", name: ["Out2"], description: "" }
+                    ]
+                }
+            }
         },
         P: {
             name: "S6 PRO",
-            terminals: [
-                { pin: "1", function: "", name: ["DI1 / AN3"], description: "Digital input 1 (standard) / analog input 3 (special software)" },
-                { pin: "2", function: "", name: ["DI2"], description: "Digital input 2" },
-                { pin: "3", function: "", name: ["DI3"], description: "Digital input 3" },
-                { pin: "4", function: "", name: ["DI4"], description: "Digital input 4" },
-                { pin: "5", function: "", name: ["DI5"], description: "Digital input 5" },
-                { pin: "6", function: "", name: ["DI6"], description: "Digital input 6" },
-                { pin: "7", function: "", name: ["DI7"], description: "Digital input 7 (fast input => see programming manual)" },
-                { pin: "8", function: "", name: ["DI8"], description: "Digital input 8 (fast input => see programming manual)" },
-                { pin: "9", function: "", name: ["0V"], description: "Reference potential for digital inputs" },
-                { pin: "10", function: "", name: ["DO1"], description: "Digital output 1" },
-                { pin: "11", function: "", name: ["0V"], description: "Reference potential for digital outputs" },
-                { pin: "12", function: "", name: ["DO2"], description: "Digital output 2" },
-                { pin: "13", function: "", name: ["RLB"], description: "Relay output / NC contact (no function for \"Relay with positive-driven contacts\" variant)" },
-                { pin: "14", function: "", name: ["RLA"], description: "Relay output / NO contact" },
-                { pin: "15", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
-                { pin: "16", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 26) for controlling the inputs (SELV)." },
-                { pin: "17", function: "", name: ["AN1-"], description: "Non-isolated differential input 1" },
-                { pin: "18", function: "", name: ["AN1+"], description: "Non-isolated differential input 1" },
-                { pin: "19", function: "", name: ["AN2-"], description: "Non-isolated differential input 2" },
-                { pin: "20", function: "", name: ["AN2+"], description: "Non-isolated differential input 2" },
-                { pin: "21", function: "", name: ["0V"], description: "Reference potential for analog inputs and outputs" },
-                { pin: "22", function: "", name: ["ANOUT"], description: "Analog output DC 0...10 V" },
-                { pin: "23", function: "", name: ["CAN low"], description: "CAN bus ISO High Speed according to ISO/DIN 11896 => fieldbus interfaces" },
-                { pin: "24", function: "", name: ["CAN high"], description: "CAN bus ISO High Speed according to ISO/DIN 11896 => fieldbus interfaces" },
-                { pin: "25", function: "", name: ["CAN GND"], description: "CAN Ground\n(=> Fieldbus interfaces [▸ 30])" },
-                { pin: "26", function: "", name: ["24VoutCtrl"], description: "DC voltage output (SELV) to supply the digital inputs.Caution, do not couple with other power supplies!" },
-                { pin: "27", function: "", name: ["0V"], description: "Reference potential for P24Vin at external supply" },
-                { pin: "28", function: "", name: ["P24Vin"], description: "Voltage input DC 24 V supplying the control board and the brake output" }
-            ]
+            terminalStrips: [
+                {
+                    name: "X2A",
+                    terminals: [
+                        { pin: "1", function: "", name: ["DI1 / AN3"], description: "Digital input 1 (standard) / analog input 3 (special software)" },
+                        { pin: "2", function: "", name: ["DI2"], description: "Digital input 2" },
+                        { pin: "3", function: "", name: ["DI3"], description: "Digital input 3" },
+                        { pin: "4", function: "", name: ["DI4"], description: "Digital input 4" },
+                        { pin: "5", function: "", name: ["DI5"], description: "Digital input 5" },
+                        { pin: "6", function: "", name: ["DI6"], description: "Digital input 6" },
+                        { pin: "7", function: "", name: ["DI7"], description: "Digital input 7 (fast input => see programming manual)" },
+                        { pin: "8", function: "", name: ["DI8"], description: "Digital input 8 (fast input => see programming manual)" },
+                        { pin: "9", function: "", name: ["0V"], description: "Reference potential for digital inputs" },
+                        { pin: "10", function: "", name: ["DO1"], description: "Digital output 1" },
+                        { pin: "11", function: "", name: ["0V"], description: "Reference potential for digital outputs" },
+                        { pin: "12", function: "", name: ["DO2"], description: "Digital output 2" },
+                        { pin: "13", function: "", name: ["RLB"], description: "Relay output / NC contact (no function for \"Relay with positive-driven contacts\" variant)" },
+                        { pin: "14", function: "", name: ["RLA"], description: "Relay output / NO contact" },
+                        { pin: "15", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
+                        { pin: "16", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 26) for controlling the inputs (SELV)." },
+                        { pin: "17", function: "", name: ["AN1-"], description: "Non-isolated differential input 1" },
+                        { pin: "18", function: "", name: ["AN1+"], description: "Non-isolated differential input 1" },
+                        { pin: "19", function: "", name: ["AN2-"], description: "Non-isolated differential input 2" },
+                        { pin: "20", function: "", name: ["AN2+"], description: "Non-isolated differential input 2" },
+                        { pin: "21", function: "", name: ["0V"], description: "Reference potential for analog inputs and outputs" },
+                        { pin: "22", function: "", name: ["ANOUT"], description: "Analog output DC 0...10 V" },
+                        { pin: "23", function: "", name: ["CAN low"], description: "CAN bus ISO High Speed according to ISO/DIN 11896 => fieldbus interfaces" },
+                        { pin: "24", function: "", name: ["CAN high"], description: "CAN bus ISO High Speed according to ISO/DIN 11896 => fieldbus interfaces" },
+                        { pin: "25", function: "", name: ["CAN GND"], description: "CAN Ground\n(=> Fieldbus interfaces [▸ 30])" },
+                        { pin: "26", function: "", name: ["24VoutCtrl"], description: "DC voltage output (SELV) to supply the digital inputs.Caution, do not couple with other power supplies!" },
+                        { pin: "27", function: "", name: ["0V"], description: "Reference potential for P24Vin at external supply" },
+                        { pin: "28", function: "", name: ["P24Vin"], description: "Voltage input DC 24 V supplying the control board and the brake output" }
+                    ]
+                },
+                {
+                    name: "X1C",
+                    terminals : [
+                        { pin: "1", function: "", name: ["BR+"], description: "Brake Control / Output +" },
+                        { pin: "2", function: "", name: ["BR-"], description: "Brake Control / Output -" },
+                        { pin: "3", function: "", name: ["0V"], description: "For supplying the feedback inputs\nP24Vin - 0.5V / max. 1A\n(BR+ and 24Vout in total 2A)", descriptionRowspan: 2 },
+                        { pin: "4", function: "", name: ["24Vout"], descriptionRowspan: 0 },
+                        { pin: "5", function: "", name: ["BCF1"], description: "Feedback input for brake control" },
+                        { pin: "6", function: "", name: ["BCF2"], description: "Feedback input for brake control" },
+                        { pin: "7", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "8", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "9", function: "", name: ["TA1"], description: "Temperature Detection / Input +" },
+                        { pin: "10", function: "", name: ["TA2"], description: "Temperature Detection / Input -" }
+                    ]
+                }
+            ],
+            equipmentStrips: {
+                "1": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1 / 2", function: "Input", name: ["STO1+"], description: "STO channel 1" },
+                        { pin: "3 / 4", function: "Input", name: ["STO1-"], description: "STO channel 1" },
+                        { pin: "5 / 6", function: "Input", name: ["STO2+"], description: "STO channel 2" },
+                        { pin: "7 / 8", function: "Input", name: ["STO2-"], description: "STO channel 2" },
+                        { pin: "9 / 10", function: "Input", name: ["SBC1+"], description: "SBC channel 1" },
+                        { pin: "11 / 12", function: "Input", name: ["SBC1-"], description: "SBC channel 1" },
+                        { pin: "13 / 14", function: "Input", name: ["SBC2+"], description: "SBC channel 2" },
+                        { pin: "15 / 16", function: "Input", name: ["SBC2-"], description: "SBC channel 2" },
+                        { pin: "17 / 18", function: "Output", name: ["Status STO"], description: "Output STO" },
+                        { pin: "19 / 20", function: "Output", name: ["Status SBC"], description: "Output SBC" }
+                    ]
+                },
+                "3": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1/2", function: "STO inputs", name: ["STO.1"], description: "" },
+                        { pin: "3/4", function: "STO inputs", name: ["STO.2"], description: "" },
+                        { pin: "5/6", function: "SBC inputs", name: ["SBC.1"], description: "" },
+                        { pin: "7/8", function: "SBC inputs", name: ["SBC.2"], description: "" },
+                        { pin: "9/10", function: "Function1 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "11/12", function: "Function1 inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "13/14", function: "Function2 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "15/16", function: "Function2 inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "17/18", function: "Ripple- inputs", name: ["Ripple.1"], description: "" },
+                        { pin: "19/20", function: "Ripple- inputs", name: ["Ripple.2"], description: "" },
+                        { pin: "21/22", function: "Clock-outputs", name: ["Clock.1"], description: "" },
+                        { pin: "23/24", function: "Clock-outputs", name: ["Clock.2"], description: "" },
+                        { pin: "25/26", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "27/28", function: "Output 2", name: ["Out2"], description: "" },
+                        { pin: "29/30", function: "Ripple outputs", name: ["Ripple Out.1"], description: "" },
+                        { pin: "31/32", function: "Ripple outputs", name: ["Ripple Out.2"], description: "" }
+                    ]
+                },
+                "5": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1", function: "Function1- inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "2", function: "Function1- inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "3", function: "Function2- inputs", name: ["FUNC2.1"], description: "" },
+                        { pin: "4", function: "Function2- inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "5", function: "Function3- inputs", name: ["FUNC3.1"], description: "" },
+                        { pin: "6", function: "Function3- inputs", name: ["FUNC3.2"], description: "" },
+                        { pin: "7", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "8", function: "Output 2", name: ["Out2"], description: "" }
+                    ]
+                }
+            }
         }
     },
+    
     F6: {
         A: {
             name: "F6 APPLICATION",
-            terminals: [
-                { pin: "1", function: "", name: ["DI1 / AN3"], description: "Digital input 1 (standard) / analog input 3 (special software)" },
-                { pin: "2", function: "", name: ["DI2"], description: "Digital input 2" },
-                { pin: "3", function: "", name: ["DI3"], description: "Digital input 3" },
-                { pin: "4", function: "", name: ["DI4"], description: "Digital input 4" },
-                { pin: "5", function: "", name: ["DI5"], description: "Digital input 5" },
-                { pin: "6", function: "", name: ["DI6"], description: "Digital input 6" },
-                { pin: "7", function: "", name: ["DI7"], description: "Digital input 7" },
-                { pin: "8", function: "", name: ["DI8"], description: "Digital input 8" },
-                { pin: "9", function: "", name: ["0V"], description: "Reference potential for digital inputs" },
-                { pin: "10", function: "", name: ["DO1"], description: "Digital output 1" },
-                { pin: "11", function: "", name: ["0V"], description: "Reference potential for digital outputs" },
-                { pin: "12", function: "", name: ["DO2"], description: "Digital output 2" },
-                { pin: "13", function: "", name: ["RLB"], description: "Relay output / NC contact" },
-                { pin: "14", function: "", name: ["RLA"], description: "Relay output / NO contact" },
-                { pin: "15", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
-                { pin: "16", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 26) for controlling the inputs (SELV)." },
-                { pin: "17", function: "", name: ["AN1-"], description: "Non-isolated differential input 1" },
-                { pin: "18", function: "", name: ["AN1+"], description: "Non-isolated differential input 1" },
-                { pin: "19", function: "", name: ["AN2-"], description: "Non-isolated differential input 2" },
-                { pin: "20", function: "", name: ["AN2+"], description: "Non-isolated differential input 2" },
-                { pin: "21", function: "", name: ["0V"], description: "Reference potential for analog inputs and outputs" },
-                { pin: "22", function: "", name: ["ANOUT"], description: "Analog output DC 0...10 V" },
-                { pin: "23", function: "", name: ["CAN low"], description: "CAN bus ISO High Speed according to ISO/DIN 11898 => fieldbus interfaces" },
-                { pin: "24", function: "", name: ["CAN high"], description: "CAN bus ISO High Speed according to ISO/DIN 11898 => fieldbus interfaces" },
-                { pin: "25", function: "", name: ["CAN GND"], description: "CAN Ground\n(=> Fieldbus interfaces [▸ 26])" },
-                { pin: "26", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 16) for controlling the inputs (SELV)." },
-                { pin: "27", function: "", name: ["0V"], description: "Reference potential for P24Vin at external supply" },
-                { pin: "28", function: "", name: ["P24Vin"], description: "DC voltage input DC 24V to supply the control board" }
-            ]
+            terminalStrips: [
+                {
+                    name: "X2A",
+                    terminals: [
+                        { pin: "1", function: "", name: ["DI1 / AN3"], description: "Digital input 1 (standard) / analog input 3 (special software)" },
+                        { pin: "2", function: "", name: ["DI2"], description: "Digital input 2" },
+                        { pin: "3", function: "", name: ["DI3"], description: "Digital input 3" },
+                        { pin: "4", function: "", name: ["DI4"], description: "Digital input 4" },
+                        { pin: "5", function: "", name: ["DI5"], description: "Digital input 5" },
+                        { pin: "6", function: "", name: ["DI6"], description: "Digital input 6" },
+                        { pin: "7", function: "", name: ["DI7"], description: "Digital input 7" },
+                        { pin: "8", function: "", name: ["DI8"], description: "Digital input 8" },
+                        { pin: "9", function: "", name: ["0V"], description: "Reference potential for digital inputs" },
+                        { pin: "10", function: "", name: ["DO1"], description: "Digital output 1" },
+                        { pin: "11", function: "", name: ["0V"], description: "Reference potential for digital outputs" },
+                        { pin: "12", function: "", name: ["DO2"], description: "Digital output 2" },
+                        { pin: "13", function: "", name: ["RLB"], description: "Relay output / NC contact" },
+                        { pin: "14", function: "", name: ["RLA"], description: "Relay output / NO contact" },
+                        { pin: "15", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
+                        { pin: "16", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 26) for controlling the inputs (SELV)." },
+                        { pin: "17", function: "", name: ["AN1-"], description: "Non-isolated differential input 1" },
+                        { pin: "18", function: "", name: ["AN1+"], description: "Non-isolated differential input 1" },
+                        { pin: "19", function: "", name: ["AN2-"], description: "Non-isolated differential input 2" },
+                        { pin: "20", function: "", name: ["AN2+"], description: "Non-isolated differential input 2" },
+                        { pin: "21", function: "", name: ["0V"], description: "Reference potential for analog inputs and outputs" },
+                        { pin: "22", function: "", name: ["ANOUT"], description: "Analog output DC 0...10 V" },
+                        { pin: "23", function: "", name: ["CAN low"], description: "CAN bus ISO High Speed according to ISO/DIN 11898 => fieldbus interfaces" },
+                        { pin: "24", function: "", name: ["CAN high"], description: "CAN bus ISO High Speed according to ISO/DIN 11898 => fieldbus interfaces" },
+                        { pin: "25", function: "", name: ["CAN GND"], description: "CAN Ground\n(=> Fieldbus interfaces [▸ 26])" },
+                        { pin: "26", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 16) for controlling the inputs (SELV)." },
+                        { pin: "27", function: "", name: ["0V"], description: "Reference potential for P24Vin at external supply" },
+                        { pin: "28", function: "", name: ["P24Vin"], description: "DC voltage input DC 24V to supply the control board" }
+                    ]
+                },
+                {
+                    name: "X1C",
+                    terminals : [
+                        { pin: "1", function: "", name: ["BR+"], description: "Brake Control / Output +" },
+                        { pin: "2", function: "", name: ["BR-"], description: "Brake Control / Output -" },
+                        { pin: "3", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "4", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "5", function: "", name: ["TA1"], description: "Temperature Detection / Input +" },
+                        { pin: "6", function: "", name: ["TA2"], description: "Temperature Detection / Input -" }
+                    ]
+                }
+            ],
+            equipmentStrips: {
+                "1": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1 / 2", function: "Input", name: ["STO1+"], description: "STO channel 1" },
+                        { pin: "3 / 4", function: "Input", name: ["STO1-"], description: "STO channel 1" },
+                        { pin: "5 / 6", function: "Input", name: ["STO2+"], description: "STO channel 2" },
+                        { pin: "7 / 8", function: "Input", name: ["STO2-"], description: "STO channel 2" },
+                        { pin: "9 / 10", function: "Input", name: ["SBC1+"], description: "SBC channel 1" },
+                        { pin: "11 / 12", function: "Input", name: ["SBC1-"], description: "SBC channel 1" },
+                        { pin: "13 / 14", function: "Input", name: ["SBC2+"], description: "SBC channel 2" },
+                        { pin: "15 / 16", function: "Input", name: ["SBC2-"], description: "SBC channel 2" },
+                        { pin: "17 / 18", function: "Output", name: ["Status STO"], description: "Output STO" },
+                        { pin: "19 / 20", function: "Output", name: ["Status SBC"], description: "Output SBC" }
+                    ]
+                },
+                "3": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1/2", function: "STO inputs", name: ["STO.1"], description: "" },
+                        { pin: "3/4", function: "STO inputs", name: ["STO.2"], description: "" },
+                        { pin: "5/6", function: "SBC inputs", name: ["SBC.1"], description: "" },
+                        { pin: "7/8", function: "SBC inputs", name: ["SBC.2"], description: "" },
+                        { pin: "9/10", function: "Function1 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "11/12", function: "Function1 inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "13/14", function: "Function2 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "15/16", function: "Function2 inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "17/18", function: "Ripple- inputs", name: ["Ripple.1"], description: "" },
+                        { pin: "19/20", function: "Ripple- inputs", name: ["Ripple.2"], description: "" },
+                        { pin: "21/22", function: "Clock-outputs", name: ["Clock.1"], description: "" },
+                        { pin: "23/24", function: "Clock-outputs", name: ["Clock.2"], description: "" },
+                        { pin: "25/26", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "27/28", function: "Output 2", name: ["Out2"], description: "" },
+                        { pin: "29/30", function: "Ripple outputs", name: ["Ripple Out.1"], description: "" },
+                        { pin: "31/32", function: "Ripple outputs", name: ["Ripple Out.2"], description: "" }
+                    ]
+                },
+                "5": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1", function: "Function1- inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "2", function: "Function1- inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "3", function: "Function2- inputs", name: ["FUNC2.1"], description: "" },
+                        { pin: "4", function: "Function2- inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "5", function: "Function3- inputs", name: ["FUNC3.1"], description: "" },
+                        { pin: "6", function: "Function3- inputs", name: ["FUNC3.2"], description: "" },
+                        { pin: "7", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "8", function: "Output 2", name: ["Out2"], description: "" }
+                    ]
+                }
+            }
         },
         K: {
             name: "F6 COMPACT",
-            terminals: [
-                { pin: "1", function: "", name: ["DI 1"], description: "Digital input 1" },
-                { pin: "2", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "3", function: "", name: ["DI 2"], description: "Digital input 2" },
-                { pin: "4", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "5", function: "", name: ["DI 3"], description: "Digital input 3" },
-                { pin: "6", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "7", function: "", name: ["DI 4"], description: "Digital input 4" },
-                { pin: "8", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "9", function: "", name: ["DI 5"], description: "Digital input 5" },
-                { pin: "10", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "11", function: "", name: ["DI 6"], description: "Digital input 6" },
-                { pin: "12", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "13", function: "", name: ["DI 7"], description: "Digital input 7" },
-                { pin: "14", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "15", function: "", name: ["DI 8"], description: "Digital input 8" },
-                { pin: "16", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
-                { pin: "17", function: "", name: ["DO 1"], description: "Digital output 1" },
-                { pin: "18", function: "", name: ["0V"], description: "Reference potential for digital output" },
-                { pin: "19", function: "", name: ["DO 2"], description: "Digital output 2" },
-                { pin: "20", function: "", name: ["0V"], description: "Reference potential for digital output" },
-                { pin: "21", function: "", name: ["RLB"], description: "Relay output / NC contact" },
-                { pin: "22", function: "", name: ["RLA"], description: "Relay output / NO contact" },
-                { pin: "23", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
-                { pin: "24", function: "", name: ["24Vout"], description: "DC voltage output (SELV) to control the digital inputs." }
-            ]
+            terminalStrips: [
+                {
+                    name: "X2A",
+                    terminals: [
+                        { pin: "1", function: "", name: ["DI 1"], description: "Digital input 1" },
+                        { pin: "2", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "3", function: "", name: ["DI 2"], description: "Digital input 2" },
+                        { pin: "4", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "5", function: "", name: ["DI 3"], description: "Digital input 3" },
+                        { pin: "6", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "7", function: "", name: ["DI 4"], description: "Digital input 4" },
+                        { pin: "8", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "9", function: "", name: ["DI 5"], description: "Digital input 5" },
+                        { pin: "10", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "11", function: "", name: ["DI 6"], description: "Digital input 6" },
+                        { pin: "12", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "13", function: "", name: ["DI 7"], description: "Digital input 7" },
+                        { pin: "14", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "15", function: "", name: ["DI 8"], description: "Digital input 8" },
+                        { pin: "16", function: "", name: ["24Vout"], description: "Voltage output for controlling the inputs" },
+                        { pin: "17", function: "", name: ["DO 1"], description: "Digital output 1" },
+                        { pin: "18", function: "", name: ["0V"], description: "Reference potential for digital output" },
+                        { pin: "19", function: "", name: ["DO 2"], description: "Digital output 2" },
+                        { pin: "20", function: "", name: ["0V"], description: "Reference potential for digital output" },
+                        { pin: "21", function: "", name: ["RLB"], description: "Relay output / NC contact" },
+                        { pin: "22", function: "", name: ["RLA"], description: "Relay output / NO contact" },
+                        { pin: "23", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
+                        { pin: "24", function: "", name: ["24Vout"], description: "DC voltage output (SELV) to control the digital inputs." }
+                    ]
+                },
+                {
+                    name: "X1C",
+                    terminals : [
+                        { pin: "1", function: "", name: ["BR+"], description: "Brake Control / Output +" },
+                        { pin: "2", function: "", name: ["BR-"], description: "Brake Control / Output -" },
+                        { pin: "3", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "4", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "5", function: "", name: ["TA1"], description: "Temperature Detection / Input +" },
+                        { pin: "6", function: "", name: ["TA2"], description: "Temperature Detection / Input -" }
+                    ]
+                }
+            ],
+            equipmentStrips: {
+                "1": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1 / 2", function: "Input", name: ["STO1+"], description: "STO channel 1" },
+                        { pin: "3 / 4", function: "Input", name: ["STO1-"], description: "STO channel 1" },
+                        { pin: "5 / 6", function: "Input", name: ["STO2+"], description: "STO channel 2" },
+                        { pin: "7 / 8", function: "Input", name: ["STO2-"], description: "STO channel 2" },
+                        { pin: "9 / 10", function: "Input", name: ["SBC1+"], description: "SBC channel 1" },
+                        { pin: "11 / 12", function: "Input", name: ["SBC1-"], description: "SBC channel 1" },
+                        { pin: "13 / 14", function: "Input", name: ["SBC2+"], description: "SBC channel 2" },
+                        { pin: "15 / 16", function: "Input", name: ["SBC2-"], description: "SBC channel 2" },
+                        { pin: "17 / 18", function: "Output", name: ["Status STO"], description: "Output STO" },
+                        { pin: "19 / 20", function: "Output", name: ["Status SBC"], description: "Output SBC" }
+                    ]
+                },
+                "3": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1/2", function: "STO inputs", name: ["STO.1"], description: "" },
+                        { pin: "3/4", function: "STO inputs", name: ["STO.2"], description: "" },
+                        { pin: "5/6", function: "SBC inputs", name: ["SBC.1"], description: "" },
+                        { pin: "7/8", function: "SBC inputs", name: ["SBC.2"], description: "" },
+                        { pin: "9/10", function: "Function1 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "11/12", function: "Function1 inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "13/14", function: "Function2 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "15/16", function: "Function2 inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "17/18", function: "Ripple- inputs", name: ["Ripple.1"], description: "" },
+                        { pin: "19/20", function: "Ripple- inputs", name: ["Ripple.2"], description: "" },
+                        { pin: "21/22", function: "Clock-outputs", name: ["Clock.1"], description: "" },
+                        { pin: "23/24", function: "Clock-outputs", name: ["Clock.2"], description: "" },
+                        { pin: "25/26", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "27/28", function: "Output 2", name: ["Out2"], description: "" },
+                        { pin: "29/30", function: "Ripple outputs", name: ["Ripple Out.1"], description: "" },
+                        { pin: "31/32", function: "Ripple outputs", name: ["Ripple Out.2"], description: "" }
+                    ]
+                },
+                "5": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1", function: "Function1- inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "2", function: "Function1- inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "3", function: "Function2- inputs", name: ["FUNC2.1"], description: "" },
+                        { pin: "4", function: "Function2- inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "5", function: "Function3- inputs", name: ["FUNC3.1"], description: "" },
+                        { pin: "6", function: "Function3- inputs", name: ["FUNC3.2"], description: "" },
+                        { pin: "7", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "8", function: "Output 2", name: ["Out2"], description: "" }
+                    ]
+                }
+            }
         },
         P: {
             name: "F6 PRO",
-            terminals: [
-                { pin: "1", function: "", name: ["DI1 / AN3"], description: "Digital input 1 (standard) / analog input 3 (special software)" },
-                { pin: "2", function: "", name: ["DI2"], description: "Digital input 2" },
-                { pin: "3", function: "", name: ["DI3"], description: "Digital input 3" },
-                { pin: "4", function: "", name: ["DI4"], description: "Digital input 4" },
-                { pin: "5", function: "", name: ["DI5"], description: "Digital input 5" },
-                { pin: "6", function: "", name: ["DI6"], description: "Digital input 6" },
-                { pin: "7", function: "", name: ["DI7"], description: "Digital input 7 (fast input => see programming manual)" },
-                { pin: "8", function: "", name: ["DI8"], description: "Digital input 8 (fast input => see programming manual)" },
-                { pin: "9", function: "", name: ["0V"], description: "Reference potential for digital inputs" },
-                { pin: "10", function: "", name: ["DO1"], description: "Digital output 1" },
-                { pin: "11", function: "", name: ["0V"], description: "Reference potential for digital outputs" },
-                { pin: "12", function: "", name: ["DO2"], description: "Digital output 2" },
-                { pin: "13", function: "", name: ["RLB"], description: "Relay output / NC contact (no function for \"Relay with positive-driven contacts\" variant)" },
-                { pin: "14", function: "", name: ["RLA"], description: "Relay output / NO contact" },
-                { pin: "15", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
-                { pin: "16", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 26) for controlling the inputs (SELV)." },
-                { pin: "17", function: "", name: ["AN1-"], description: "Non-isolated differential input 1" },
-                { pin: "18", function: "", name: ["AN1+"], description: "Non-isolated differential input 1" },
-                { pin: "19", function: "", name: ["AN2-"], description: "Non-isolated differential input 2" },
-                { pin: "20", function: "", name: ["AN2+"], description: "Non-isolated differential input 2" },
-                { pin: "21", function: "", name: ["0V"], description: "Reference potential for analog inputs and outputs" },
-                { pin: "22", function: "", name: ["ANOUT"], description: "Analog output DC 0...10 V" },
-                { pin: "23", function: "", name: ["CAN low"], description: "CAN bus ISO High Speed according to ISO/DIN 11896 => fieldbus interfaces" },
-                { pin: "24", function: "", name: ["CAN high"], description: "CAN bus ISO High Speed according to ISO/DIN 11896 => fieldbus interfaces" },
-                { pin: "25", function: "", name: ["CAN GND"], description: "CAN Ground\n(=> Fieldbus interfaces [▸ 30])" },
-                { pin: "26", function: "", name: ["24VoutCtrl"], description: "DC voltage output (SELV) to supply the digital inputs.Caution, do not couple with other power supplies!" },
-                { pin: "27", function: "", name: ["0V"], description: "Reference potential for P24Vin at external supply" },
-                { pin: "28", function: "", name: ["P24Vin"], description: "Voltage input DC 24 V supplying the control board and the brake output" }
-            ]
+            terminalStrips: [
+                {
+                    name: "X2A",
+                    terminals: [
+                        { pin: "1", function: "", name: ["DI1 / AN3"], description: "Digital input 1 (standard) / analog input 3 (special software)" },
+                        { pin: "2", function: "", name: ["DI2"], description: "Digital input 2" },
+                        { pin: "3", function: "", name: ["DI3"], description: "Digital input 3" },
+                        { pin: "4", function: "", name: ["DI4"], description: "Digital input 4" },
+                        { pin: "5", function: "", name: ["DI5"], description: "Digital input 5" },
+                        { pin: "6", function: "", name: ["DI6"], description: "Digital input 6" },
+                        { pin: "7", function: "", name: ["DI7"], description: "Digital input 7 (fast input => see programming manual)" },
+                        { pin: "8", function: "", name: ["DI8"], description: "Digital input 8 (fast input => see programming manual)" },
+                        { pin: "9", function: "", name: ["0V"], description: "Reference potential for digital inputs" },
+                        { pin: "10", function: "", name: ["DO1"], description: "Digital output 1" },
+                        { pin: "11", function: "", name: ["0V"], description: "Reference potential for digital outputs" },
+                        { pin: "12", function: "", name: ["DO2"], description: "Digital output 2" },
+                        { pin: "13", function: "", name: ["RLB"], description: "Relay output / NC contact (no function for \"Relay with positive-driven contacts\" variant)" },
+                        { pin: "14", function: "", name: ["RLA"], description: "Relay output / NO contact" },
+                        { pin: "15", function: "", name: ["RLC"], description: "Relay output/ switching contact" },
+                        { pin: "16", function: "", name: ["24Vout"], description: "DC voltage output 24V (max. 100 mA together with terminal 26) for controlling the inputs (SELV)." },
+                        { pin: "17", function: "", name: ["AN1-"], description: "Non-isolated differential input 1" },
+                        { pin: "18", function: "", name: ["AN1+"], description: "Non-isolated differential input 1" },
+                        { pin: "19", function: "", name: ["AN2-"], description: "Non-isolated differential input 2" },
+                        { pin: "20", function: "", name: ["AN2+"], description: "Non-isolated differential input 2" },
+                        { pin: "21", function: "", name: ["0V"], description: "Reference potential for analog inputs and outputs" },
+                        { pin: "22", function: "", name: ["ANOUT"], description: "Analog output DC 0...10 V" },
+                        { pin: "23", function: "", name: ["CAN low"], description: "CAN bus ISO High Speed according to ISO/DIN 11896 => fieldbus interfaces" },
+                        { pin: "24", function: "", name: ["CAN high"], description: "CAN bus ISO High Speed according to ISO/DIN 11896 => fieldbus interfaces" },
+                        { pin: "25", function: "", name: ["CAN GND"], description: "CAN Ground\n(=> Fieldbus interfaces [▸ 30])" },
+                        { pin: "26", function: "", name: ["24VoutCtrl"], description: "DC voltage output (SELV) to supply the digital inputs.Caution, do not couple with other power supplies!" },
+                        { pin: "27", function: "", name: ["0V"], description: "Reference potential for P24Vin at external supply" },
+                        { pin: "28", function: "", name: ["P24Vin"], description: "Voltage input DC 24 V supplying the control board and the brake output" }
+                    ]
+                },
+                {
+                    name: "X1C",
+                    terminals: [
+                        { pin: "1", function: "", name: ["BR+"], description: "Brake Control / Output +" },
+                        { pin: "2", function: "", name: ["BR-"], description: "Brake Control / Output -" },
+                        { pin: "3", function: "", name: ["0V"], description: "For supplying the feedback inputs\nP24Vin - 0.5V / max. 1A\n(BR+ and 24Vout in total 2A)", descriptionRowspan: 2 },
+                        { pin: "4", function: "", name: ["24Vout"], descriptionRowspan: 0 },
+                        { pin: "5", function: "", name: ["BCF1"], description: "Feedback input for brake control" },
+                        { pin: "6", function: "", name: ["BCF2"], description: "Feedback input for brake control" },
+                        { pin: "7", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "8", function: "", name: ["Reserved"], description: "-" },
+                        { pin: "9", function: "", name: ["TA1"], description: "Temperature Detection / Input +" },
+                        { pin: "10", function: "", name: ["TA2"], description: "Temperature Detection / Input -" }
+                    ]
+                }
+            ],
+            equipmentStrips: {
+                "1": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1 / 2", function: "Input", name: ["STO1+"], description: "STO channel 1" },
+                        { pin: "3 / 4", function: "Input", name: ["STO1-"], description: "STO channel 1" },
+                        { pin: "5 / 6", function: "Input", name: ["STO2+"], description: "STO channel 2" },
+                        { pin: "7 / 8", function: "Input", name: ["STO2-"], description: "STO channel 2" },
+                        { pin: "9 / 10", function: "Input", name: ["SBC1+"], description: "SBC channel 1" },
+                        { pin: "11 / 12", function: "Input", name: ["SBC1-"], description: "SBC channel 1" },
+                        { pin: "13 / 14", function: "Input", name: ["SBC2+"], description: "SBC channel 2" },
+                        { pin: "15 / 16", function: "Input", name: ["SBC2-"], description: "SBC channel 2" },
+                        { pin: "17 / 18", function: "Output", name: ["Status STO"], description: "Output STO" },
+                        { pin: "19 / 20", function: "Output", name: ["Status SBC"], description: "Output SBC" }
+                    ]
+                },
+                "3": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1/2", function: "STO inputs", name: ["STO.1"], description: "" },
+                        { pin: "3/4", function: "STO inputs", name: ["STO.2"], description: "" },
+                        { pin: "5/6", function: "SBC inputs", name: ["SBC.1"], description: "" },
+                        { pin: "7/8", function: "SBC inputs", name: ["SBC.2"], description: "" },
+                        { pin: "9/10", function: "Function1 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "11/12", function: "Function1 inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "13/14", function: "Function2 inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "15/16", function: "Function2 inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "17/18", function: "Ripple- inputs", name: ["Ripple.1"], description: "" },
+                        { pin: "19/20", function: "Ripple- inputs", name: ["Ripple.2"], description: "" },
+                        { pin: "21/22", function: "Clock-outputs", name: ["Clock.1"], description: "" },
+                        { pin: "23/24", function: "Clock-outputs", name: ["Clock.2"], description: "" },
+                        { pin: "25/26", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "27/28", function: "Output 2", name: ["Out2"], description: "" },
+                        { pin: "29/30", function: "Ripple outputs", name: ["Ripple Out.1"], description: "" },
+                        { pin: "31/32", function: "Ripple outputs", name: ["Ripple Out.2"], description: "" }
+                    ]
+                },
+                "5": {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1", function: "Function1- inputs", name: ["FUNC1.1"], description: "" },
+                        { pin: "2", function: "Function1- inputs", name: ["FUNC1.2"], description: "" },
+                        { pin: "3", function: "Function2- inputs", name: ["FUNC2.1"], description: "" },
+                        { pin: "4", function: "Function2- inputs", name: ["FUNC2.2"], description: "" },
+                        { pin: "5", function: "Function3- inputs", name: ["FUNC3.1"], description: "" },
+                        { pin: "6", function: "Function3- inputs", name: ["FUNC3.2"], description: "" },
+                        { pin: "7", function: "Output 1", name: ["Out1"], description: "" },
+                        { pin: "8", function: "Output 2", name: ["Out2"], description: "" }
+                    ]
+                }
+            }
         }
     },
     G6: {
@@ -590,113 +1002,173 @@ const terminalAssignments = {
         },
         K: {
             name: "F5 APPLICATION with safety",
-            terminals: [
-                { pin: "1", function: "Digital mass", name: ["0 V"], description: "Reference potential for digital inputs/outputs, Uin and Uout" },
-                { pin: "2", function: "20...30V input", name: ["Uin"], description: "Input external voltage supply\nU=24 Vdc +20 %-15 % Imax=1 A" },
-                { pin: "3", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
-                { pin: "4", function: "+24 V output", name: ["Uout"], description: "Voltage output for the control of the digital inputs\nU=24 Vdc ±25 %\nImax (PIN 4+32)=100 mA" },
-                { pin: "5", function: "Progr. input reset", name: ["RST"], description: "Programmable digital inputs (assignment ex factory see chapter 'Connection of the digital inputs for COMBIVERT F5 with STO')\n8 digital inputs in accordance with IEC61131-2 type1\n'0' = -3...5 VDC\n'1' = 15...30 VDC scan time ≤ 1ms", descriptionRowspan: 8 },
-                { pin: "6", function: "Progr. input control release", name: ["ST"], descriptionRowspan: 0 },
-                { pin: "7", function: "Progr. input reverse", name: ["R"], descriptionRowspan: 0 },
-                { pin: "8", function: "Progr. input forward", name: ["F"], descriptionRowspan: 0 },
-                { pin: "9", function: "Progr. input 2", name: ["I2"], descriptionRowspan: 0 },
-                { pin: "10", function: "Progr. input 1", name: ["I1"], descriptionRowspan: 0 },
-                { pin: "11", function: "Progr. input 4", name: ["I4"], descriptionRowspan: 0 },
-                { pin: "12", function: "Progr. input 3", name: ["I3"], descriptionRowspan: 0 },
-                { pin: "13", function: "Progr. output 2", name: ["O2"], description: "Programmable digital outputs (assignment ex factory see chapter 'Connection of the digital outputs for COMBIVERT F5 with STO')\n2 short-circuit proof digital 24 V outputs according to IEC61131-2 specified Imax = 100mA per output switching of inductive load (without free-wheeling path) to 300mH maximum switching frequency = 1kHz", descriptionRowspan: 2 },
-                { pin: "14", function: "Progr. output 1", name: ["O1"], descriptionRowspan: 0 },
-                { pin: "15", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
-                { pin: "16", function: "CRF", name: ["CRF"], description: "Reference voltage for setpoint potentiometer\n10 Vdc +5 % Imax = 4 mA" },
-                { pin: "17", function: "Analog input 1 -", name: ["AN1-"], description: "Programmable analog inputs (assignment ex factory see chapter 'Connection of the analog inputs for COMBIVERT F5 with STO')\n0...±10 Vdc (Ri=55 KΩ)\n0...±20 mA (Ri=260 Ω)\n4...20 mA (Ri=260 Ω)\nResolution: 11 Bit + sign scan time ≤1 ms", descriptionRowspan: 4 },
-                { pin: "18", function: "Analog input 1 +", name: ["AN1+"], descriptionRowspan: 0 },
-                { pin: "19", function: "Analog input 2 -", name: ["AN2-"], descriptionRowspan: 0 },
-                { pin: "20", function: "Analog input 2 +", name: ["AN2+"], descriptionRowspan: 0 },
-                { pin: "21", function: "Analog mass", name: ["COM"], description: "Analog mass; reference potential for analog inputs and outputs" },
-                { pin: "22", function: "Analog output 1", name: ["ANOUT1"], description: "Programmable analog output 1 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
-                { pin: "23", function: "Analog mass", name: ["COM"], description: "like pin 21" },
-                { pin: "24", function: "Analog output 2", name: ["ANOUT2"], description: "Programmable analog output 2 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
-                { pin: "25", function: "R2-C / switching contact", name: ["R2-C"], description: "Programmable relay outputs (assignment ex factory see chapter 'Connection of the relay outputs for COMBIVERT F5 with STO')\nUmax = 30 Vdc\nI = 0.01...1 A", descriptionRowspan: 6 },
-                { pin: "26", function: "R1-C / switching contact", name: ["R1-C"], descriptionRowspan: 0 },
-                { pin: "27", function: "R2-B / NC contact", name: ["R2-B"], descriptionRowspan: 0 },
-                { pin: "28", function: "R1-B / NC contact", name: ["R1-B"], descriptionRowspan: 0 },
-                { pin: "29", function: "R2-A / NO contact", name: ["R2-A"], descriptionRowspan: 0 },
-                { pin: "30", function: "R1-A / NO contact", name: ["R1-A"], descriptionRowspan: 0 },
-                { pin: "31", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
-                { pin: "32", function: "+24 V output", name: ["Uout"], description: "like pin 4" }
+            terminalStrips: [
+                {
+                    name: "X2A",
+                    terminals: [
+                        { pin: "1", function: "Digital mass", name: ["0 V"], description: "Reference potential for digital inputs/outputs, Uin and Uout" },
+                        { pin: "2", function: "20...30V input", name: ["Uin"], description: "Input external voltage supply\nU=24 Vdc +20 %-15 % Imax=1 A" },
+                        { pin: "3", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
+                        { pin: "4", function: "+24 V output", name: ["Uout"], description: "Voltage output for the control of the digital inputs\nU=24 Vdc ±25 %\nImax (PIN 4+32)=100 mA" },
+                        { pin: "5", function: "Progr. input reset", name: ["RST"], description: "Programmable digital inputs (assignment ex factory see chapter 'Connection of the digital inputs for COMBIVERT F5 with STO')\n8 digital inputs in accordance with IEC61131-2 type1\n'0' = -3...5 VDC\n'1' = 15...30 VDC scan time ≤ 1ms", descriptionRowspan: 8 },
+                        { pin: "6", function: "Progr. input control release", name: ["ST"], descriptionRowspan: 0 },
+                        { pin: "7", function: "Progr. input reverse", name: ["R"], descriptionRowspan: 0 },
+                        { pin: "8", function: "Progr. input forward", name: ["F"], descriptionRowspan: 0 },
+                        { pin: "9", function: "Progr. input 2", name: ["I2"], descriptionRowspan: 0 },
+                        { pin: "10", function: "Progr. input 1", name: ["I1"], descriptionRowspan: 0 },
+                        { pin: "11", function: "Progr. input 4", name: ["I4"], descriptionRowspan: 0 },
+                        { pin: "12", function: "Progr. input 3", name: ["I3"], descriptionRowspan: 0 },
+                        { pin: "13", function: "Progr. output 2", name: ["O2"], description: "Programmable digital outputs (assignment ex factory see chapter 'Connection of the digital outputs for COMBIVERT F5 with STO')\n2 short-circuit proof digital 24 V outputs according to IEC61131-2 specified Imax = 100mA per output switching of inductive load (without free-wheeling path) to 300mH maximum switching frequency = 1kHz", descriptionRowspan: 2 },
+                        { pin: "14", function: "Progr. output 1", name: ["O1"], descriptionRowspan: 0 },
+                        { pin: "15", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
+                        { pin: "16", function: "CRF", name: ["CRF"], description: "Reference voltage for setpoint potentiometer\n10 Vdc +5 % Imax = 4 mA" },
+                        { pin: "17", function: "Analog input 1 -", name: ["AN1-"], description: "Programmable analog inputs (assignment ex factory see chapter 'Connection of the analog inputs for COMBIVERT F5 with STO')\n0...±10 Vdc (Ri=55 KΩ)\n0...±20 mA (Ri=260 Ω)\n4...20 mA (Ri=260 Ω)\nResolution: 11 Bit + sign scan time ≤1 ms", descriptionRowspan: 4 },
+                        { pin: "18", function: "Analog input 1 +", name: ["AN1+"], descriptionRowspan: 0 },
+                        { pin: "19", function: "Analog input 2 -", name: ["AN2-"], descriptionRowspan: 0 },
+                        { pin: "20", function: "Analog input 2 +", name: ["AN2+"], descriptionRowspan: 0 },
+                        { pin: "21", function: "Analog mass", name: ["COM"], description: "Analog mass; reference potential for analog inputs and outputs" },
+                        { pin: "22", function: "Analog output 1", name: ["ANOUT1"], description: "Programmable analog output 1 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
+                        { pin: "23", function: "Analog mass", name: ["COM"], description: "like pin 21" },
+                        { pin: "24", function: "Analog output 2", name: ["ANOUT2"], description: "Programmable analog output 2 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
+                        { pin: "25", function: "R2-C / switching contact", name: ["R2-C"], description: "Programmable relay outputs (assignment ex factory see chapter 'Connection of the relay outputs for COMBIVERT F5 with STO')\nUmax = 30 Vdc\nI = 0.01...1 A", descriptionRowspan: 6 },
+                        { pin: "26", function: "R1-C / switching contact", name: ["R1-C"], descriptionRowspan: 0 },
+                        { pin: "27", function: "R2-B / NC contact", name: ["R2-B"], descriptionRowspan: 0 },
+                        { pin: "28", function: "R1-B / NC contact", name: ["R1-B"], descriptionRowspan: 0 },
+                        { pin: "29", function: "R2-A / NO contact", name: ["R2-A"], descriptionRowspan: 0 },
+                        { pin: "30", function: "R1-A / NO contact", name: ["R1-A"], descriptionRowspan: 0 },
+                        { pin: "31", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
+                        { pin: "32", function: "+24 V output", name: ["Uout"], description: "like pin 4" }
+                    ]
+                },
+                {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1 / 2", function: "Input", name: ["STO1+"], description: "STO channel 1" },
+                        { pin: "3 / 4", function: "Input", name: ["STO1-"], description: "STO channel 1" },
+                        { pin: "5 / 6", function: "Input", name: ["STO2+"], description: "STO channel 2" },
+                        { pin: "7 / 8", function: "Input", name: ["STO2-"], description: "STO channel 2" },
+                        { pin: "9 / 10", function: "Input", name: ["SBC1+"], description: "SBC channel 1" },
+                        { pin: "11 / 12", function: "Input", name: ["SBC1-"], description: "SBC channel 1" },
+                        { pin: "13 / 14", function: "Input", name: ["SBC2+"], description: "SBC channel 2" },
+                        { pin: "15 / 16", function: "Input", name: ["SBC2-"], description: "SBC channel 2" },
+                        { pin: "17 / 18", function: "Output", name: ["Status STO"], description: "Output STO" },
+                        { pin: "19 / 20", function: "Output", name: ["Status SBC"], description: "Output SBC" }
+                    ]
+                }
             ]
         },
         L: {
             name: "F5 ASCL with safety",
-            terminals: [
-                { pin: "1", function: "Digital mass", name: ["0 V"], description: "Reference potential for digital inputs/outputs, Uin and Uout" },
-                { pin: "2", function: "20...30V input", name: ["Uin"], description: "Input external voltage supply\nU=24 Vdc +20 %-15 % Imax=1 A" },
-                { pin: "3", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
-                { pin: "4", function: "+24 V output", name: ["Uout"], description: "Voltage output for the control of the digital inputs\nU=24 Vdc ±25 %\nImax (PIN 4+32)=100 mA" },
-                { pin: "5", function: "Progr. input reset", name: ["RST"], description: "Programmable digital inputs (assignment ex factory see chapter 'Connection of the digital inputs for COMBIVERT F5 with STO')\n8 digital inputs in accordance with IEC61131-2 type1\n'0' = -3...5 VDC\n'1' = 15...30 VDC scan time ≤ 1ms", descriptionRowspan: 8 },
-                { pin: "6", function: "Progr. input control release", name: ["ST"], descriptionRowspan: 0 },
-                { pin: "7", function: "Progr. input reverse", name: ["R"], descriptionRowspan: 0 },
-                { pin: "8", function: "Progr. input forward", name: ["F"], descriptionRowspan: 0 },
-                { pin: "9", function: "Progr. input 2", name: ["I2"], descriptionRowspan: 0 },
-                { pin: "10", function: "Progr. input 1", name: ["I1"], descriptionRowspan: 0 },
-                { pin: "11", function: "Progr. input 4", name: ["I4"], descriptionRowspan: 0 },
-                { pin: "12", function: "Progr. input 3", name: ["I3"], descriptionRowspan: 0 },
-                { pin: "13", function: "Progr. output 2", name: ["O2"], description: "Programmable digital outputs (assignment ex factory see chapter 'Connection of the digital outputs for COMBIVERT F5 with STO')\n2 short-circuit proof digital 24 V outputs according to IEC61131-2 specified Imax = 100mA per output switching of inductive load (without free-wheeling path) to 300mH maximum switching frequency = 1kHz", descriptionRowspan: 2 },
-                { pin: "14", function: "Progr. output 1", name: ["O1"], descriptionRowspan: 0 },
-                { pin: "15", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
-                { pin: "16", function: "CRF", name: ["CRF"], description: "Reference voltage for setpoint potentiometer\n10 Vdc +5 % Imax = 4 mA" },
-                { pin: "17", function: "Analog input 1 -", name: ["AN1-"], description: "Programmable analog inputs (assignment ex factory see chapter 'Connection of the analog inputs for COMBIVERT F5 with STO')\n0...±10 Vdc (Ri=55 KΩ)\n0...±20 mA (Ri=260 Ω)\n4...20 mA (Ri=260 Ω)\nResolution: 11 Bit + sign scan time ≤1 ms", descriptionRowspan: 4 },
-                { pin: "18", function: "Analog input 1 +", name: ["AN1+"], descriptionRowspan: 0 },
-                { pin: "19", function: "Analog input 2 -", name: ["AN2-"], descriptionRowspan: 0 },
-                { pin: "20", function: "Analog input 2 +", name: ["AN2+"], descriptionRowspan: 0 },
-                { pin: "21", function: "Analog mass", name: ["COM"], description: "Analog mass; reference potential for analog inputs and outputs" },
-                { pin: "22", function: "Analog output 1", name: ["ANOUT1"], description: "Programmable analog output 1 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
-                { pin: "23", function: "Analog mass", name: ["COM"], description: "like pin 21" },
-                { pin: "24", function: "Analog output 2", name: ["ANOUT2"], description: "Programmable analog output 2 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
-                { pin: "25", function: "R2-C / switching contact", name: ["R2-C"], description: "Programmable relay outputs (assignment ex factory see chapter 'Connection of the relay outputs for COMBIVERT F5 with STO')\nUmax = 30 Vdc\nI = 0.01...1 A", descriptionRowspan: 6 },
-                { pin: "26", function: "R1-C / switching contact", name: ["R1-C"], descriptionRowspan: 0 },
-                { pin: "27", function: "R2-B / NC contact", name: ["R2-B"], descriptionRowspan: 0 },
-                { pin: "28", function: "R1-B / NC contact", name: ["R1-B"], descriptionRowspan: 0 },
-                { pin: "29", function: "R2-A / NO contact", name: ["R2-A"], descriptionRowspan: 0 },
-                { pin: "30", function: "R1-A / NO contact", name: ["R1-A"], descriptionRowspan: 0 },
-                { pin: "31", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
-                { pin: "32", function: "+24 V output", name: ["Uout"], description: "like pin 4" }
+            terminalStrips: [
+                {
+                    name: "X2A",
+                    terminals: [
+                        { pin: "1", function: "Digital mass", name: ["0 V"], description: "Reference potential for digital inputs/outputs, Uin and Uout" },
+                        { pin: "2", function: "20...30V input", name: ["Uin"], description: "Input external voltage supply\nU=24 Vdc +20 %-15 % Imax=1 A" },
+                        { pin: "3", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
+                        { pin: "4", function: "+24 V output", name: ["Uout"], description: "Voltage output for the control of the digital inputs\nU=24 Vdc ±25 %\nImax (PIN 4+32)=100 mA" },
+                        { pin: "5", function: "Progr. input reset", name: ["RST"], description: "Programmable digital inputs (assignment ex factory see chapter 'Connection of the digital inputs for COMBIVERT F5 with STO')\n8 digital inputs in accordance with IEC61131-2 type1\n'0' = -3...5 VDC\n'1' = 15...30 VDC scan time ≤ 1ms", descriptionRowspan: 8 },
+                        { pin: "6", function: "Progr. input control release", name: ["ST"], descriptionRowspan: 0 },
+                        { pin: "7", function: "Progr. input reverse", name: ["R"], descriptionRowspan: 0 },
+                        { pin: "8", function: "Progr. input forward", name: ["F"], descriptionRowspan: 0 },
+                        { pin: "9", function: "Progr. input 2", name: ["I2"], descriptionRowspan: 0 },
+                        { pin: "10", function: "Progr. input 1", name: ["I1"], descriptionRowspan: 0 },
+                        { pin: "11", function: "Progr. input 4", name: ["I4"], descriptionRowspan: 0 },
+                        { pin: "12", function: "Progr. input 3", name: ["I3"], descriptionRowspan: 0 },
+                        { pin: "13", function: "Progr. output 2", name: ["O2"], description: "Programmable digital outputs (assignment ex factory see chapter 'Connection of the digital outputs for COMBIVERT F5 with STO')\n2 short-circuit proof digital 24 V outputs according to IEC61131-2 specified Imax = 100mA per output switching of inductive load (without free-wheeling path) to 300mH maximum switching frequency = 1kHz", descriptionRowspan: 2 },
+                        { pin: "14", function: "Progr. output 1", name: ["O1"], descriptionRowspan: 0 },
+                        { pin: "15", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
+                        { pin: "16", function: "CRF", name: ["CRF"], description: "Reference voltage for setpoint potentiometer\n10 Vdc +5 % Imax = 4 mA" },
+                        { pin: "17", function: "Analog input 1 -", name: ["AN1-"], description: "Programmable analog inputs (assignment ex factory see chapter 'Connection of the analog inputs for COMBIVERT F5 with STO')\n0...±10 Vdc (Ri=55 KΩ)\n0...±20 mA (Ri=260 Ω)\n4...20 mA (Ri=260 Ω)\nResolution: 11 Bit + sign scan time ≤1 ms", descriptionRowspan: 4 },
+                        { pin: "18", function: "Analog input 1 +", name: ["AN1+"], descriptionRowspan: 0 },
+                        { pin: "19", function: "Analog input 2 -", name: ["AN2-"], descriptionRowspan: 0 },
+                        { pin: "20", function: "Analog input 2 +", name: ["AN2+"], descriptionRowspan: 0 },
+                        { pin: "21", function: "Analog mass", name: ["COM"], description: "Analog mass; reference potential for analog inputs and outputs" },
+                        { pin: "22", function: "Analog output 1", name: ["ANOUT1"], description: "Programmable analog output 1 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
+                        { pin: "23", function: "Analog mass", name: ["COM"], description: "like pin 21" },
+                        { pin: "24", function: "Analog output 2", name: ["ANOUT2"], description: "Programmable analog output 2 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
+                        { pin: "25", function: "R2-C / switching contact", name: ["R2-C"], description: "Programmable relay outputs (assignment ex factory see chapter 'Connection of the relay outputs for COMBIVERT F5 with STO')\nUmax = 30 Vdc\nI = 0.01...1 A", descriptionRowspan: 6 },
+                        { pin: "26", function: "R1-C / switching contact", name: ["R1-C"], descriptionRowspan: 0 },
+                        { pin: "27", function: "R2-B / NC contact", name: ["R2-B"], descriptionRowspan: 0 },
+                        { pin: "28", function: "R1-B / NC contact", name: ["R1-B"], descriptionRowspan: 0 },
+                        { pin: "29", function: "R2-A / NO contact", name: ["R2-A"], descriptionRowspan: 0 },
+                        { pin: "30", function: "R1-A / NO contact", name: ["R1-A"], descriptionRowspan: 0 },
+                        { pin: "31", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
+                        { pin: "32", function: "+24 V output", name: ["Uout"], description: "like pin 4" }
+                    ]
+                },
+                {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1 / 2", function: "Input", name: ["STO1+"], description: "STO channel 1" },
+                        { pin: "3 / 4", function: "Input", name: ["STO1-"], description: "STO channel 1" },
+                        { pin: "5 / 6", function: "Input", name: ["STO2+"], description: "STO channel 2" },
+                        { pin: "7 / 8", function: "Input", name: ["STO2-"], description: "STO channel 2" },
+                        { pin: "9 / 10", function: "Input", name: ["SBC1+"], description: "SBC channel 1" },
+                        { pin: "11 / 12", function: "Input", name: ["SBC1-"], description: "SBC channel 1" },
+                        { pin: "13 / 14", function: "Input", name: ["SBC2+"], description: "SBC channel 2" },
+                        { pin: "15 / 16", function: "Input", name: ["SBC2-"], description: "SBC channel 2" },
+                        { pin: "17 / 18", function: "Output", name: ["Status STO"], description: "Output STO" },
+                        { pin: "19 / 20", function: "Output", name: ["Status SBC"], description: "Output SBC" }
+                    ]
+                }
             ]
         },
         P: {
             name: "F5 SCL with safety",
-            terminals: [
-                { pin: "1", function: "Digital mass", name: ["0 V"], description: "Reference potential for digital inputs/outputs, Uin and Uout" },
-                { pin: "2", function: "20...30V input", name: ["Uin"], description: "Input external voltage supply\nU=24 Vdc +20 %-15 % Imax=1 A" },
-                { pin: "3", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
-                { pin: "4", function: "+24 V output", name: ["Uout"], description: "Voltage output for the control of the digital inputs\nU=24 Vdc ±25 %\nImax (PIN 4+32)=100 mA" },
-                { pin: "5", function: "Progr. input reset", name: ["RST"], description: "Programmable digital inputs (assignment ex factory see chapter 'Connection of the digital inputs for COMBIVERT F5 with STO')\n8 digital inputs in accordance with IEC61131-2 type1\n'0' = -3...5 VDC\n'1' = 15...30 VDC scan time ≤ 1ms", descriptionRowspan: 8 },
-                { pin: "6", function: "Progr. input control release", name: ["ST"], descriptionRowspan: 0 },
-                { pin: "7", function: "Progr. input reverse", name: ["R"], descriptionRowspan: 0 },
-                { pin: "8", function: "Progr. input forward", name: ["F"], descriptionRowspan: 0 },
-                { pin: "9", function: "Progr. input 2", name: ["I2"], descriptionRowspan: 0 },
-                { pin: "10", function: "Progr. input 1", name: ["I1"], descriptionRowspan: 0 },
-                { pin: "11", function: "Progr. input 4", name: ["I4"], descriptionRowspan: 0 },
-                { pin: "12", function: "Progr. input 3", name: ["I3"], descriptionRowspan: 0 },
-                { pin: "13", function: "Progr. output 2", name: ["O2"], description: "Programmable digital outputs (assignment ex factory see chapter 'Connection of the digital outputs for COMBIVERT F5 with STO')\n2 short-circuit proof digital 24 V outputs according to IEC61131-2 specified Imax = 100mA per output switching of inductive load (without free-wheeling path) to 300mH maximum switching frequency = 1kHz", descriptionRowspan: 2 },
-                { pin: "14", function: "Progr. output 1", name: ["O1"], descriptionRowspan: 0 },
-                { pin: "15", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
-                { pin: "16", function: "CRF", name: ["CRF"], description: "Reference voltage for setpoint potentiometer\n10 Vdc +5 % Imax = 4 mA" },
-                { pin: "17", function: "Analog input 1 -", name: ["AN1-"], description: "Programmable analog inputs (assignment ex factory see chapter 'Connection of the analog inputs for COMBIVERT F5 with STO')\n0...±10 Vdc (Ri=55 KΩ)\n0...±20 mA (Ri=260 Ω)\n4...20 mA (Ri=260 Ω)\nResolution: 11 Bit + sign scan time ≤1 ms", descriptionRowspan: 4 },
-                { pin: "18", function: "Analog input 1 +", name: ["AN1+"], descriptionRowspan: 0 },
-                { pin: "19", function: "Analog input 2 -", name: ["AN2-"], descriptionRowspan: 0 },
-                { pin: "20", function: "Analog input 2 +", name: ["AN2+"], descriptionRowspan: 0 },
-                { pin: "21", function: "Analog mass", name: ["COM"], description: "Analog mass; reference potential for analog inputs and outputs" },
-                { pin: "22", function: "Analog output 1", name: ["ANOUT1"], description: "Programmable analog output 1 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
-                { pin: "23", function: "Analog mass", name: ["COM"], description: "like pin 21" },
-                { pin: "24", function: "Analog output 2", name: ["ANOUT2"], description: "Programmable analog output 2 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
-                { pin: "25", function: "R2-C / switching contact", name: ["R2-C"], description: "Programmable relay outputs (assignment ex factory see chapter 'Connection of the relay outputs for COMBIVERT F5 with STO')\nUmax = 30 Vdc\nI = 0.01...1 A", descriptionRowspan: 6 },
-                { pin: "26", function: "R1-C / switching contact", name: ["R1-C"], descriptionRowspan: 0 },
-                { pin: "27", function: "R2-B / NC contact", name: ["R2-B"], descriptionRowspan: 0 },
-                { pin: "28", function: "R1-B / NC contact", name: ["R1-B"], descriptionRowspan: 0 },
-                { pin: "29", function: "R2-A / NO contact", name: ["R2-A"], descriptionRowspan: 0 },
-                { pin: "30", function: "R1-A / NO contact", name: ["R1-A"], descriptionRowspan: 0 },
-                { pin: "31", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
-                { pin: "32", function: "+24 V output", name: ["Uout"], description: "like pin 4" }
+            terminalStrips: [
+                {
+                    name: "X2A",
+                    terminals: [
+                        { pin: "1", function: "Digital mass", name: ["0 V"], description: "Reference potential for digital inputs/outputs, Uin and Uout" },
+                        { pin: "2", function: "20...30V input", name: ["Uin"], description: "Input external voltage supply\nU=24 Vdc +20 %-15 % Imax=1 A" },
+                        { pin: "3", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
+                        { pin: "4", function: "+24 V output", name: ["Uout"], description: "Voltage output for the control of the digital inputs\nU=24 Vdc ±25 %\nImax (PIN 4+32)=100 mA" },
+                        { pin: "5", function: "Progr. input reset", name: ["RST"], description: "Programmable digital inputs (assignment ex factory see chapter 'Connection of the digital inputs for COMBIVERT F5 with STO')\n8 digital inputs in accordance with IEC61131-2 type1\n'0' = -3...5 VDC\n'1' = 15...30 VDC scan time ≤ 1ms", descriptionRowspan: 8 },
+                        { pin: "6", function: "Progr. input control release", name: ["ST"], descriptionRowspan: 0 },
+                        { pin: "7", function: "Progr. input reverse", name: ["R"], descriptionRowspan: 0 },
+                        { pin: "8", function: "Progr. input forward", name: ["F"], descriptionRowspan: 0 },
+                        { pin: "9", function: "Progr. input 2", name: ["I2"], descriptionRowspan: 0 },
+                        { pin: "10", function: "Progr. input 1", name: ["I1"], descriptionRowspan: 0 },
+                        { pin: "11", function: "Progr. input 4", name: ["I4"], descriptionRowspan: 0 },
+                        { pin: "12", function: "Progr. input 3", name: ["I3"], descriptionRowspan: 0 },
+                        { pin: "13", function: "Progr. output 2", name: ["O2"], description: "Programmable digital outputs (assignment ex factory see chapter 'Connection of the digital outputs for COMBIVERT F5 with STO')\n2 short-circuit proof digital 24 V outputs according to IEC61131-2 specified Imax = 100mA per output switching of inductive load (without free-wheeling path) to 300mH maximum switching frequency = 1kHz", descriptionRowspan: 2 },
+                        { pin: "14", function: "Progr. output 1", name: ["O1"], descriptionRowspan: 0 },
+                        { pin: "15", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
+                        { pin: "16", function: "CRF", name: ["CRF"], description: "Reference voltage for setpoint potentiometer\n10 Vdc +5 % Imax = 4 mA" },
+                        { pin: "17", function: "Analog input 1 -", name: ["AN1-"], description: "Programmable analog inputs (assignment ex factory see chapter 'Connection of the analog inputs for COMBIVERT F5 with STO')\n0...±10 Vdc (Ri=55 KΩ)\n0...±20 mA (Ri=260 Ω)\n4...20 mA (Ri=260 Ω)\nResolution: 11 Bit + sign scan time ≤1 ms", descriptionRowspan: 4 },
+                        { pin: "18", function: "Analog input 1 +", name: ["AN1+"], descriptionRowspan: 0 },
+                        { pin: "19", function: "Analog input 2 -", name: ["AN2-"], descriptionRowspan: 0 },
+                        { pin: "20", function: "Analog input 2 +", name: ["AN2+"], descriptionRowspan: 0 },
+                        { pin: "21", function: "Analog mass", name: ["COM"], description: "Analog mass; reference potential for analog inputs and outputs" },
+                        { pin: "22", function: "Analog output 1", name: ["ANOUT1"], description: "Programmable analog output 1 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
+                        { pin: "23", function: "Analog mass", name: ["COM"], description: "like pin 21" },
+                        { pin: "24", function: "Analog output 2", name: ["ANOUT2"], description: "Programmable analog output 2 (assignment ex factory see chapter 'Connection of the analog outputs for COMBIVERT F5 with STO')\nU=0...±10 Vdc (max. 11.5 Vdc)\nImax=10 mA, Ri=100 Ω\nRes.:11Bit + sign" },
+                        { pin: "25", function: "R2-C / switching contact", name: ["R2-C"], description: "Programmable relay outputs (assignment ex factory see chapter 'Connection of the relay outputs for COMBIVERT F5 with STO')\nUmax = 30 Vdc\nI = 0.01...1 A", descriptionRowspan: 6 },
+                        { pin: "26", function: "R1-C / switching contact", name: ["R1-C"], descriptionRowspan: 0 },
+                        { pin: "27", function: "R2-B / NC contact", name: ["R2-B"], descriptionRowspan: 0 },
+                        { pin: "28", function: "R1-B / NC contact", name: ["R1-B"], descriptionRowspan: 0 },
+                        { pin: "29", function: "R2-A / NO contact", name: ["R2-A"], descriptionRowspan: 0 },
+                        { pin: "30", function: "R1-A / NO contact", name: ["R1-A"], descriptionRowspan: 0 },
+                        { pin: "31", function: "Digital mass", name: ["0 V"], description: "like pin 1" },
+                        { pin: "32", function: "+24 V output", name: ["Uout"], description: "like pin 4" }
+                    ]
+                },
+                {
+                    name: "X2B",
+                    terminals: [
+                        { pin: "1 / 2", function: "Input", name: ["STO1+"], description: "STO channel 1" },
+                        { pin: "3 / 4", function: "Input", name: ["STO1-"], description: "STO channel 1" },
+                        { pin: "5 / 6", function: "Input", name: ["STO2+"], description: "STO channel 2" },
+                        { pin: "7 / 8", function: "Input", name: ["STO2-"], description: "STO channel 2" },
+                        { pin: "9 / 10", function: "Input", name: ["SBC1+"], description: "SBC channel 1" },
+                        { pin: "11 / 12", function: "Input", name: ["SBC1-"], description: "SBC channel 1" },
+                        { pin: "13 / 14", function: "Input", name: ["SBC2+"], description: "SBC channel 2" },
+                        { pin: "15 / 16", function: "Input", name: ["SBC2-"], description: "SBC channel 2" },
+                        { pin: "17 / 18", function: "Output", name: ["Status STO"], description: "Output STO" },
+                        { pin: "19 / 20", function: "Output", name: ["Status SBC"], description: "Output SBC" }
+                    ]
+                }
             ]
         },
         S: {
@@ -874,47 +1346,69 @@ function updateTerminalAssignments() {
         html += `</div>`;
     }
     
-    // Only build table if there are terminals
-    if (assignments.terminals && assignments.terminals.length > 0) {
-        // Check if any terminal has description
-        const hasDescription = assignments.terminals.some(t => t.description);
-        
-        html += '<table style="width: 100%; border-collapse: collapse; margin-top: 10px;">';
-        html += '<thead><tr style="background: #f0f0f0; border: 2px solid #222;">';
-        html += '<th style="padding: 8px; text-align: left; border: 2px solid #222;">PIN</th>';
-        html += '<th style="padding: 8px; text-align: left; border: 2px solid #222;">Function</th>';
-        html += '<th style="padding: 8px; text-align: left; border: 2px solid #222;">Name</th>';
-        if (hasDescription) {
-            html += '<th style="padding: 8px; text-align: left; border: 2px solid #222;">Description</th>';
+    // Support both old format (single terminals array) and new format (terminalStrips array)
+    let terminalStrips = assignments.terminalStrips || (assignments.terminals ? [{ name: "", terminals: assignments.terminals }] : []);
+    
+    // For F6 and S6, check if there are equipment-specific terminal strips
+    if ((productLine === 'F6' || productLine === 'S6') && assignments.equipmentStrips) {
+        const equipmentId = productLine === 'F6' ? 'f6-equipment' : 's6-safetymodule';
+        const equipmentElement = document.getElementById(equipmentId);
+        if (equipmentElement) {
+            const equipmentValue = equipmentElement.value;
+            const equipmentStrip = assignments.equipmentStrips[equipmentValue];
+            if (equipmentStrip) {
+                terminalStrips = [...terminalStrips, equipmentStrip];
+            }
         }
-        html += '</tr></thead><tbody>';
-        
-        assignments.terminals.forEach(terminal => {
-            html += '<tr style="border: 1px solid #ddd;">';
-            html += `<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">${terminal.pin}</td>`;
-            
-            // Handle function with rowspan
-            if (terminal.functionRowspan !== 0) {
-                const functionRowspanAttr = terminal.functionRowspan > 1 ? ` rowspan="${terminal.functionRowspan}"` : '';
-                const functionText = terminal.function.replace(/\n/g, '<br>');
-                html += `<td style="padding: 8px; border: 1px solid #ddd;"${functionRowspanAttr}>${functionText}</td>`;
-            }
-            
-            html += `<td style="padding: 8px; border: 1px solid #ddd; font-family: monospace;">${terminal.name.join(', ')}</td>`;
-            
-            if (hasDescription) {
-                // Handle description with rowspan
-                if (terminal.descriptionRowspan !== 0) {
-                    const descriptionRowspanAttr = terminal.descriptionRowspan > 1 ? ` rowspan="${terminal.descriptionRowspan}"` : '';
-                    const descriptionText = (terminal.description || '').replace(/\n/g, '<br>');
-                    html += `<td style="padding: 8px; border: 1px solid #ddd; font-size: 0.9em;"${descriptionRowspanAttr}>${descriptionText}</td>`;
-                }
-            }
-            html += '</tr>';
-        });
-        
-        html += '</tbody></table>';
     }
+    
+    // Build tables for each terminal strip
+    terminalStrips.forEach((strip, index) => {
+        // Add terminal strip name inline with the table if it exists
+        let tablePrefix = '';
+        if (strip.name) {
+            tablePrefix = `<span style="font-weight: bold; color: #222; margin-right: 12px;">${strip.name}</span>`;
+        }
+        
+        // Only build table if there are terminals
+        if (strip.terminals && strip.terminals.length > 0) {
+            // Check if any terminal has description
+            const hasDescription = strip.terminals.some(t => t.description);
+            
+            html += `<div style="display: flex; align-items: flex-start;"><div>${tablePrefix}</div><table style="width: auto; border-collapse: collapse; margin-top: 0; margin-bottom: 16px; margin-left: 8px;">`;
+            html += '<thead><tr style="background: #f0f0f0; border: 2px solid #222;">';
+            html += '<th style="padding: 8px; text-align: left; border: 2px solid #222;">PIN</th>';
+            html += '<th style="padding: 8px; text-align: left; border: 2px solid #222;">Name</th>';
+            html += '<th style="padding: 8px; text-align: left; border: 2px solid #222;">Function</th>';
+            if (hasDescription) {
+                html += '<th style="padding: 8px; text-align: left; border: 2px solid #222;">Description</th>';
+            }
+            html += '</tr></thead><tbody>';
+            
+            strip.terminals.forEach(terminal => {
+                html += '<tr style="border: 1px solid #ddd;">';
+                html += `<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">${terminal.pin}</td>`;
+                html += `<td style="padding: 8px; border: 1px solid #ddd; font-family: monospace;">${terminal.name.join(', ')}</td>`;
+                // Handle function with rowspan
+                if (terminal.functionRowspan !== 0) {
+                    const functionRowspanAttr = terminal.functionRowspan > 1 ? ` rowspan="${terminal.functionRowspan}"` : '';
+                    const functionText = terminal.function.replace(/\n/g, '<br>');
+                    html += `<td style="padding: 8px; border: 1px solid #ddd;"${functionRowspanAttr}>${functionText}</td>`;
+                }
+                if (hasDescription) {
+                    // Handle description with rowspan
+                    if (terminal.descriptionRowspan !== 0) {
+                        const descriptionRowspanAttr = terminal.descriptionRowspan > 1 ? ` rowspan="${terminal.descriptionRowspan}"` : '';
+                        const descriptionText = (terminal.description || '').replace(/\n/g, '<br>');
+                        html += `<td style="padding: 8px; border: 1px solid #ddd; font-size: 0.9em;"${descriptionRowspanAttr}>${descriptionText}</td>`;
+                    }
+                }
+                html += '</tr>';
+            });
+            
+            html += '</tbody></table></div>';
+        }
+    });
     
     document.getElementById('io-content').innerHTML = html;
 }
@@ -934,6 +1428,17 @@ window.addEventListener('DOMContentLoaded', function() {
             element.addEventListener('change', updateTerminalAssignments);
         }
     });
+    
+    // Listen to equipment type changes for F6 and S6
+    const f6Equipment = document.getElementById('f6-equipment');
+    if (f6Equipment) {
+        f6Equipment.addEventListener('change', updateTerminalAssignments);
+    }
+    
+    const s6SafetyModule = document.getElementById('s6-safetymodule');
+    if (s6SafetyModule) {
+        s6SafetyModule.addEventListener('change', updateTerminalAssignments);
+    }
     
     // Initial update
     updateTerminalAssignments();
