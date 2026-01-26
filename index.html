@@ -8,15 +8,20 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div class="keb-header-bar">
-            <div class="keb-header-left"></div>
-            <div class="keb-header-logo">
-                <img src="images/kebblacklogoimage.png" alt="KEB Logo" style="height:52px; width:auto; display:block;">
 
-                <img>
+        <div class="keb-header-bar">
+            <div class="keb-header-left" style="display: flex; align-items: center; gap: 12px;">
+                <h5 for="access-password" style="font-weight:bold; margin-left: 20px;">Enter password for advanced tools:</h5>
+                <input type="password" id="access-password" value="440" style="padding:6px; border-radius:6px; border:1px solid #aaa; margin-left:8px;">
             </div>
-            <div class="keb-header-right"></div>
+            <div class="keb-header-logo">
+                <img src="images/kebblacklogoimage.png" alt="KEB Logo" style="height:52px; width:auto; display:block;"><img>
+            </div>
+            <div class="keb-header-right">
+
+            </div>
         </div>
+        
         <div class="container-row" style="display: flex; justify-content: center;">
             <div style="display: flex; flex-direction: column; gap: 24px;" id="container-left-column">
                 <div class="container selectable-container" id="container-left" style="margin-top: 40px;">
@@ -25,83 +30,85 @@
                             <h1>Drive PN Analyzer</h1>
                         </div>   
                         <div class="h1-right-section">
-                            <h3>A tool to analyze part numbers, <br> not necessarily to be used to create configurations for customers.</h3>
+                            <h4>A tool to analyze part numbers, <br> not necessarily to be used to create configurations for customers.</h4>
                         </div>
                     </div>
                 </div>
-                <div class="container selectable-container" id="container-left-bottom">
+                
+                <div class="container selectable-container" id="container-left-bottom" style="display:none;">
                     <div class="h1-row" style="display: flex; align-items: center; justify-content:space-between; gap: 10px;">
                         <div class="h1-left-section">
                             <h1>Application Calculator</h1>
                         </div>
                         <div class="h1-right-section">
-                            <h3>A tool to size components and optimize configurations.</h3>
+                            <h4>A tool to size components and optimize configurations.</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="container selectable-container" id="container-left-drive-error-help">
+                <div class="container selectable-container" id="container-left-drive-error-help" style="display:none;">
                     <div class="h1-row" style="display: flex; align-items: center; justify-content:space-between; gap: 10px;">
                         <div class="h1-left-section">
                             <h1>Drive Error Help</h1>
                         </div>
                         <div class="h1-right-section">
-                            <h3>A publicly editable tool to help assist with drive errors.</h3>
+                            <h4>A publicly editable tool to help assist with drive errors.</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="container selectable-container" id="container-left-call-logger">
+                <div class="container selectable-container" id="container-left-call-logger" style="display:none;">
                     <div class="h1-row" style="display: flex; align-items: center; justify-content:space-between; gap: 10px;">
+                                
                         <div class="h1-left-section">
                             <h1>Call Logger</h1>
                         </div>
                         <div class="h1-right-section">
-                            <h3>A tool to log and track support calls and issues.</h3>
+                            <h4>A tool to log and track support calls and issues.</h4>
                         </div>
                     </div>
                 </div>
                 
-                <div class="container selectable-container" id="container-left-drive-troubleshooting-faq">
+                <div class="container selectable-container" id="container-left-drive-troubleshooting-faq"style="display:none;">
                     <div class="h1-row" style="display: flex; align-items: center; justify-content:space-between; gap: 10px;">
                         <div class="h1-left-section">
-                            <h1>Drive Troubleshooting FAQ</h1>
+                            <h1>Troubleshooting FAQ</h1>
                         </div>
                         <div class="h1-right-section">
-                            <h3>A resource for common troubleshooting questions and issues.</h3>
+                            <h4>A resource for common troubleshooting questions and issues.</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="container selectable-container" id="container-left-brusatori-to-dl4">
+                <div class="container selectable-container" id="container-left-brusatori-to-dl4"style="display:none;">
                     <div class="h1-row" style="display: flex; align-items: center; justify-content:space-between; gap: 10px;">
                         <div class="h1-left-section">
                             <h1>Brusatori to DL4</h1>
                         </div>
                         <div class="h1-right-section">
-                            <h3>A tool to translate Brusatori identifier to KEB part numbers, and vice versa.</h3>
+                            <h4>A tool to translate Brusatori identifier to KEB part numbers, and vice versa.</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="container selectable-container" id="container-left-filter-selector">
+                <div class="container selectable-container" id="container-left-filter-selector"style="display:none;">
                     <div class="h1-row" style="display: flex; align-items: center; justify-content:space-between; gap: 10px;">
                         <div class="h1-left-section">
                             <h1>Filter Selector</h1>
                         </div>
                         <div class="h1-right-section">
-                            <h3>A tool to help select the appropriate EMI filter for your application.</h3>
+                            <h4>A tool to help select the appropriate EMI filter for your application.</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="container selectable-container" id="container-left-unit-converter">
+                <div class="container selectable-container" id="container-left-unit-converter"style="display:none;">
                     <div class="h1-row" style="display: flex; align-items: center; justify-content:space-between; gap: 10px;">
                         <div class="h1-left-section">
                             <h1>Convert Units</h1>
                         </div>
                         <div class="h1-right-section">
-                            <h3>Quick conversion tool for common engineering units.</h3>
+                            <h4>Quick conversion tool for common engineering units.</h4>
                         </div>
                     </div>
                 </div>
@@ -147,9 +154,7 @@
                     <div id="s6-fields" class="product-fields" style="display:none;">
                             <div class="product-fields-row">
                                 <div class="product-fields-col-1" style = "width: 300px;">
-                                    <div class="square-image-container">
-                                        <img src="images/icon_s6drive.png" alt="S6 Drive Icon" class="productline-icon"/>
-                                    </div>
+                                    <img src="images/icon_s6drive.png" alt="S6 Drive Icon" class="productline-icon"/>
                                 </div>
                                 <div class="product-fields-col-2">
                                         <label for="s6-power">Device Size</label>
@@ -344,9 +349,7 @@
                         <div id="g6-fields" class="product-fields" style="display:none;">
                             <div class="product-fields-row">
                                 <div class="product-fields-col-1" style = "width: 300px;">
-                                    <div class="square-image-container">
-                                        <img src="images/icon_g6drive.png" alt="G6 Drive Icon" class="productline-icon"/>
-                                    </div>
+                                    <img src="images/icon_g6drive.png" alt="G6 Drive Icon" class="productline-icon"/>
                                 </div>
                                 <div class="product-fields-col-2">
                                     <label for="g6-power">Inverter Size</label>
@@ -438,17 +441,17 @@
                                     <label for="g6-overload">Switching Freq. / Current Limit / Cut-off</label>
                                     <select id="g6-overload" required>
                                         <option value="0">0: 2kHz; 125%; 150%;</option>
-                                        <option value="1">1: 4kHz; 125%; 150%;</option>
+                                        <option value="1">1: 4kHz; 125%; 150%</option>
                                         <option value="2">2: 8kHz; 125%; 150%;</option>
                                         <option value="3">3: 16kHz; 125%; 150%;</option>
                                         <option value="4">4: 2kHz; 150%; 180%;</option>
-                                        <option value="5">5: 4kHz; 150%; 180%;</option>
+                                        <option value="5">5: 4kHz; 150%; 180%</option>
                                         <option value="6">6: 8kHz; 150%; 180%;</option>
-                                        <option value="7">7: 16kHz; 150%; 180%;</option>
+                                        <option value="7">7: 16kHz; 150%; 180%</option>
                                         <option value="8">8: 2kHz; 180%; 216%;</option>
-                                        <option value="9">9: 4kHz; 180%; 216%;</option>
-                                        <option value="A">A: 8kHz; 180%; 216%;</option>
-                                        <option value="B">B: 16kHz; 180%; 216%;</option>
+                                        <option value="9">9: 4kHz; 180%; 216%</option>
+                                        <option value="A">A: 8kHz; 180%; 216%</option>
+                                        <option value="B">B: 16kHz; 180%; 216%</option>
                                     </select>
 
                                     <label for="g6-controlkbd">Control, Keyboard, Display</label>
@@ -663,7 +666,7 @@
                                         <option value="14">14 (10.0 HP / 7.5 KW / 14A UL @ 480V, 33A @ 230V)</option>
                                         <option value="15">15 (15.0 HP / 11.0 KW / 21A UL @ 480V, 48A @ 230V)</option>
                                         <option value="16">16 (20.0 HP / 15.0 KW / 27A UL @ 480V, 66A @ 230V)</option>
-                                        <option value="17">17 (25.0 HP / 18.5 KW / 34A UL)</option>
+                                        <option value="17">17 (25.0 HP / 18.5 KW / 34A UL @ 480V, 84A @ 230V)</option>
                                         <option value="18">18 (30.0 HP / 22.0 KW / 40A UL)</option>
                                         <option value="19">19 (40.0 HP / 30.0 KW / 52A UL)</option>
                                         <option value="20">20 (50.0 HP / 37.0 KW / 65A UL)</option>
@@ -779,9 +782,7 @@
                     <div id="s6-fields-2" class="product-fields" style="display:none;">
                             <div class="product-fields-row">
                                 <div class="product-fields-col-1" style = "width: 300px;">
-                                    <div class="square-image-container">
-                                        <img src="images/icon_s6drive.png" alt="S6 Drive Icon" class="productline-icon"/>
-                                    </div>
+                                    <img src="images/icon_s6drive.png" alt="S6 Drive Icon" class="productline-icon"/>
                                 </div>
                                 <div class="product-fields-col-2">
                                         <label for="s6-power-2">Device Size</label>
@@ -976,9 +977,7 @@
                         <div id="g6-fields-2" class="product-fields" style="display:none;">
                             <div class="product-fields-row">
                                 <div class="product-fields-col-1" style = "width: 300px;">
-                                    <div class="square-image-container">
-                                        <img src="images/icon_g6drive.png" alt="G6 Drive Icon" class="productline-icon"/>
-                                    </div>
+                                    <img src="images/icon_g6drive.png" alt="G6 Drive Icon" class="productline-icon"/>
                                 </div>
                                 <div class="product-fields-col-2">
                                     <label for="g6-power-2">Inverter Size</label>
@@ -986,14 +985,28 @@
                                         <option value="07">07 (1.0 HP / 0.75 KW / 2.1A UL)</option>
                                         <option value="09">09 (2.0 HP / 1.5 KW / 3.4A UL)</option>
                                         <option value="10">10 (3.0 HP / 2.2 KW / 4.8A UL)</option>
-                                        <option value="12">12 (5.0 HP / 4.0 KW / 7.6A UL)</option>
-                                        <option value="13">13 (7.5 HP / 5.5 KW / 11A UL)</option>
-                                        <option value="14">14 (10.0 HP / 7.5 KW / 14A UL)</option>
+                                        <option value="12">12 (5.0 HP / 4.0 KW / 7.6A UL @ 480V, 17.5A UL @ 230V-3PH)</option>
+                                        <option value="13">13 (7.5 HP / 5.5 KW / 11A UL @ 480V, 24A UL @ 230V-3PH)</option>
+                                        <option value="14">14 (10.0 HP / 7.5 KW / 14A UL @ 480V, 33A UL @ 230V-3PH)</option>
                                         <option value="15">15 (15.0 HP / 11.0 KW / 21A UL)</option>
                                         <option value="16">16 (20.0 HP / 15.0 KW / 27A UL)</option>
                                         <option value="17">17 (25.0 HP / 18.5 KW / 34A UL)</option>
-                                        <option value="18">18 (30.0 HP / 22.0 KW / 40A UL)</option>
+                                        <option value="18">18 (30.0 HP / 22.0 KW / 40A UL @ 480V, 85A UL @ 230V-3PH)</option>
                                         <option value="19">19 (40.0 HP / 30.0 KW / 52A UL)</option>
+                                        <option value="20">20 (50.0 HP / 37.0 KW / 65A UL)</option>
+                                        <option value="21">21 (60.0 HP / 45.0 KW / 77A UL)</option>
+                                        <option value="22">22 (75.0 HP / 55.0 KW / 96A UL)</option>
+                                        <option value="23">23 (100 HP / 75.0 KW / 124A UL)</option>
+                                        <option value="24">24 (125 HP / 90.0 KW / 156A UL)</option>
+                                        <option value="25">25 (150 HP / 110 KW / 180A UL)</option>
+                                        <option value="26">26 (175 HP / 132 KW / 210A UL)</option>
+                                        <option value="27">27 (200 HP / 160 KW / 260A UL)</option>
+                                        <option value="28">28 (250 HP / 200 KW / 325A UL)</option>
+                                        <option value="29">29 (300 HP / 250 KW / 400A UL)</option>
+                                        <option value="30">30 (350 HP / 315 KW / 495A UL)</option>
+                                        <option value="31">31 (450 HP / 355 KW / 515A UL)</option>
+                                        <option value="32">32 (500 HP / 400 KW / 590A UL)</option>
+                                        <option value="33">33 (600 HP / 450 KW / 719A UL)</option>
                                     </select>
 
                                     <label for="g6-control-2">Control Type</label>
@@ -1070,17 +1083,17 @@
                                     <label for="g6-overload-2">Switching Freq. / Current Limit / Cut-off</label>
                                     <select id="g6-overload-2" required>
                                         <option value="0">0: 2kHz; 125%; 150%;</option>
-                                        <option value="1">1: 4kHz; 125%; 150%;</option>
-                                        <option value="2">2: 8kHz; 125%; 150%;</option>
-                                        <option value="3">3: 16kHz; 125%; 150%;</option>
-                                        <option value="4">4: 2kHz; 150%; 180%;</option>
-                                        <option value="5">5: 4kHz; 150%; 180%;</option>
-                                        <option value="6">6: 8kHz; 150%; 180%;</option>
-                                        <option value="7">7: 16kHz; 150%; 180%;</option>
-                                        <option value="8">8: 2kHz; 180%; 216%;</option>
-                                        <option value="9">9: 4kHz; 180%; 216%;</option>
-                                        <option value="A">A: 8kHz; 180%; 216%;</option>
-                                        <option value="B">B: 16kHz; 180%; 216%;</option>
+                                        <option value="1">1: 4kHz; 125%; 150%</option>
+                                        <option value="2">2: 8kHz; 125%; 150%</option>
+                                        <option value="3">3: 16kHz; 125%; 150%</option>
+                                        <option value="4">4: 2kHz; 150%; 180%</option>
+                                        <option value="5">5: 4kHz; 150%; 180%</option>
+                                        <option value="6">6: 8kHz; 150%; 180%</option>
+                                        <option value="7">7: 16kHz; 150%; 180%</option>
+                                        <option value="8">8: 2kHz; 180%; 216%</option>
+                                        <option value="9">9: 4kHz; 180%; 216%</option>
+                                        <option value="A">A: 8kHz; 180%; 216%</option>
+                                        <option value="B">B: 16kHz; 180%; 216%</option>
                                     </select>
 
                                     <label for="g6-controlkbd-2">Control, Keyboard, Display</label>
@@ -1295,7 +1308,7 @@
                                         <option value="14">14 (10.0 HP / 7.5 KW / 14A UL @ 480V, 33A @ 230V)</option>
                                         <option value="15">15 (15.0 HP / 11.0 KW / 21A UL @ 480V, 48A @ 230V)</option>
                                         <option value="16">16 (20.0 HP / 15.0 KW / 27A UL @ 480V, 66A @ 230V)</option>
-                                        <option value="17">17 (25.0 HP / 18.5 KW / 34A UL)</option>
+                                        <option value="17">17 (25.0 HP / 18.5 KW / 34A UL @ 480V, 84A @ 230V)</option>
                                         <option value="18">18 (30.0 HP / 22.0 KW / 40A UL)</option>
                                         <option value="19">19 (40.0 HP / 30.0 KW / 52A UL)</option>
                                         <option value="20">20 (50.0 HP / 37.0 KW / 65A UL)</option>
@@ -1343,41 +1356,40 @@
                                         <option value="U">U</option>
                                     </select>
                                 </div>
-                            <div class="product-fields-col-2">
-                                    <label for="f4-input-2">Input Code</label>
-                                    <select id="f4-input-2">
-                                        <option value="1">1: 1-phase</option>
-                                        <option value="2">2: DC</option>
-                                        <option value="3">3: 3-phase</option>
-                                        <option value="4">4: Special / customer version</option>
-                                        <option value="5">5: Special / customer version</option>
-                                    </select>
+                                <div class="product-fields-col-2">
+                                        <label for="f4-input-2">Input Code</label>
+                                        <select id="f4-input-2">
+                                            <option value="1">1: 1-phase</option>
+                                            <option value="2">2: DC</option>
+                                            <option value="3">3: 3-phase</option>
+                                            <option value="4">4: Special / customer version</option>
+                                            <option value="5">5: Special / customer version</option>
+                                        </select>
 
-                                    <label for="f4-supply-2">Supply Voltage</label>
-                                    <select id="f4-supply-2">
-                                        <option value="2">2: 230 V-Class</option>
-                                        <option value="4">4: 400/460 V-Class</option>
-                                    </select>
+                                        <label for="f4-supply-2">Supply Voltage</label>
+                                        <select id="f4-supply-2">
+                                            <option value="2">2: 230 V-Class</option>
+                                            <option value="4">4: 400/460 V-Class</option>
+                                        </select>
 
-                                    <label for="f4-clock-2">Clock Frequency</label>
-                                    <select id="f4-clock-2">
-                                        <option value="1">1: 2 kHz</option>
-                                        <option value="2">2: 4 kHz</option>
-                                        <option value="4">4: 8 kHz</option>
-                                        <option value="6">6: 12 kHz</option>
-                                        <option value="8">8: 16 kHz</option>
-                                    </select>
+                                        <label for="f4-clock-2">Clock Frequency</label>
+                                        <select id="f4-clock-2">
+                                            <option value="1">1: 2 kHz</option>
+                                            <option value="2">2: 4 kHz</option>
+                                            <option value="4">4: 8 kHz</option>
+                                            <option value="6">6: 12 kHz</option>
+                                            <option value="8">8: 16 kHz</option>
+                                        </select>
 
-                                    <label for="f4-options-2">Options</label>
-                                    <select id="f4-options-2">
-                                        <option value="0">0: Standard</option>
-                                        <option value="1">1: Interbus S Card</option>
-                                    </select>
+                                        <label for="f4-options-2">Options</label>
+                                        <select id="f4-options-2">
+                                            <option value="0">0: Standard</option>
+                                            <option value="1">1: Interbus S Card</option>
+                                        </select>
                                 </div>
                             </div>
                         </div>
                 </div>
-
                 <div id="drive-pn-analyzer-io" style="display: none; margin-top: 20px;">
                     <div class="divider-thin"></div>
                     <label>Terminal Assignments</label>
@@ -1399,6 +1411,7 @@
                         <option value="Genericrotary">Generic Rotary</option>
                         <option value="Blower">Blower</option>
                         <option value="Leadscrew">Leadscrew</option>
+                        <option value="Linearmotor">Linear Motor</option>
                     </select>
                     <div id="application-needs-testing-text" style="display:none; font-style:italic; font-weight:bold; color: red;">*NEEDS TO BE TESTED WITH REAL DATA*</div>
                 </div>
@@ -1568,6 +1581,8 @@
             </div>
 
             <div class="container-right" id="drive-troubleshooting-faq" style="display: none;">
+                <br><label>Left-click button to open in new tab, right click to download</label><br>
+                <div class="divider-thin"></div>
                 <h2 onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'; this.querySelector('.collapse-arrow').textContent = this.nextElementSibling.style.display === 'none' ? '▶' : '▼';" style="cursor: pointer; user-select: none;">
                     <span class="collapse-arrow">▶</span> F5/S6 Diode Test Results
                 </h2>
@@ -1578,34 +1593,29 @@
                         </table>
                 </div>
                 <script src="csv-table-parser.js"></script>
-                
-                <h2 onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'; this.querySelector('.collapse-arrow').textContent = this.nextElementSibling.style.display === 'none' ? '▶' : '▼';" style="cursor: pointer; user-select: none;">
-                    <span class="collapse-arrow">▶</span> Serial Adapter Pinouts/Requirements
-                </h2>
-                <div style="display: none; margin-left: 30px;">coming soon...</div>
-                
 
                 <h2 onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'; this.querySelector('.collapse-arrow').textContent = this.nextElementSibling.style.display === 'none' ? '▶' : '▼';" style="cursor: pointer; user-select: none;">
                     <span class="collapse-arrow">▶</span> F5 Resources
                 </h2>
                 <div style="display: none; margin-left: 30px;">
-                    <span>Left-click to open in new tab, right click to download</span><br><br/>
                     <button onclick="window.open('Resources/F5_ErrorsAndWarnings.pdf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/F5_ErrorsAndWarnings.pdf'; a.download = 'F5_ErrorsAndWarnings.pdf'; a.click();" style="display: inline-block;">Open F5 Errors and Warnings Printout</button>
                     <button onclick="window.open('Resources/F5_InputAndOutputTransistorTest.pdf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/F5_InputAndOutputTransistorTest.pdf'; a.download = 'F5_InputAndOutputTransistorTest.pdf'; a.click();" style="display: inline-block;">Open F5 Input and Output Transistor Test</button>
                     <button onclick="window.open('Resources/InstallationTutorial_Combivis.pdf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/InstallationTutorial_Combivis.pdf'; a.download = 'InstallationTutorial_Combivis.pdf'; a.click();" style="display: inline-block;">Open Combivis Installation Tutorial</button>
                     <button onclick="window.open('Resources/KEB_HSP5_Specification.pdf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/KEB_HSP5_Specification.pdf'; a.download = 'KEB_HSP5_Specification.pdf'; a.click();" style="display: inline-block;">Open KEB HSP5 Specification</button>
                     <button onclick="window.open('https://media.githubusercontent.com/media/kebapps-dev/keb-resources/main/Resources/Combivis5.zip', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'https://media.githubusercontent.com/media/kebapps-dev/keb-resources/main/Resources/Combivis5.zip'; a.download = 'Combivis5.zip'; a.click();" style="display: inline-block;">Download Combivis 5 ZIP</button>
                     <button onclick="window.open('Resources/HSP5-Compatible_Cable_Instructions.pdf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/HSP5-Compatible_Cable_Instructions.pdf'; a.download = 'HSP5-Compatible_Cable_Instructions.pdf'; a.click();" style="display: inline-block;">Open HSP5-Compatible Cable Instructions</button>
+                    <br></br><span>Combivis 5 download link: https://www.kebamerica.com/wp-content/uploads/2026/01/files_combivis5.zip</span>
                 </div>
 
                 <h2 onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'; this.querySelector('.collapse-arrow').textContent = this.nextElementSibling.style.display === 'none' ? '▶' : '▼';" style="cursor: pointer; user-select: none;">
-                    <span class="collapse-arrow">▶</span> F6 Resources
+                    <span class="collapse-arrow">▶</span> X6 Resources
                 </h2>
                 <div style="display: none; margin-left: 30px;">
-                    <span>Left-click to open in new tab, right click to download</span><br><br/>
                     <button onclick="window.open('Resources/Homing_Methods.pdf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/Homing_Methods.pdf'; a.download = 'Homing_Methods.pdf'; a.click();" style="display: inline-block;">Open KEB Homing Methods</button>
                     <button onclick="window.open('Resources/InstallationTutorial_Combivis.pdf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/InstallationTutorial_Combivis.pdf'; a.download = 'InstallationTutorial_Combivis.pdf'; a.click();" style="display: inline-block;">Open Combivis Installation Tutorial</button>
-                    
+                    <button onclick="window.open('Resources/VFDcoolantmanagement.dw5', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/VFDcoolantmanagement.dw5'; a.download = 'VFDcoolantmanagement.dw5'; a.click();" style="display: inline-block;">Download VFD Coolant Management .dw5</button>
+                    <button onclick="window.open('Resources/er_dr_f6_s6_ErrorAndWarningDescriptiion.pdf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/er_dr_f6_s6_ErrorAndWarningDescriptiion.pdf'; a.download = 'er_dr_f6_s6_ErrorAndWarningDescriptiion.pdf'; a.click();" style="display: inline-block;">Open KEB Service S6/F6 Error Descriptions</button>
+
                     <h4>Fieldbus Files</h4>
                     <button onclick="window.open('Resources/1C460004.nxf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/1C460004.nxf'; a.download = '1C460004.nxf'; a.click();" style="display: inline-block;">Download EtherCAT File</button>
                     <button onclick="window.open('Resources/1M310000.nxf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/1M310000.nxf'; a.download = '1M310000.nxf'; a.click();" style="display: inline-block;">Download ModbusTCP File</button>
@@ -1618,15 +1628,17 @@
                     <span class="collapse-arrow">▶</span> Motor Resources
                 </h2>
                 <div style="display: none; margin-left: 30px;">
-                    <span>Left-click to open in new tab, right click to download</span><br><br/>
                     <button onclick="window.open('Resources/KEB_Motor_Wiring.pdf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/KEB_Motor_Wiring.pdf'; a.download = 'KEB_Motor_Wiring.pdf'; a.click();" style="display: inline-block;">Open KEB Motor Wiring</button>
                     <button onclick="window.open('Resources/KEB_Mounting_Positions.pdf', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/KEB_Mounting_Positions.pdf'; a.download = 'KEB_Mounting_Positions.pdf'; a.click();" style="display: inline-block;">Open KEB GM Mounting Positions</button>
                 </div>
 
                 <h2 onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'; this.querySelector('.collapse-arrow').textContent = this.nextElementSibling.style.display === 'none' ? '▶' : '▼';" style="cursor: pointer; user-select: none;">
-                    <span class="collapse-arrow">▶</span> Gen 6 Digital Output Assist
+                    <span class="collapse-arrow">▶</span> C6C3 Resources
                 </h2>
-                <div style="display: none; margin-left: 30px;">coming soon...</div>
+                <div style="display: none; margin-left: 30px;">
+                    <button onclick="window.open('Resources/keb_c3_sdcard_toolbox_v1.3.bat', '_blank');" oncontextmenu="event.preventDefault(); const a = document.createElement('a'); a.href = 'Resources/keb_c3_sdcard_toolbox_v1.3.bat'; a.download = 'keb_c3_sdcard_toolbox_v1.3.bat'; a.click();" style="display: inline-block;">Download KEB C3 SD Card Toolbox .bat</button>
+                    <br></br><span>More resources at: O:\sales\all\AppInfo\C6\Compact 3 , O:\sales\all\AppInfo\C6\NOA</span>
+                </div>
             </div>
             
             <div class="container-right" id="call-logger" style="display: none;">
@@ -1773,7 +1785,43 @@
             <script src="filter-selector.js"></script>
             <script src="brusatori-to-dl4.js"></script>
             <script src="unit-converter.js"></script>
-            
+            <script>
+                // Password logic for advanced tools
+                document.addEventListener('DOMContentLoaded', function() {
+                    var passwordInput = document.getElementById('access-password');
+                    var cont1 = document.getElementById('container-left-bottom');
+                    var cont2 = document.getElementById('container-left-call-logger');
+                    var cont3 = document.getElementById('container-left-application-calculator');
+                    var cont4 = document.getElementById('container-left-brusatori-to-dl4');
+                    var cont5 = document.getElementById('container-left-drive-error-help');
+                    var cont6 = document.getElementById('container-left-drive-troubleshooting-faq');
+                    var cont7 = document.getElementById('container-left-filter-selector');
+                    var cont8 = document.getElementById('container-left-unit-converter');
+                    function checkPassword() {
+                        if (passwordInput.value === '440') {
+                            if (cont1) cont1.style.display = '';
+                            if (cont2) cont2.style.display = '';
+                            if (cont3) cont3.style.display = '';
+                            if (cont4) cont4.style.display = '';
+                            if (cont5) cont5.style.display = '';
+                            if (cont6) cont6.style.display = '';
+                            if (cont7) cont7.style.display = '';
+                            if (cont8) cont8.style.display = '';
+                        } else {
+                            if (cont1) cont1.style.display = 'none';
+                            if (cont2) cont2.style.display = 'none';
+                            if (cont3) cont3.style.display = 'none';
+                            if (cont4) cont4.style.display = 'none';
+                            if (cont5) cont5.style.display = 'none';
+                            if (cont6) cont6.style.display = 'none';
+                            if (cont7) cont7.style.display = 'none';
+                            if (cont8) cont8.style.display = 'none';
+                        }
+                    }
+                    passwordInput.addEventListener('input', checkPassword);
+                    checkPassword(); // <-- Add this line to run the check on page load
+                });
+            </script>
             <!-- Optional: enable anonymous remote whiteboard sync by setting the DB URL here -->
             <script>
                 // Opt-in remote database (Realtime Database URL). Set this to enable anonymous shared edits.
@@ -1786,8 +1834,9 @@
             </script>
             <script src="whiteboard.js"></script>
             <script src="ui-init.js"></script>
+            </div>
         </div>
-
+        
         <div class="keb-footer">
             <table class="footer-table">
                 <tr>
@@ -1813,6 +1862,5 @@
                 </tr>
             </table>
         </div>
-        
     </body>
 </html>

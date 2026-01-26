@@ -137,10 +137,10 @@
   status.innerHTML = 'Last saved: <span id="wbSavedTime">never</span>' +
     ' <span style="margin-left:12px;">Remote: Connected: <span id="wbRemoteConnected">off</span></span>' +
     ' <span style="margin-left:12px;">Sync: <span id="wbRemoteSync">n/a</span></span>';
-
-    panel.appendChild(content);
+    
     panel.appendChild(toolbar);
     panel.appendChild(status);
+    panel.appendChild(content);
 
     mountTarget.appendChild(panel);
 
@@ -186,7 +186,7 @@
     // Brief contributor note: show an italic instruction above the table header
     const note = document.createElement('div');
     note.className = 'whiteboard-note';
-    note.innerHTML = '<em>please add troubleshooting tips as you find new ones!<br><br></em>';
+    note.innerHTML = '<h4>please add troubleshooting tips as you find new ones!<br><br></h4>';
     wrapper.appendChild(note);
 
     const table = document.createElement('table');

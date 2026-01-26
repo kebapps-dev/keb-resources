@@ -6,7 +6,6 @@
     max-width: 720px;
     min-width: 300px;
     min-height: 220px;
-    background: #fff;
     border-radius: 12px;
     box-shadow: 8px 8px 0 6px #222;
     display: flex;
@@ -30,7 +29,6 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.95rem;
     color: #222;
-    background: #fff;
 }
 .whiteboard-status {
     padding: 8px 12px;
@@ -52,7 +50,6 @@
 }
 .whiteboard-embedded .whiteboard-content {
     min-height: 200px;
-    background: #fff;
 }
 .whiteboard-embedded .whiteboard-toolbar {
     padding: 6px 8px;

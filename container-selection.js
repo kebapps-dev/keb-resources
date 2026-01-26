@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
         other.classList.remove('selected');
       });
       el.classList.add('selected');
+      // Scroll to top when a selectable container is selected
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       // Show/hide right display based on selection
       if (el.id === 'container-left') {

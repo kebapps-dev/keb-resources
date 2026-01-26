@@ -1,0 +1,20 @@
+;
+0,9321,100,0;
+0,0,5,0;VFD
+0,0,5,0;
+12341,3,200,1;Control based on ru25[1]
+12341,500,200,2;Heatsink target temp
+12341,5000,200,3;
+12341,300000000,200,4;
+12341,200,200,7;cycle duration
+12341,0,200,8;
+12341,100,200,9;
+12341,100,200,10;5% of period
+0,0,5,0;
+12342,0,201,0;output of liquid cooling controller, controls digital output for valve
+9729,60,200,1;
+9730,28,200,1;
+9731,5,200,1;
+9734,0,200,1;IF PWM output is on (=1), then flag 1 set
+9748,1,200,0;Flag 1 intiates digital output 1
+0,0,5,0;

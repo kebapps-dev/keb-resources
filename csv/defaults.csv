@@ -65,3 +65,10 @@ Leadscrew,leadscrewGearboxEff,85
 Leadscrew,leadscrewInertia,0.01
 Leadscrew,leadscrewMotorInertia,0.005
 Leadscrew,leadscrewSafetyFactor,1.2
+Linearmotor,linearmotorMass,4
+Linearmotor,linearmotorDistanceNtoN,60
+Linearmotor,linearmotorVelocity,2.1
+Linearmotor,linearmotorRatedCurrent,1.7
+Linearmotor,linearmotorForceConstantKf,54.8
+Linearmotor,linearmotorEMFconstant,44.75
+Linearmotor,linearmotorZperPole,1

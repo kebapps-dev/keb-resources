@@ -2,21 +2,45 @@
 setlocal enabledelayedexpansion
 REM KEB Compact 3 SD Card Toolbox
 REM This script provides various operations for the SD card on the C3 device
-echo ==============================================
-echo ^|    KEB COMPACT 3 - SD CARD TOOLBOX V1.2    ^|
-echo ==============================================
-echo  * requires PuTTY to be installed on PC
-echo  * make sure to connect to C3 using PuTTY
-echo    before running this script to accept 
-echo    certificates.
-echo  * ssh must be enabled on C3 System Manager
-echo  * use a single partition SD card (FAT32)
-echo ----------------------------------------------
+
+REM Enable colors (tan background with gray text)
+color 0E
+
+REM Get console width for dynamic display
+for /f "tokens=2" %%a in ('mode con ^| findstr "Columns"') do set COLS=%%a
+
+REM Create top border
+set "TOP_LINE="
+for /l %%i in (1,1,%COLS%) do set "TOP_LINE=!TOP_LINE!="
+echo !TOP_LINE!
+
+REM Calculate center position for title
+set "TITLE=KEB COMPACT 3 - SD CARD TOOLBOX v1.3"
+set TITLE_LEN=38
+set /a PADDING=(%COLS% - %TITLE_LEN%) / 2
+
+REM Build centered title
+set "SPACES="
+for /l %%i in (1,1,%PADDING%) do set "SPACES=!SPACES! "
+echo !SPACES!!TITLE!
+
+REM Create separator
+set "MID_LINE="
+for /l %%i in (1,1,%COLS%) do set "MID_LINE=!MID_LINE!-"
+echo !MID_LINE!
+
+REM Display requirements
+echo  REQUIREMENTS:
+echo  * PuTTY installed on PC ^(ctrl + click to download https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html^)
+echo  * Connect to C3 using PuTTY first to accept certificates
+echo  * SSH must be enabled on C3 System Manager
+echo  * Use single partition SD card ^(FAT32^)
+echo !MID_LINE!
 echo.
-set C3_DEVICE=192.168.201.228
+@REM set C3_DEVICE=192.168.201.228
 set C3_USER=admin
 set SUDO_PASSWORD=admin
-@REM set /p C3_DEVICE="Enter the C3 device IP address: "
+set /p C3_DEVICE="Enter the C3 device IP address: "
 @REM set /p C3_USER="Enter the C3 username: "
 @REM set /p SUDO_PASSWORD="Enter the C3 password: "
 
@@ -308,23 +332,93 @@ if "%OPERATION%"=="1" (
     REM Add new Docker container to C3 device
     echo ^(3/5^) Configuring new Docker container...
     echo.
+    echo Select configuration method:
+    echo   1 - Manual configuration
+    echo   2 - Preconfigured container ^(will need to tunnel-in using operation 5^)
+    echo.
+    set /p CONFIG_METHOD="Enter your choice: "
+    echo.
     
     set "IMAGE="
     set "CONTAINER_NAME="
     set "DOCKER_OPTS="
-    
-    set /p IMAGE="Enter Docker image (repository/name): "
-    set /p CONTAINER_NAME="Enter container name: "
-    set /p DOCKER_OPTS="Enter Docker options or leave blank: "
-    
+    set "DOCKER_NETWORK="
+    set "DOCKER_PORT="
+    set "CUSTOM_PORT_ACTIVE=false"
+
+    if "!CONFIG_METHOD!"=="2" (
+        REM Preconfigured containers
+        echo Available preconfigured containers:
+        echo   1 - Node-RED       ^(port 1880^)
+        echo   2 - Portainer      ^(port 9443^)
+        echo   3 - Mosquitto MQTT ^(port 1883^)
+        echo.
+        set /p PRECONFIG_CHOICE="Enter your choice: "
+        echo.
+        
+        if "!PRECONFIG_CHOICE!"=="1" (
+            set "IMAGE=nodered/node-red"
+            set "CONTAINER_NAME=nodered"
+            set "DOCKER_NETWORK=host"
+            set "DOCKER_PORT=1880"
+            set "DOCKER_OPTS="
+            set CUSTOM_PORT_ACTIVE=true
+        ) else if "!PRECONFIG_CHOICE!"=="2" (
+            set "IMAGE=portainer/portainer-ce"
+            set "CONTAINER_NAME=portainer"
+            set "DOCKER_NETWORK=host"
+            set "DOCKER_PORT=9443"
+            set "DOCKER_OPTS=-v /var/run/docker.sock:/var/run/docker.sock"
+            set CUSTOM_PORT_ACTIVE=true
+        ) else if "!PRECONFIG_CHOICE!"=="3" (
+            set "IMAGE=eclipse-mosquitto"
+            set "CONTAINER_NAME=mosquitto"
+            set "DOCKER_NETWORK=host"
+            set "DOCKER_PORT=1883"
+            set "DOCKER_OPTS="
+            set CUSTOM_PORT_ACTIVE=true
+        ) else (
+            echo Invalid selection.
+            pause
+            goto MENU
+        )
+        
+        echo       Selected: !CONTAINER_NAME!
+        echo       Image: !IMAGE!
+        echo       Port: !DOCKER_PORT!
+        echo       Options: !DOCKER_OPTS!
+    ) else if "!CONFIG_METHOD!"=="1" (
+        REM Manual configuration
+        set /p IMAGE="Enter Docker image (repository/name): "
+        set /p CONTAINER_NAME="Enter container name: "
+        set /p DOCKER_NETWORK="Enter Docker network (ex. host): "
+
+        if not "!DOCKER_NETWORK!"=="host" (
+            set CUSTOM_PORT_ACTIVE=true
+            set /p DOCKER_PORT="Enter unused port number to expose: "
+        )
+
+        set /p DOCKER_OPTS="Enter Docker options or leave blank: "
+    ) else (
+        echo Invalid selection.
+        pause
+        goto MENU
+    )
+
+    if "!DOCKER_NETWORK!"=="" (
+        echo       ERROR: Docker network is required. Use 'host' if unsure.
+        pause
+        goto MENU
+    )
+
     if "!IMAGE!"=="" (
-        echo       ERROR: Image name is required.
+        echo       ERROR: Image name is required. This name will be pulled from Docker Hub and needs to exist.
         pause
         goto MENU
     )
     
     if "!CONTAINER_NAME!"=="" (
-        echo       ERROR: Container name is required.
+        echo       ERROR: Container name is required. This name will identify the container locally on the device.
         pause
         goto MENU
     )
@@ -359,7 +453,12 @@ if "%OPERATION%"=="1" (
     
     echo ^(5/5^) Deploying container...
     
-    set "DOCKER_CMD=docker run -d --name !CONTAINER_NAME! --restart=always --network host !DOCKER_OPTS! !IMAGE!" >nul 2>&1
+    if "!CUSTOM_PORT_ACTIVE!"=="true" (
+        set "DOCKER_CMD=docker run -d --name !CONTAINER_NAME! --restart=always --network !DOCKER_NETWORK! -p !DOCKER_PORT!:!DOCKER_PORT! !DOCKER_OPTS! !IMAGE!" >nul 2>&1
+    ) else (
+        set "DOCKER_CMD=docker run -d --name !CONTAINER_NAME! --restart=always --network !DOCKER_NETWORK! !DOCKER_OPTS! !IMAGE!" >nul 2>&1
+    )
+    
     
     echo       Command: !DOCKER_CMD!
     
@@ -368,6 +467,11 @@ if "%OPERATION%"=="1" (
     if !ERRORLEVEL! EQU 0 (
         echo       SUCCESS: Container deployed.
         plink -batch -pw %SUDO_PASSWORD% %C3_USER%@%C3_DEVICE% "echo %SUDO_PASSWORD% | sudo -S docker ps --filter name=!CONTAINER_NAME! --format 'Name: {{.Names}} Status: {{.Status}} Ports: {{.Ports}}' 2>/dev/null" >nul 2>&1
+        if "!CUSTOM_PORT_ACTIVE!"=="true" (
+            echo       Opening secure and unsecure tabs...
+            start http://!C3_DEVICE!:!DOCKER_PORT!
+            start https://!C3_DEVICE!:!DOCKER_PORT!
+        )
         echo.
         pause
         goto MENU
@@ -405,24 +509,29 @@ if "%OPERATION%"=="1" (
     timeout /t 5 /nobreak >nul
     
     echo       Tunnel established on localhost:!tunnel_port!
-    echo       Opening browser...
+    echo       Opening secure and unsecure tabs...
     start http://localhost:!tunnel_port!
     start https://localhost:!tunnel_port!
-    echo       Keep the tunnel window open while using the service. It may take up to a minute for the page to become available.
+    echo       Keep the tunnel window open while using the service. It may take up to a minute for the pages to become available.
     echo.
     goto MENU
     pause
     exit /b 0
 ) else if "%OPERATION%"=="6" (
     REM Stop/Start/Restart specific container
-    echo ^(3/5^) Listing available containers...
+    echo ^(3/5^) Listing available containers and networks...
     echo.
     
     REM Get list of all containers
     plink -batch -pw %SUDO_PASSWORD% %C3_USER%@%C3_DEVICE% "echo %SUDO_PASSWORD% | sudo -S docker ps -a --format 'table {{.Names}}\t{{.Status}}\t{{.Image}}' 2>/dev/null"
     
     echo.
-    set /p CONTAINER_NAME="Enter container name: "
+
+    REM Get list of all networks
+    plink -batch -pw %SUDO_PASSWORD% %C3_USER%@%C3_DEVICE% "echo %SUDO_PASSWORD% | sudo -S docker network ls --format 'table {{.Name}}\t{{.Driver}}\t{{.Scope}}' 2>/dev/null"
+    
+    echo.
+    set /p CONTAINER_NAME="Enter container name, or new/existing network name: "
     
     if "!CONTAINER_NAME!"==" " (
         echo No container specified.
@@ -432,10 +541,15 @@ if "%OPERATION%"=="1" (
     
     echo.
     echo ^(4/5^) Select action:
+    echo   Container Actions:
     echo   1 - Stop
     echo   2 - Start
     echo   3 - Restart
     echo   4 - Remove
+    echo.
+    echo   Network Actions:
+    echo   5 - Create
+    echo   6 - Remove
     echo.
     set /p ACTION="Enter your choice: "
     
@@ -482,6 +596,34 @@ if "%OPERATION%"=="1" (
                 echo       SUCCESS: Container removed.
             ) else (
                 echo       ERROR: Failed to remove container.
+            )
+        ) else (
+            echo       Removal cancelled.
+        )
+    ) else if "!ACTION!"=="5" (
+        echo.
+        echo ^(5/5^) Adding network...
+        plink -batch -pw %SUDO_PASSWORD% %C3_USER%@%C3_DEVICE% "echo %SUDO_PASSWORD% | sudo -S docker network create !CONTAINER_NAME! 2>/dev/null" >nul 2>&1
+        
+        if !ERRORLEVEL! EQU 0 (
+            echo       SUCCESS: Network added.
+        ) else (
+            echo       ERROR: Failed to add network.
+        )
+
+    ) else if "!ACTION!"=="6" (
+        echo.
+        set /p REMOVE_CONFIRM="WARNING: This will permanently delete the network. Are you sure? (y/n): "
+        
+        if /I "!REMOVE_CONFIRM!"=="Y" (
+            echo.
+            echo ^(5/5^) Removing network...
+            plink -batch -pw %SUDO_PASSWORD% %C3_USER%@%C3_DEVICE% "echo %SUDO_PASSWORD% | sudo -S docker network rm !CONTAINER_NAME! 2>/dev/null" >nul 2>&1
+            
+            if !ERRORLEVEL! EQU 0 (
+                echo       SUCCESS: Network removed.
+            ) else (
+                echo       ERROR: Failed to remove network.
             )
         ) else (
             echo       Removal cancelled.

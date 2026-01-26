@@ -70,3 +70,11 @@ Leadscrew,leadscrewRatio,Gearbox Ratio,number,any,,,,Gearbox ratio for the leads
 Leadscrew,leadscrewGearboxEff,Gearbox Efficiency,number,5,%,,,Efficiency of the gearbox mechanism
 Leadscrew,leadscrewMotorInertia,Motor Inertia (iterative),number,any,,inertia,,Rotational inertia of the motor
 Leadscrew,leadscrewSafetyFactor,Safety Factor,number,.1,,,,Safety factor for sizing
+
+Linearmotor,linearmotorMass,Mass,number,any,,mass,,Rated mass of the linear motor
+Linearmotor,linearmotorDistanceNtoN,Distance N to N,number,any,"mm,cm,in",length,mm,Distance between the motor's N poles
+Linearmotor,linearmotorVelocity,Velocity,number,any,"m/s,mm/s,in/s,ft/s",velocity,m/s,Required linear velocity
+Linearmotor,linearmotorRatedCurrent,Rated Current,number,any,A,,,Rated current of the linear motor
+Linearmotor,linearmotorForceConstantKf,Force Constant Kf,number,any,N/Arms,,,Force constant of the linear motor
+Linearmotor,linearmotorEMFconstant,EMF constant,number,any,Vpk @ 1m/s,,,EMF constant of the linear motor
+Linearmotor,linearmotorZperPole,Z per Pole,number,any,,,,Number of Z poles per pole of the linear motor

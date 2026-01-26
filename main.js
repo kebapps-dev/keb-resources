@@ -245,7 +245,8 @@ function handleAppChange() {
                 "Genericrotary": "Calculate Generic Rotary Motor",
                 "Blower": "Calculate Blower Motor",
                 "Spindle": "Calculate Spindle Motor",
-                "Leadscrew": "Calculate Leadscrew Motor"
+                "Leadscrew": "Calculate Leadscrew Motor",
+                "Linearmotor": "Calculate Linear Motor Conversion"
             };
             calculateBtn.textContent = buttonTexts[app] || "Calculate";
         } else {
@@ -283,7 +284,8 @@ function calculateForApplication() {
         "Genericrotary": "findClosestGenericRotaryMotor",
         "Blower": "findClosestBlowerMotor",
         "Spindle": "findClosestSpindleMotor",
-        "Leadscrew": "findClosestLeadscrewMotor"
+        "Leadscrew": "findClosestLeadscrewMotor",
+        "Linearmotor": "findClosestLinearmotorMotor"
     };
     
     const functionName = calculationFunctions[app];
@@ -570,6 +572,11 @@ function showSizingSuggestions(application) {
                 ? getLeadscrewSizingSuggestions() 
                 : "";
             break;
+        case "Linearmotor":
+            html = typeof getLinearMotorSizingSuggestions === 'function' 
+                ? getLinearMotorSizingSuggestions() 
+                : "";
+            break;
         default:
             html = "";
     }
@@ -621,6 +628,11 @@ function showFormulasForApplication(application) {
         case "Leadscrew":
             html = typeof getLeadscrewFormulas === 'function' 
                 ? getLeadscrewFormulas() 
+                : "";
+            break;
+        case "Linearmotor":
+            html = typeof getLinearMotorFormulas === 'function' 
+                ? getLinearMotorFormulas() 
                 : "";
             break;
         default:
@@ -1049,7 +1061,8 @@ function displayStandardResults(currentOutputs) {
                 'Lift': 'getLiftResultUnitMappings',
                 'Rotarytable': 'getRotaryTableResultUnitMappings',
                 'Genericrotary': 'getGenericRotaryResultUnitMappings',
-                'Leadscrew': 'getLeadscrewResultUnitMappings'
+                'Leadscrew': 'getLeadscrewResultUnitMappings',
+                'Linearmotor': 'getLinearmotorResultUnitMappings'
             };
             
             const funcName = mappingFunctions[currentApp];

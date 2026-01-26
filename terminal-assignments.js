@@ -1337,7 +1337,7 @@ function updateTerminalAssignments() {
     }
     
     // Build the terminal assignment display
-    let html = `<h5 style="margin: 10px 0;">${assignments.name}</h5>`;
+    let html = `<label style="margin: 10px 0;">${assignments.name}</label>`;
     
     // If there's an image, display it
     if (assignments.image) {
