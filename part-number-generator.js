@@ -230,9 +230,8 @@ const scalableConfig2 = {
         { id: 'f6-housing-2', len: 1 },
         { id: 'f6-voltage-2', len: 1 },
         { id: 'f6-switching-2', len: 1 },
-        { id: 'f6-heatsink-2', len: 1 },
         { id: 'f6-board-2', len: 1 },
-        { id: 'f6-extra-2', len: 1 }
+        { id: 'f6-heatsink-2', len: 1 }
     ],
     F4: [
         { id: 'f4-size-2', len: 2 },
