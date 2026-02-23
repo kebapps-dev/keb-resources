@@ -7,6 +7,8 @@
     const statusSpan = document.getElementById('cl_status');
     const createTemplateBtn = document.getElementById('cl_create_template');
 
+    // Add: Open selected workbook button
+
     // Will hold a FileSystemFileHandle when user picks a file via the native picker
     let fileHandle = null;
 
@@ -78,12 +80,14 @@
         });
     }
 
+    // Add: Open selected workbook button logic
+
     // Create a new workbook template with headers and formatting
     if (createTemplateBtn) {
         createTemplateBtn.addEventListener('click', async ()=>{
             statusSpan.textContent = '';
             try {
-                const header = ['Date/Time','Name','Company','Phone','Email','Location','Machine Type','OEM','New Install','Mat. Number','Serial Number','Found From','Notes','Timestamp'];
+                const header = ['Date/Time','Name','Company','Phone','Email','Location','Machine Type','OEM','New Install','Mat. Number','Serial Number','Found From','Notes'];
                 const aoa = [header];
                 const ws = XLSX.utils.aoa_to_sheet(aoa);
                 // Set header font size and column widths
@@ -164,7 +168,7 @@
 
             // If sheet is empty, optionally add header row
             if (rows.length === 0 || (rows.length ===1 && rows[0].length===0)){
-                const header = ['Date/Time','Name','Company','Phone','Email','Location','Machine Type','OEM','New Install','Mat. Number','Serial Number','Found From','Notes','Timestamp'];
+                const header = ['Date/Time','Name','Company','Phone','Email','Location','Machine Type','OEM','New Install','Mat. Number','Serial Number','Found From','Notes'];
                 XLSX.utils.sheet_add_aoa(ws, [header], {origin:0});
                 // refresh rows after adding header
                 rows = XLSX.utils.sheet_to_json(ws, {header:1});

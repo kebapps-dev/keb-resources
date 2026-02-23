@@ -150,6 +150,12 @@ function updatePartNumberInputScalable() {
     document.getElementById('decodeInput').value = partNumber;
 }
 
+function refreshTerminalAssignmentsIfAvailable() {
+    if (typeof updateTerminalAssignments === 'function') {
+        updateTerminalAssignments();
+    }
+}
+
 function updateInputsFromPartNumberInput() {
     const partNumber = document.getElementById('decodeInput').value.trim().toUpperCase();
     // Get product line from 3rd and 4th digit
@@ -167,6 +173,7 @@ function updateInputsFromPartNumberInput() {
     }
     const productLine = document.getElementById('productLine').value;
     setInputsFromPartNumber(partNumber, productLine);
+    refreshTerminalAssignmentsIfAvailable();
 }
 
 function showFieldsForProductLine(productLine) {

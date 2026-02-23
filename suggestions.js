@@ -99,7 +99,7 @@ function createSuggestionBox() {
                 cursor: pointer;
                 font-size: 14px;
                 font-weight: bold;
-                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
                 transition: all 0.3s ease;
                 display: flex;
                 align-items: center;
@@ -107,7 +107,7 @@ function createSuggestionBox() {
             }
             
             .suggestion-toggle:hover {
-                background: linear-gradient(135deg,#dd0067, #dd0067);
+                background: linear-gradient(135deg,#000000, #000000);
                 transform: translateY(-2px);
             }
             
@@ -204,7 +204,7 @@ function createSuggestionBox() {
             .form-group input:focus,
             .form-group textarea:focus {
                 outline: none;
-                border-color: #dd0067;
+                border-color: #000000;
                 box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
             }
             
@@ -249,12 +249,12 @@ function createSuggestionBox() {
             }
             
             .btn-submit {
-                background: #dd0067;
+                background: #000000;
                 color: white;
             }
             
             .btn-submit:hover {
-                background: #dd0067;
+                background: #000000;
             }
             
             .btn-submit:disabled {
