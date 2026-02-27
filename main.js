@@ -363,7 +363,8 @@ const unitConversions = {
     'mm/s': 0.001,         // 1 mm/s = 0.001 m/s
     'in/s': 0.0254,        // 1 in/s = 0.0254 m/s
     'ft/s': 0.3048,         // 1 ft/s = 0.3048 m/s
-    'ft/min': 0.00508      // 1 ft/min = 0.00508 m/s
+    'ft/min': 0.00508,      // 1 ft/min = 0.00508 m/s
+    'mm/min': 0.001 / 60   // 1 mm/min = 0.001 m/s / 60
   },
   length: {
     'm': 1,
